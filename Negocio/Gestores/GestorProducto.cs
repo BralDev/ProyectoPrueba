@@ -34,7 +34,7 @@ namespace Negocio.Gestores
                     nStoPro = requestProducto.pnStoPro
                 };
 
-                this.confirmacion = this.loProductosCD.createProducto(entiProducto);
+                this.confirmacion = this.loProductosCD.mxCrearProducto(entiProducto);
                 
                 if (this.confirmacion <= 0)
                 {
@@ -52,7 +52,7 @@ namespace Negocio.Gestores
 
         public int mxEliminarProducto(int id)
         {
-            this.confirmacion = this.loProductosCD.deleteProducto(id);
+            this.confirmacion = this.loProductosCD.mxEliminarProducto(id);
             if (this.confirmacion <= 0)
             {
                 _logger.LogWarning(Constantes._M_ERROR_ELIMINAR, id);
@@ -67,7 +67,7 @@ namespace Negocio.Gestores
             List<ProductoListCN> laLstProductos = new List<ProductoListCN>();
             try
             {
-                List<ProductoCD> productos = this.loProductosCD.listProducto();
+                List<ProductoCD> productos = this.loProductosCD.mxObtenerProductos();
 
                 if (productos == null || productos.Count == 0)
                 {
@@ -107,7 +107,7 @@ namespace Negocio.Gestores
                 nStoPro = requestProducto.pnStoPro
             };
 
-            this.confirmacion = this.loProductosCD.updateProducto(entiProducto);
+            this.confirmacion = this.loProductosCD.mxActualizarProducto(entiProducto);
             if (this.confirmacion <= 0)
             {
                 _logger.LogWarning(Constantes._M_ERROR_ACTUALIZAR, requestProducto.pcNomPro);

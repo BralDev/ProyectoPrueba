@@ -18,7 +18,7 @@ namespace Datos.Repositorios
             this.conexion = new DbConexion();
         }
 
-        public int createProducto(ProductoCD producto)
+        public int mxCrearProducto(ProductoCD producto)
         {
             using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
@@ -33,7 +33,7 @@ namespace Datos.Repositorios
             }
         }
 
-        public int deleteProducto(int id)
+        public int mxEliminarProducto(int id)
         {
             using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
@@ -43,7 +43,7 @@ namespace Datos.Repositorios
                 return conn.Execute(Constantes.SP_PRODUCTO_ELIMINAR, parametros, commandType: CommandType.StoredProcedure);
             }
         }
-        public List<ProductoCD> listProducto()
+        public List<ProductoCD> mxObtenerProductos()
         {
             using (IDbConnection conn = this.conexion.ObtenerConexion())
             {                
@@ -51,7 +51,7 @@ namespace Datos.Repositorios
             }
         }
 
-        public int updateProducto(ProductoCD producto)
+        public int mxActualizarProducto(ProductoCD producto)
         {
             using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
