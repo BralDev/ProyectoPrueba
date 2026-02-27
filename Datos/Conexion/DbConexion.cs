@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace Datos.Conexion
 {
@@ -10,7 +10,7 @@ namespace Datos.Conexion
         public DbConexion()
         {
 
-            concadena = "Server=localhost;Database=PRUEBA;Trusted_Connection=True; Integrated Security = True; TrustServerCertificate = True; ";
+            concadena = "Server=localhost\\SQLEXPRESS;Database=PRUEBA;Trusted_Connection=True; Integrated Security = True; TrustServerCertificate = True; ";
         }
 
         public IDbConnection ObtenerConexion() => new SqlConnection(concadena);

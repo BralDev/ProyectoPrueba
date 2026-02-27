@@ -25,7 +25,7 @@ namespace WSGestionProductos
 
         [WebMethod(Description = "Obtiene la lista de todos los productos.")]
         public ProductosRPT ListarProductos()
-        {            
+        {
             return _gestorProducto.mxObtenerProductos();
         }
 

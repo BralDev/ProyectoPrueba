@@ -39,18 +39,15 @@ namespace Negocio.Gestores
                 if (this.confirmacion <= 0)
                 {
                     this._logger.LogWarning(Constantes._M_NO_REGISTRO, dtoProducto.cNomPro);
-                }
-
-                return this.confirmacion;
+                }                
             }
             catch (Exception ex)
             {                
                 _logger.LogError(ex, $"Error crítico al intentar crear el producto: {dtoProducto.cNomPro}");
-
-                // 2. Propagas el error hacia la capa Web. 
-                // Puedes usar 'throw;' para mantener el error original, o envolverlo en una excepción propia.
+    
                 throw new Exception("Ocurrió un problema interno al procesar el producto. Por favor, intente más tarde.", ex);
             }
+            return this.confirmacion;
         }
 
         public int mxEliminarProducto(int id)
@@ -66,20 +63,21 @@ namespace Negocio.Gestores
         public ProductosRPT mxObtenerProductos()
         {            
             ProductosRPT loRespuesta = new ProductosRPT();
-            Producto loProducto;
-            List<Producto> laLstProductos = new List<Producto>();
+            ProductoCN loProducto;
+            List<ProductoCN> laLstProductos = new List<ProductoCN>();
             try
             {
                 List<ProductoCD> productos = this.loProductosCD.listProducto();
 
-                if (productos.Count == 0)
-                {                    
+                if (productos == null || productos.Count == 0)
+                {
+                    loRespuesta.paProductos = new ProductoCN[0];
                     return loRespuesta;
                 }
 
                 foreach (var product in productos) 
                 {
-                    loProducto = new Producto();
+                    loProducto = new ProductoCN();
                     loProducto.pnIdePro = product.nIdePro;
                     loProducto.pcNomPro = product.cNomPro;
                     loProducto.pcDesPro = product.cDesPro;
@@ -92,7 +90,7 @@ namespace Negocio.Gestores
             }
             catch (Exception ex)
             {
-                
+                throw new Exception("Error al obtener los productos desde la base de datos.", ex);
             }
 
             return loRespuesta;

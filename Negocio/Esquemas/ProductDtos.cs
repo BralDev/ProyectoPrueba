@@ -25,15 +25,15 @@ namespace Negocio.Esquemas
 
     public class ProductosRQT
     {
-        public Producto[] paProductos { get; set; }
+        public ProductoCN[] paProductos { get; set; }
     }
 
     public class ProductosRPT
     {
-        public Producto[] paProductos { get; set; }
+        public ProductoCN[] paProductos { get; set; }
     }
 
-    public class Producto
+    public class ProductoCN
     {
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }

@@ -46,7 +46,7 @@ namespace Datos.Repositorios
         public List<ProductoCD> listProducto()
         {
             using (IDbConnection conn = this.conexion.ObtenerConexion())
-            {
+            {                
                 return conn.Query<ProductoCD>(Constantes.SP_PRODUCTO_LISTAR, commandType: CommandType.StoredProcedure).ToList();
             }
         }
