@@ -1,12 +1,11 @@
-﻿using ProyectoPrueba.Datos.Conexion;
-using ProyectoPrueba.Datos.Interfaces;
-using ProyectoPrueba.Presentacion;
-using ProyectoPrueba.Datos.Repositorios;
+﻿using Datos.Conexion;
+using Datos.Interfaces;
+using ProyectoPrueba.Vistas;
+using Datos.Repositorios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Negocio.Interfaces;
+using Negocio.Gestores;
 
 namespace ProyectoPrueba
 {
@@ -19,10 +18,11 @@ namespace ProyectoPrueba
         static void Main()
         {
             DbConexion conexion = new DbConexion();
-            IProductoRepositorio servicio = new ProductoRepositorio(conexion);
+            IProductoRepositorio repositorio = new ProductoRepositorio(conexion);
+            IGestorProducto gestor = new GestorProducto(repositorio);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form2(servicio));
+            Application.Run(new Form1(gestor));
         }
     }
 }

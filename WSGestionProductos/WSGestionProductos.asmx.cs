@@ -1,0 +1,51 @@
+﻿using System.Collections.Generic;
+using System.Web.Services;
+using Negocio.Esquemas;
+using Negocio.Interfaces;
+using Negocio.Gestores;
+
+namespace WSGestionProductos
+{
+    /// <summary>
+    /// Descripción breve de WSGestionProductos
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
+    // [System.Web.Script.Services.ScriptService]
+    public class WSGestionProductos : System.Web.Services.WebService
+    {
+
+        private readonly IGestorProducto _gestorProducto;
+
+        public WSGestionProductos()
+        {
+            _gestorProducto = GestorProductoFactory.Crear();
+        }
+
+        [WebMethod(Description = "Obtiene la lista de todos los productos.")]
+        public List<ProductResponseDto> ListarProductos()
+        {            
+            return _gestorProducto.listProducto();
+        }
+
+        [WebMethod(Description = "Crea un nuevo producto.")]
+        public int CrearProducto(ProductCreateDto dtoProducto)
+        {
+            return _gestorProducto.createProducto(dtoProducto);
+        }
+
+        [WebMethod(Description = "Actualiza un producto existente.")]
+        public int ActualizarProducto(ProductUpdateDto dtoProducto)
+        {
+            return _gestorProducto.updateProducto(dtoProducto);
+        }
+
+        [WebMethod(Description = "Elimina un producto por su identificador.")]
+        public int EliminarProducto(int idProducto)
+        {
+            return _gestorProducto.deleteProducto(idProducto);
+        }
+    }
+}
