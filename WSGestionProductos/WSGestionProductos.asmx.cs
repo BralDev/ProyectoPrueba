@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Services;
 using Negocio.Esquemas;
-using Negocio.Interfaces;
 using Negocio.Gestores;
 
 namespace WSGestionProductos
@@ -17,11 +16,11 @@ namespace WSGestionProductos
     public class WSGestionProductos : System.Web.Services.WebService
     {
 
-        private readonly IGestorProducto _gestorProducto;
+        private readonly GestorProducto _gestorProducto;
 
         public WSGestionProductos()
         {
-            _gestorProducto = GestorProductoFactory.Crear();
+            _gestorProducto = new GestorProducto();
         }
 
         [WebMethod(Description = "Obtiene la lista de todos los productos.")]
