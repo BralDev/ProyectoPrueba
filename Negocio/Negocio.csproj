@@ -87,8 +87,6 @@
   <ItemGroup>
     <Compile Include="Esquemas\ProductDtos.cs" />
     <Compile Include="Gestores\GestorProducto.cs" />
-    <Compile Include="Gestores\GestorProductoFactory.cs" />
-    <Compile Include="Interfaces\IGestorProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

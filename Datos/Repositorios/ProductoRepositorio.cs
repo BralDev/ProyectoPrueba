@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Datos.Conexion;
 using Datos.Entidades;
-using Datos.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,14 +14,13 @@ namespace Datos.Repositorios
         private readonly DbConexion conexion;
 
         public ProductoRepositorio()
-        {
-            DbConexion conexion = new DbConexion();
-            this.conexion = conexion;
+        {            
+            this.conexion = new DbConexion();
         }
 
         public int createProducto(ProductoCD producto)
         {
-            using (var conn = conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
                 DynamicParameters parametros = new DynamicParameters();
                 parametros.Add("tcNomPro", producto.cNomPro);
@@ -37,7 +35,7 @@ namespace Datos.Repositorios
 
         public int deleteProducto(int id)
         {
-            using (var conn = conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
                 DynamicParameters parametros = new DynamicParameters();
                 parametros.Add("tnIdePro", id);
@@ -47,7 +45,7 @@ namespace Datos.Repositorios
         }
         public List<ProductoCD> listProducto()
         {
-            using (var conn = conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
                 return conn.Query<ProductoCD>(Constantes.SP_PRODUCTO_LISTAR, commandType: CommandType.StoredProcedure).ToList();
             }
@@ -55,7 +53,7 @@ namespace Datos.Repositorios
 
         public int updateProducto(ProductoCD producto)
         {
-            using (var conn = conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
                 DynamicParameters parametros = new DynamicParameters();
                 parametros.Add("tnIdePro", producto.nIdePro);

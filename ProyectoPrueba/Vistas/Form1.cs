@@ -1,8 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Negocio.Esquemas;
-using Negocio.Interfaces;
+﻿using Negocio.Esquemas;
+using Negocio.Gestores;
 using System;
-using System.Collections.Generic;
 using Transversal;
 using System.Windows.Forms;
 
@@ -11,16 +9,16 @@ namespace ProyectoPrueba.Vistas
     public partial class Form1 : Form
     {
       
-        private IGestorProducto productoGestor;
+        private GestorProducto productoGestor;
 
         private int id, stock;
         private String nombre, descripcion;
         private decimal precio;
 
-        public Form1(IGestorProducto productoGestor)
+        public Form1()
         {
             InitializeComponent();
-            this.productoGestor = productoGestor;
+            this.productoGestor = new GestorProducto();
             //CargarProductos();
             txtId.Enabled = false;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -39,7 +37,7 @@ namespace ProyectoPrueba.Vistas
 
             this.id = Convert.ToInt32(txtId.Text);
 
-            int confirmacion = productoGestor.deleteProducto(id);
+            int confirmacion = this.productoGestor.mxEliminarProducto(id);
 
             if (confirmacion > 0)
             {
@@ -73,7 +71,7 @@ namespace ProyectoPrueba.Vistas
                 nStoPro = this.stock
             };
 
-            int confirmacion = productoGestor.createProducto(producto);
+            int confirmacion = this.productoGestor.mxCrearProducto(producto);
 
             if (confirmacion > 0)
             {
@@ -112,7 +110,7 @@ namespace ProyectoPrueba.Vistas
                 nStoPro = this.stock
             };
 
-            int confirmacion = productoGestor.updateProducto(producto);
+            int confirmacion = this.productoGestor.mxActualizarProducto(producto);
 
             if (confirmacion > 0)
             {
@@ -164,14 +162,14 @@ namespace ProyectoPrueba.Vistas
 
             grdProd.Columns.Add("Creado", "Creado");
             grdProd.Columns["Creado"].DataPropertyName = "tFecPro";
-            
-            List<ProductResponseDto> listaLlena = productoGestor.listProducto();
 
-            if (listaLlena.IsNullOrEmpty())
+            ProductosRPT listaLlena = this.productoGestor.mxObtenerProductos();
+
+            if (listaLlena.paProductos.Length == 0)
             {
                 MessageBox.Show(Constantes._M_RECURSO_NO_EXISTENTE);
             }          
-                grdProd.DataSource = listaLlena;                       
+            grdProd.DataSource = listaLlena;                       
         }
 
         private void LimpiarCampos()

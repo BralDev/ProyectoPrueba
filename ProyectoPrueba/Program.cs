@@ -1,10 +1,8 @@
 ﻿using Datos.Conexion;
-using Datos.Interfaces;
 using ProyectoPrueba.Vistas;
 using Datos.Repositorios;
 using System;
 using System.Windows.Forms;
-using Negocio.Interfaces;
 using Negocio.Gestores;
 
 namespace ProyectoPrueba
@@ -16,10 +14,8 @@ namespace ProyectoPrueba
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            DbConexion conexion = new DbConexion();
-            IProductoRepositorio repositorio = new ProductoRepositorio(conexion);
-            IGestorProducto gestor = new GestorProducto(repositorio);
+        {                        
+            GestorProducto gestor = new GestorProducto();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(gestor));
