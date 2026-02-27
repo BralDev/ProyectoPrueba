@@ -24,27 +24,27 @@ namespace WSGestionProductos
         }
 
         [WebMethod(Description = "Obtiene la lista de todos los productos.")]
-        public List<ProductResponseDto> ListarProductos()
+        public ProductosRPT ListarProductos()
         {            
-            return _gestorProducto.listProducto();
+            return _gestorProducto.mxObtenerProductos();
         }
 
         [WebMethod(Description = "Crea un nuevo producto.")]
         public int CrearProducto(ProductCreateDto dtoProducto)
         {
-            return _gestorProducto.createProducto(dtoProducto);
+            return _gestorProducto.mxCrearProducto(dtoProducto);
         }
 
         [WebMethod(Description = "Actualiza un producto existente.")]
         public int ActualizarProducto(ProductUpdateDto dtoProducto)
         {
-            return _gestorProducto.updateProducto(dtoProducto);
+            return _gestorProducto.mxActualizarProducto(dtoProducto);
         }
 
         [WebMethod(Description = "Elimina un producto por su identificador.")]
         public int EliminarProducto(int idProducto)
         {
-            return _gestorProducto.deleteProducto(idProducto);
+            return _gestorProducto.mxEliminarProducto(idProducto);
         }
     }
 }
