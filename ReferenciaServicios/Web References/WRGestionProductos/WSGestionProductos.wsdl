@@ -8,21 +8,21 @@
       <s:element name="ListarProductosResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListarProductosResult" type="tns:ProductosRPT" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListarProductosResult" type="tns:ProductosListRPT" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ProductosRPT">
+      <s:complexType name="ProductosListRPT">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="paProductos" type="tns:ArrayOfProductoCN" />
+          <s:element minOccurs="0" maxOccurs="1" name="paProductos" type="tns:ArrayOfProductoListCN" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="ArrayOfProductoCN">
+      <s:complexType name="ArrayOfProductoListCN">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductoCN" nillable="true" type="tns:ProductoCN" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductoListCN" nillable="true" type="tns:ProductoListCN" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="ProductoCN">
+      <s:complexType name="ProductoListCN">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
@@ -35,16 +35,16 @@
       <s:element name="CrearProducto">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="dtoProducto" type="tns:ProductCreateDto" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestProducto" type="tns:ProductoCrearRQT" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ProductCreateDto">
+      <s:complexType name="ProductoCrearRQT">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="cNomPro" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="cDesPro" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="nPrePro" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="nStoPro" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="CrearProductoResponse">
@@ -57,17 +57,17 @@
       <s:element name="ActualizarProducto">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="dtoProducto" type="tns:ProductUpdateDto" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestProducto" type="tns:ProductoActualizarRQT" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ProductUpdateDto">
+      <s:complexType name="ProductoActualizarRQT">
         <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="nIdePro" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="cNomPro" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="cDesPro" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="nPrePro" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="nStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="ActualizarProductoResponse">

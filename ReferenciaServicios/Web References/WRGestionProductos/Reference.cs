@@ -89,9 +89,9 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListarProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductosRPT ListarProductos() {
+        public ProductosListRPT ListarProductos() {
             object[] results = this.Invoke("ListarProductos", new object[0]);
-            return ((ProductosRPT)(results[0]));
+            return ((ProductosListRPT)(results[0]));
         }
         
         /// <remarks/>
@@ -116,24 +116,24 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CrearProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int CrearProducto(ProductCreateDto dtoProducto) {
+        public int CrearProducto(ProductoCrearRQT requestProducto) {
             object[] results = this.Invoke("CrearProducto", new object[] {
-                        dtoProducto});
+                        requestProducto});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void CrearProductoAsync(ProductCreateDto dtoProducto) {
-            this.CrearProductoAsync(dtoProducto, null);
+        public void CrearProductoAsync(ProductoCrearRQT requestProducto) {
+            this.CrearProductoAsync(requestProducto, null);
         }
         
         /// <remarks/>
-        public void CrearProductoAsync(ProductCreateDto dtoProducto, object userState) {
+        public void CrearProductoAsync(ProductoCrearRQT requestProducto, object userState) {
             if ((this.CrearProductoOperationCompleted == null)) {
                 this.CrearProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCrearProductoOperationCompleted);
             }
             this.InvokeAsync("CrearProducto", new object[] {
-                        dtoProducto}, this.CrearProductoOperationCompleted, userState);
+                        requestProducto}, this.CrearProductoOperationCompleted, userState);
         }
         
         private void OnCrearProductoOperationCompleted(object arg) {
@@ -145,24 +145,24 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ActualizarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int ActualizarProducto(ProductUpdateDto dtoProducto) {
+        public int ActualizarProducto(ProductoActualizarRQT requestProducto) {
             object[] results = this.Invoke("ActualizarProducto", new object[] {
-                        dtoProducto});
+                        requestProducto});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void ActualizarProductoAsync(ProductUpdateDto dtoProducto) {
-            this.ActualizarProductoAsync(dtoProducto, null);
+        public void ActualizarProductoAsync(ProductoActualizarRQT requestProducto) {
+            this.ActualizarProductoAsync(requestProducto, null);
         }
         
         /// <remarks/>
-        public void ActualizarProductoAsync(ProductUpdateDto dtoProducto, object userState) {
+        public void ActualizarProductoAsync(ProductoActualizarRQT requestProducto, object userState) {
             if ((this.ActualizarProductoOperationCompleted == null)) {
                 this.ActualizarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnActualizarProductoOperationCompleted);
             }
             this.InvokeAsync("ActualizarProducto", new object[] {
-                        dtoProducto}, this.ActualizarProductoOperationCompleted, userState);
+                        requestProducto}, this.ActualizarProductoOperationCompleted, userState);
         }
         
         private void OnActualizarProductoOperationCompleted(object arg) {
@@ -226,12 +226,12 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductosRPT {
+    public partial class ProductosListRPT {
         
-        private ProductoCN[] paProductosField;
+        private ProductoListCN[] paProductosField;
         
         /// <remarks/>
-        public ProductoCN[] paProductos {
+        public ProductoListCN[] paProductos {
             get {
                 return this.paProductosField;
             }
@@ -247,7 +247,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoCN {
+    public partial class ProductoListCN {
         
         private int pnIdeProField;
         
@@ -328,65 +328,65 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductUpdateDto {
+    public partial class ProductoActualizarRQT {
         
-        private int nIdeProField;
+        private int pnIdeProField;
         
-        private string cNomProField;
+        private string pcNomProField;
         
-        private string cDesProField;
+        private string pcDesProField;
         
-        private decimal nPreProField;
+        private decimal pnPreProField;
         
-        private int nStoProField;
+        private int pnStoProField;
         
         /// <remarks/>
-        public int nIdePro {
+        public int pnIdePro {
             get {
-                return this.nIdeProField;
+                return this.pnIdeProField;
             }
             set {
-                this.nIdeProField = value;
+                this.pnIdeProField = value;
             }
         }
         
         /// <remarks/>
-        public string cNomPro {
+        public string pcNomPro {
             get {
-                return this.cNomProField;
+                return this.pcNomProField;
             }
             set {
-                this.cNomProField = value;
+                this.pcNomProField = value;
             }
         }
         
         /// <remarks/>
-        public string cDesPro {
+        public string pcDesPro {
             get {
-                return this.cDesProField;
+                return this.pcDesProField;
             }
             set {
-                this.cDesProField = value;
+                this.pcDesProField = value;
             }
         }
         
         /// <remarks/>
-        public decimal nPrePro {
+        public decimal pnPrePro {
             get {
-                return this.nPreProField;
+                return this.pnPreProField;
             }
             set {
-                this.nPreProField = value;
+                this.pnPreProField = value;
             }
         }
         
         /// <remarks/>
-        public int nStoPro {
+        public int pnStoPro {
             get {
-                return this.nStoProField;
+                return this.pnStoProField;
             }
             set {
-                this.nStoProField = value;
+                this.pnStoProField = value;
             }
         }
     }
@@ -397,53 +397,53 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductCreateDto {
+    public partial class ProductoCrearRQT {
         
-        private string cNomProField;
+        private string pcNomProField;
         
-        private string cDesProField;
+        private string pcDesProField;
         
-        private decimal nPreProField;
+        private decimal pnPreProField;
         
-        private int nStoProField;
+        private int pnStoProField;
         
         /// <remarks/>
-        public string cNomPro {
+        public string pcNomPro {
             get {
-                return this.cNomProField;
+                return this.pcNomProField;
             }
             set {
-                this.cNomProField = value;
+                this.pcNomProField = value;
             }
         }
         
         /// <remarks/>
-        public string cDesPro {
+        public string pcDesPro {
             get {
-                return this.cDesProField;
+                return this.pcDesProField;
             }
             set {
-                this.cDesProField = value;
+                this.pcDesProField = value;
             }
         }
         
         /// <remarks/>
-        public decimal nPrePro {
+        public decimal pnPrePro {
             get {
-                return this.nPreProField;
+                return this.pnPreProField;
             }
             set {
-                this.nPreProField = value;
+                this.pnPreProField = value;
             }
         }
         
         /// <remarks/>
-        public int nStoPro {
+        public int pnStoPro {
             get {
-                return this.nStoProField;
+                return this.pnStoProField;
             }
             set {
-                this.nStoProField = value;
+                this.pnStoProField = value;
             }
         }
     }
@@ -466,10 +466,10 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
-        public ProductosRPT Result {
+        public ProductosListRPT Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((ProductosRPT)(this.results[0]));
+                return ((ProductosListRPT)(this.results[0]));
             }
         }
     }
