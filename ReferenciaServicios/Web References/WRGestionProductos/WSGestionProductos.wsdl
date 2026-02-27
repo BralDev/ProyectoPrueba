@@ -8,23 +8,28 @@
       <s:element name="ListarProductosResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListarProductosResult" type="tns:ArrayOfProductResponseDto" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListarProductosResult" type="tns:ProductosRPT" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfProductResponseDto">
+      <s:complexType name="ProductosRPT">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductResponseDto" nillable="true" type="tns:ProductResponseDto" />
+          <s:element minOccurs="0" maxOccurs="1" name="paProductos" type="tns:ArrayOfProductoCN" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="ProductResponseDto">
+      <s:complexType name="ArrayOfProductoCN">
         <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="nIdePro" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="cNomPro" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="cDesPro" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="nPrePro" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="nStoPro" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="tFecPro" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductoCN" nillable="true" type="tns:ProductoCN" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductoCN">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
       <s:element name="CrearProducto">

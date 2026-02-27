@@ -23,7 +23,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="WSGestionProductosSoap", Namespace="http://tempuri.org/")]
@@ -89,9 +89,9 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListarProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductResponseDto[] ListarProductos() {
+        public ProductosRPT ListarProductos() {
             object[] results = this.Invoke("ListarProductos", new object[0]);
-            return ((ProductResponseDto[])(results[0]));
+            return ((ProductosRPT)(results[0]));
         }
         
         /// <remarks/>
@@ -221,88 +221,109 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductResponseDto {
+    public partial class ProductosRPT {
         
-        private int nIdeProField;
-        
-        private string cNomProField;
-        
-        private string cDesProField;
-        
-        private decimal nPreProField;
-        
-        private int nStoProField;
-        
-        private System.DateTime tFecProField;
+        private ProductoCN[] paProductosField;
         
         /// <remarks/>
-        public int nIdePro {
+        public ProductoCN[] paProductos {
             get {
-                return this.nIdeProField;
+                return this.paProductosField;
             }
             set {
-                this.nIdeProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string cNomPro {
-            get {
-                return this.cNomProField;
-            }
-            set {
-                this.cNomProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string cDesPro {
-            get {
-                return this.cDesProField;
-            }
-            set {
-                this.cDesProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal nPrePro {
-            get {
-                return this.nPreProField;
-            }
-            set {
-                this.nPreProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int nStoPro {
-            get {
-                return this.nStoProField;
-            }
-            set {
-                this.nStoProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime tFecPro {
-            get {
-                return this.tFecProField;
-            }
-            set {
-                this.tFecProField = value;
+                this.paProductosField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoCN {
+        
+        private int pnIdeProField;
+        
+        private string pcNomProField;
+        
+        private string pcDesProField;
+        
+        private decimal pnPreProField;
+        
+        private int pnStoProField;
+        
+        private System.DateTime ptFecProField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcDesPro {
+            get {
+                return this.pcDesProField;
+            }
+            set {
+                this.pcDesProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal pnPrePro {
+            get {
+                return this.pnPreProField;
+            }
+            set {
+                this.pnPreProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnStoPro {
+            get {
+                return this.pnStoProField;
+            }
+            set {
+                this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ptFecPro {
+            get {
+                return this.ptFecProField;
+            }
+            set {
+                this.ptFecProField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -371,7 +392,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -428,11 +449,11 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     public delegate void ListarProductosCompletedEventHandler(object sender, ListarProductosCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ListarProductosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -445,20 +466,20 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
-        public ProductResponseDto[] Result {
+        public ProductosRPT Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((ProductResponseDto[])(this.results[0]));
+                return ((ProductosRPT)(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     public delegate void CrearProductoCompletedEventHandler(object sender, CrearProductoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CrearProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -480,11 +501,11 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     public delegate void ActualizarProductoCompletedEventHandler(object sender, ActualizarProductoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ActualizarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -506,11 +527,11 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     public delegate void EliminarProductoCompletedEventHandler(object sender, EliminarProductoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EliminarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

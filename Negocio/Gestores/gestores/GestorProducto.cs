@@ -22,28 +22,28 @@ namespace Negocio.Gestores
             this._logger = new LoggerFactory().CreateLogger<GestorProducto>();
         }
 
-        public int mxCrearProducto(ProductoCrearRQT requestProducto)
+        public int mxCrearProducto(ProductCreateDto dtoProducto)
         {
             try
             {
                 ProductoCD entiProducto = new ProductoCD
                 {
-                    cNomPro = requestProducto.pcNomPro,
-                    cDesPro = requestProducto.pcDesPro,
-                    nPrePro = requestProducto.pnPrePro,
-                    nStoPro = requestProducto.pnStoPro
+                    cNomPro = dtoProducto.cNomPro,
+                    cDesPro = dtoProducto.cDesPro,
+                    nPrePro = dtoProducto.nPrePro,
+                    nStoPro = dtoProducto.nStoPro
                 };
 
                 this.confirmacion = this.loProductosCD.createProducto(entiProducto);
                 
                 if (this.confirmacion <= 0)
                 {
-                    this._logger.LogWarning(Constantes._M_NO_REGISTRO, requestProducto.pcNomPro);
+                    this._logger.LogWarning(Constantes._M_NO_REGISTRO, dtoProducto.cNomPro);
                 }                
             }
             catch (Exception ex)
             {                
-                _logger.LogError(ex, $"Error crítico al intentar crear el producto: {requestProducto.pcNomPro}");
+                _logger.LogError(ex, $"Error crítico al intentar crear el producto: {dtoProducto.cNomPro}");
     
                 throw new Exception("Ocurrió un problema interno al procesar el producto. Por favor, intente más tarde.", ex);
             }
@@ -60,24 +60,24 @@ namespace Negocio.Gestores
             return this.confirmacion;
         }
 
-        public ProductosListRPT mxObtenerProductos()
-        {
-            ProductosListRPT loRespuesta = new ProductosListRPT();
-            ProductoListCN loProducto;
-            List<ProductoListCN> laLstProductos = new List<ProductoListCN>();
+        public ProductosRPT mxObtenerProductos()
+        {            
+            ProductosRPT loRespuesta = new ProductosRPT();
+            ProductoCN loProducto;
+            List<ProductoCN> laLstProductos = new List<ProductoCN>();
             try
             {
                 List<ProductoCD> productos = this.loProductosCD.listProducto();
 
                 if (productos == null || productos.Count == 0)
                 {
-                    loRespuesta.paProductos = new ProductoListCN[0];
+                    loRespuesta.paProductos = new ProductoCN[0];
                     return loRespuesta;
                 }
 
                 foreach (var product in productos) 
                 {
-                    loProducto = new ProductoListCN();
+                    loProducto = new ProductoCN();
                     loProducto.pnIdePro = product.nIdePro;
                     loProducto.pcNomPro = product.cNomPro;
                     loProducto.pcDesPro = product.cDesPro;
@@ -96,21 +96,21 @@ namespace Negocio.Gestores
             return loRespuesta;
         }
 
-        public int mxActualizarProducto(ProductoActualizarRQT requestProducto)
+        public int mxActualizarProducto(ProductUpdateDto dtoProducto)
         {
             ProductoCD entiProducto = new ProductoCD
             {
-                nIdePro = requestProducto.pnIdePro,
-                cNomPro = requestProducto.pcNomPro,
-                cDesPro = requestProducto.pcDesPro,
-                nPrePro = requestProducto.pnPrePro,
-                nStoPro = requestProducto.pnStoPro
+                nIdePro = dtoProducto.nIdePro,
+                cNomPro = dtoProducto.cNomPro,
+                cDesPro = dtoProducto.cDesPro,
+                nPrePro = dtoProducto.nPrePro,
+                nStoPro = dtoProducto.nStoPro
             };
 
             this.confirmacion = this.loProductosCD.updateProducto(entiProducto);
             if (this.confirmacion <= 0)
             {
-                _logger.LogWarning(Constantes._M_ERROR_ACTUALIZAR, requestProducto.pcNomPro);
+                _logger.LogWarning(Constantes._M_ERROR_ACTUALIZAR, dtoProducto.cNomPro);
             }
             return this.confirmacion;
         }

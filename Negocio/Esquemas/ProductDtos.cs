@@ -6,34 +6,15 @@ using System.Threading.Tasks;
 
 namespace Negocio.Esquemas
 {
-    public class ProductCreateDto
+    public class ProductoCrearRQT
     {
-        public string cNomPro { get; set; }
-        public string cDesPro { get; set; }
-        public decimal nPrePro { get; set; }
-        public int nStoPro { get; set; }
+        public string pcNomPro { get; set; }
+        public string pcDesPro { get; set; }
+        public decimal pnPrePro { get; set; }
+        public int pnStoPro { get; set; }
     }
 
-    public class ProductUpdateDto
-    {
-        public int nIdePro { get; set; }
-        public string cNomPro { get; set; }
-        public string cDesPro { get; set; }
-        public decimal nPrePro { get; set; }
-        public int nStoPro { get; set; }
-    }
-
-    public class ProductosRQT
-    {
-        public ProductoCN[] paProductos { get; set; }
-    }
-
-    public class ProductosRPT
-    {
-        public ProductoCN[] paProductos { get; set; }
-    }
-
-    public class ProductoCN
+    public class ProductoCrearRPT 
     {
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }
@@ -42,4 +23,44 @@ namespace Negocio.Esquemas
         public int pnStoPro { get; set; }
         public DateTime ptFecPro { get; set; }
     }
+
+    public class ProductoActualizarRQT
+    {
+        public int pnIdePro { get; set; }
+        public string pcNomPro { get; set; }
+        public string pcDesPro { get; set; }
+        public decimal pnPrePro { get; set; }
+        public int pnStoPro { get; set; }
+    }
+
+    public class ProductoActualizarRPT
+    {
+        public int pnIdePro { get; set; }
+        public string pcNomPro { get; set; }
+        public string pcDesPro { get; set; }
+        public decimal pnPrePro { get; set; }
+        public int pnStoPro { get; set; }
+        public DateTime ptFecPro { get; set; }
+    }
+
+    public class ProductoListCN
+    {
+        public int pnIdePro { get; set; }
+        public string pcNomPro { get; set; }
+        public string pcDesPro { get; set; }
+        public decimal pnPrePro { get; set; }
+        public int pnStoPro { get; set; }
+        public DateTime ptFecPro { get; set; }
+    }
+
+    public class ProductosListRQT
+    {
+        public ProductoListCN[] paProductos { get; set; }
+    }
+
+    public class ProductosListRPT
+    {
+        public ProductoListCN[] paProductos { get; set; }
+    }
+    
 }
