@@ -22,24 +22,37 @@ namespace Negocio.Gestores
             this._logger = new LoggerFactory().CreateLogger<GestorProducto>();
         }
 
-        public int mxCrearProducto(ProductoCrearRQT requestProducto)
+        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT requestProducto)
         {
+            ProductoCrearRPT respuesta;
+            int idProducto;
             try
-            {
+            {                
                 ProductoCD entiProducto = new ProductoCD
                 {
                     cNomPro = requestProducto.pcNomPro,
                     cDesPro = requestProducto.pcDesPro,
                     nPrePro = requestProducto.pnPrePro,
-                    nStoPro = requestProducto.pnStoPro
+                    nStoPro = requestProducto.pnStoPro,
+                    tFecPro = DateTime.Now
                 };
 
-                this.confirmacion = this.loProductosCD.mxCrearProducto(entiProducto);
+                idProducto = this.loProductosCD.mxCrearProducto(entiProducto);
                 
-                if (this.confirmacion <= 0)
+                if (idProducto <= 0)
                 {
                     this._logger.LogWarning(Constantes._M_NO_REGISTRO, requestProducto.pcNomPro);
                 }                
+
+                respuesta = new ProductoCrearRPT
+                {
+                    pnIdePro = idProducto,
+                    pcNomPro = entiProducto.cNomPro,
+                    pcDesPro = entiProducto.cDesPro,
+                    pnPrePro = entiProducto.nPrePro,
+                    pnStoPro = entiProducto.nStoPro,
+                    ptFecPro = entiProducto.tFecPro
+                };
             }
             catch (Exception ex)
             {                
@@ -47,7 +60,7 @@ namespace Negocio.Gestores
     
                 throw new Exception("Ocurrió un problema interno al procesar el producto. Por favor, intente más tarde.", ex);
             }
-            return this.confirmacion;
+            return respuesta;
         }
 
         public int mxEliminarProducto(int id)
@@ -95,24 +108,45 @@ namespace Negocio.Gestores
 
             return loRespuesta;
         }
-
-        public int mxActualizarProducto(ProductoActualizarRQT requestProducto)
+            
+        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT requestProducto)
         {
-            ProductoCD entiProducto = new ProductoCD
+            ProductoActualizarRPT respuesta;
+            int confirmacion;
+            try
             {
-                nIdePro = requestProducto.pnIdePro,
-                cNomPro = requestProducto.pcNomPro,
-                cDesPro = requestProducto.pcDesPro,
-                nPrePro = requestProducto.pnPrePro,
-                nStoPro = requestProducto.pnStoPro
-            };
+                ProductoCD entiProducto = new ProductoCD
+                {
+                    nIdePro = requestProducto.pnIdePro,
+                    cNomPro = requestProducto.pcNomPro,
+                    cDesPro = requestProducto.pcDesPro,
+                    nPrePro = requestProducto.pnPrePro,
+                    nStoPro = requestProducto.pnStoPro                    
+                };
 
-            this.confirmacion = this.loProductosCD.mxActualizarProducto(entiProducto);
-            if (this.confirmacion <= 0)
-            {
-                _logger.LogWarning(Constantes._M_ERROR_ACTUALIZAR, requestProducto.pcNomPro);
+                confirmacion = this.loProductosCD.mxActualizarProducto(entiProducto);
+
+                if (confirmacion <= 0)
+                {
+                    this._logger.LogWarning(Constantes._M_NO_REGISTRO, requestProducto.pcNomPro);
+                }
+
+                respuesta = new ProductoActualizarRPT
+                {
+                    pnIdePro = entiProducto.nIdePro,
+                    pcNomPro = entiProducto.cNomPro,
+                    pcDesPro = entiProducto.cDesPro,
+                    pnPrePro = entiProducto.nPrePro,
+                    pnStoPro = entiProducto.nStoPro,
+                    ptFecPro = entiProducto.tFecPro
+                };
             }
-            return this.confirmacion;
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error crítico al intentar crear el producto: {requestProducto.pcNomPro}");
+
+                throw new Exception("Ocurrió un problema interno al procesar el producto. Por favor, intente más tarde.", ex);
+            }
+            return respuesta;
         }
     }
-}

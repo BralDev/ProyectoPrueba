@@ -27,9 +27,9 @@ namespace Datos.Repositorios
                 parametros.Add("tcDesPro", producto.cDesPro);
                 parametros.Add("tnPrePro", producto.nPrePro);
                 parametros.Add("tnStoPro", producto.nStoPro);
+                parametros.Add("@ttFecPro", producto.tFecPro);
 
-                return conn.Execute(Constantes.SP_PRODUCTO_CREAR, parametros, commandType: CommandType.StoredProcedure);
-
+                return conn.ExecuteScalar<int>(Constantes.SP_PRODUCTO_CREAR, parametros, commandType: CommandType.StoredProcedure);
             }
         }
 

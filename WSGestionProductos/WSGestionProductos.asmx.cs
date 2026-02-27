@@ -34,7 +34,7 @@ namespace WSGestionProductos
         }
 
         [WebMethod(Description = "Crea un nuevo producto.")]
-        public int CrearProducto(ProductoCrearRQT requestProducto)
+        public ProductoCrearRPT CrearProducto(ProductoCrearRQT requestProducto)
         {
             ValidarRequest(requestProducto);
             return _gestorProducto.mxCrearProducto(requestProducto);
@@ -60,7 +60,7 @@ namespace WSGestionProductos
         }
 
         [WebMethod(Description = "Actualiza un producto existente.")]
-        public int ActualizarProducto(ProductoActualizarRQT requestProducto)
+        public ProductoActualizarRPT ActualizarProducto(ProductoActualizarRQT requestProducto)
         {
             ValidarRequest(requestProducto);
             return _gestorProducto.mxActualizarProducto(requestProducto);
