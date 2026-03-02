@@ -53,17 +53,17 @@ namespace Datos.Repositorios
             }
         }
 
-        public DateTime mxActualizarProducto(ProductoCD producto)
+        public DateTime mxActualizarProducto(ProductoCD toPro)
         {
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
             {
                 DynamicParameters loParametros = new DynamicParameters();
-                loParametros.Add("tnIdePro", producto.nIdePro);
-                loParametros.Add("tcNomPro", producto.cNomPro);
-                loParametros.Add("tcDesPro", producto.cDesPro);
-                loParametros.Add("tnPrePro", producto.nPrePro);
-                loParametros.Add("tnStoPro", producto.nStoPro);
-                loParametros.Add("@tnIdeSed", producto.nIdeSed);
+                loParametros.Add("tnIdePro", toPro.nIdePro);
+                loParametros.Add("tcNomPro", toPro.cNomPro);
+                loParametros.Add("tcDesPro", toPro.cDesPro);
+                loParametros.Add("tnPrePro", toPro.nPrePro);
+                loParametros.Add("tnStoPro", toPro.nStoPro);
+                loParametros.Add("@tnIdeSed", toPro.nIdeSed);
 
                 return loIConexion.QuerySingleOrDefault<DateTime>(Constantes.SP_PRODUCTAR_EDITAR, loParametros, commandType: CommandType.StoredProcedure);
             }
