@@ -31,6 +31,7 @@ namespace Negocio.Gestores
                     cDesPro = toProCreRQT.pcDesPro,
                     nPrePro = toProCreRQT.pnPrePro,
                     nStoPro = toProCreRQT.pnStoPro,
+                    nIdeSed = toProCreRQT.pnIdeSed,
                     tFecPro = DateTime.Now
                 };
 
@@ -49,6 +50,7 @@ namespace Negocio.Gestores
                         pcDesPro = toProCreRQT.pcDesPro,
                         pnPrePro = toProCreRQT.pnPrePro,
                         pnStoPro = toProCreRQT.pnStoPro,
+                        pnIdeSed = toProCreRQT.pnIdeSed,
                         ptFecPro = loProCD.tFecPro
                     };
                 }
@@ -97,6 +99,7 @@ namespace Negocio.Gestores
                     loProLstCN.pcDesPro = loProCD.cDesPro;
                     loProLstCN.pnPrePro = loProCD.nPrePro;
                     loProLstCN.pnStoPro = loProCD.nStoPro;
+                    loProLstCN.pnIdeSed = loProCD.nIdeSed;
                     loProLstCN.ptFecPro = loProCD.tFecPro;
 
                     laLstProductos.Add(loProLstCN);
@@ -123,7 +126,8 @@ namespace Negocio.Gestores
                     cNomPro = toProActRQT.pcNomPro,
                     cDesPro = toProActRQT.pcDesPro,
                     nPrePro = toProActRQT.pnPrePro,
-                    nStoPro = toProActRQT.pnStoPro
+                    nStoPro = toProActRQT.pnStoPro,
+                    nIdeSed = toProActRQT.pnIdeSed,
                 };
 
                 loConfirmacion = this.loProRepoCD.mxActualizarProducto(loProCD);
@@ -140,6 +144,7 @@ namespace Negocio.Gestores
                     pcDesPro = toProActRQT.pcDesPro,
                     pnPrePro = toProActRQT.pnPrePro,
                     pnStoPro = toProActRQT.pnStoPro,
+                    pnIdeSed = toProActRQT.pnIdeSed,
                     ptFecPro = loConfirmacion
                 };
             }

@@ -45,13 +45,15 @@ namespace ProyectoPrueba.Vistas
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbLimpiar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtIdSede = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdProd)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbEditar
             // 
-            this.cmbEditar.Location = new System.Drawing.Point(628, 108);
-            this.cmbEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbEditar.Location = new System.Drawing.Point(723, 108);
+            this.cmbEditar.Margin = new System.Windows.Forms.Padding(4);
             this.cmbEditar.Name = "cmbEditar";
             this.cmbEditar.Size = new System.Drawing.Size(100, 28);
             this.cmbEditar.TabIndex = 1;
@@ -61,8 +63,8 @@ namespace ProyectoPrueba.Vistas
             // 
             // cmbListar
             // 
-            this.cmbListar.Location = new System.Drawing.Point(749, 108);
-            this.cmbListar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbListar.Location = new System.Drawing.Point(844, 108);
+            this.cmbListar.Margin = new System.Windows.Forms.Padding(4);
             this.cmbListar.Name = "cmbListar";
             this.cmbListar.Size = new System.Drawing.Size(100, 28);
             this.cmbListar.TabIndex = 2;
@@ -72,8 +74,8 @@ namespace ProyectoPrueba.Vistas
             // 
             // cmbElimin
             // 
-            this.cmbElimin.Location = new System.Drawing.Point(628, 174);
-            this.cmbElimin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbElimin.Location = new System.Drawing.Point(723, 174);
+            this.cmbElimin.Margin = new System.Windows.Forms.Padding(4);
             this.cmbElimin.Name = "cmbElimin";
             this.cmbElimin.Size = new System.Drawing.Size(100, 28);
             this.cmbElimin.TabIndex = 3;
@@ -84,47 +86,47 @@ namespace ProyectoPrueba.Vistas
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(268, 82);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(292, 22);
+            this.txtNombre.Size = new System.Drawing.Size(382, 22);
             this.txtNombre.TabIndex = 4;
             // 
             // txtDescrip
             // 
             this.txtDescrip.Location = new System.Drawing.Point(268, 114);
-            this.txtDescrip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescrip.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescrip.Name = "txtDescrip";
-            this.txtDescrip.Size = new System.Drawing.Size(292, 22);
+            this.txtDescrip.Size = new System.Drawing.Size(382, 22);
             this.txtDescrip.TabIndex = 5;
             // 
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(268, 146);
-            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(292, 22);
+            this.txtPrecio.Size = new System.Drawing.Size(382, 22);
             this.txtPrecio.TabIndex = 6;
             // 
             // txtStock
             // 
             this.txtStock.Location = new System.Drawing.Point(268, 176);
-            this.txtStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStock.Margin = new System.Windows.Forms.Padding(4);
             this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(292, 22);
+            this.txtStock.Size = new System.Drawing.Size(382, 22);
             this.txtStock.TabIndex = 7;
             // 
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(268, 50);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(292, 22);
+            this.txtId.Size = new System.Drawing.Size(382, 22);
             this.txtId.TabIndex = 9;
             // 
             // cmbInsert
             // 
-            this.cmbInsert.Location = new System.Drawing.Point(628, 44);
-            this.cmbInsert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbInsert.Location = new System.Drawing.Point(723, 44);
+            this.cmbInsert.Margin = new System.Windows.Forms.Padding(4);
             this.cmbInsert.Name = "cmbInsert";
             this.cmbInsert.Size = new System.Drawing.Size(100, 28);
             this.cmbInsert.TabIndex = 11;
@@ -136,10 +138,10 @@ namespace ProyectoPrueba.Vistas
             // 
             this.grdProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdProd.Location = new System.Drawing.Point(16, 256);
-            this.grdProd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdProd.Margin = new System.Windows.Forms.Padding(4);
             this.grdProd.Name = "grdProd";
             this.grdProd.RowHeadersWidth = 51;
-            this.grdProd.Size = new System.Drawing.Size(872, 283);
+            this.grdProd.Size = new System.Drawing.Size(1006, 283);
             this.grdProd.TabIndex = 12;
             this.grdProd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProd_CellContentClick);
             // 
@@ -195,8 +197,8 @@ namespace ProyectoPrueba.Vistas
             // 
             // cmbLimpiar
             // 
-            this.cmbLimpiar.Location = new System.Drawing.Point(749, 42);
-            this.cmbLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbLimpiar.Location = new System.Drawing.Point(844, 42);
+            this.cmbLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.cmbLimpiar.Name = "cmbLimpiar";
             this.cmbLimpiar.Size = new System.Drawing.Size(100, 28);
             this.cmbLimpiar.TabIndex = 18;
@@ -204,11 +206,31 @@ namespace ProyectoPrueba.Vistas
             this.cmbLimpiar.UseVisualStyleBackColor = true;
             this.cmbLimpiar.Click += new System.EventHandler(this.cmbLimpiar_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(184, 214);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 16);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "ID Sede";
+            // 
+            // txtIdSede
+            // 
+            this.txtIdSede.Location = new System.Drawing.Point(268, 210);
+            this.txtIdSede.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIdSede.Name = "txtIdSede";
+            this.txtIdSede.Size = new System.Drawing.Size(382, 22);
+            this.txtIdSede.TabIndex = 19;
+            // 
             // GestionProductoCP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 554);
+            this.ClientSize = new System.Drawing.Size(1035, 554);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtIdSede);
             this.Controls.Add(this.cmbLimpiar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -225,7 +247,7 @@ namespace ProyectoPrueba.Vistas
             this.Controls.Add(this.cmbElimin);
             this.Controls.Add(this.cmbListar);
             this.Controls.Add(this.cmbEditar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GestionProductoCP";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.grdProd)).EndInit();
@@ -251,5 +273,7 @@ namespace ProyectoPrueba.Vistas
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button cmbLimpiar;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtIdSede;
     }
 }

@@ -29,6 +29,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
@@ -45,6 +46,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="mxCrearProductoResponse">
@@ -61,6 +63,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
@@ -78,6 +81,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="mxActualizarProductoResponse">
@@ -94,6 +98,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>

@@ -9,7 +9,6 @@ namespace Datos.Entidades
         public string cDesPro { get; set; }
         public decimal nPrePro { get; set; }
         public int nStoPro { get; set; }
-
         public int nIdeSed { get; set; }
         public DateTime tFecPro { get; set; }
     }

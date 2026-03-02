@@ -259,6 +259,8 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         private int pnStoProField;
         
+        private int pnIdeSedField;
+        
         private System.DateTime ptFecProField;
         
         /// <remarks/>
@@ -308,6 +310,16 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
             }
         }
         
@@ -340,6 +352,8 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         private int pnStoProField;
         
+        private int pnIdeSedField;
+        
         private System.DateTime ptFecProField;
         
         /// <remarks/>
@@ -389,6 +403,16 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
             }
         }
         
@@ -421,6 +445,8 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         private int pnStoProField;
         
+        private int pnIdeSedField;
+        
         /// <remarks/>
         public int pnIdePro {
             get {
@@ -470,6 +496,16 @@ namespace ReferenciaServicios.WRGestionProductos {
                 this.pnStoProField = value;
             }
         }
+        
+        /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -489,6 +525,8 @@ namespace ReferenciaServicios.WRGestionProductos {
         private decimal pnPreProField;
         
         private int pnStoProField;
+        
+        private int pnIdeSedField;
         
         private System.DateTime ptFecProField;
         
@@ -543,6 +581,16 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
+            }
+        }
+        
+        /// <remarks/>
         public System.DateTime ptFecPro {
             get {
                 return this.ptFecProField;
@@ -568,6 +616,8 @@ namespace ReferenciaServicios.WRGestionProductos {
         private decimal pnPreProField;
         
         private int pnStoProField;
+        
+        private int pnIdeSedField;
         
         /// <remarks/>
         public string pcNomPro {
@@ -606,6 +656,16 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
             }
         }
     }

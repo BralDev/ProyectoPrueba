@@ -19,6 +19,10 @@ namespace Negocio.Esquemas
         [Required(ErrorMessage = "El número de stock del producto es obligatorio.", AllowEmptyStrings = false)]
         [Range(0, int.MaxValue, ErrorMessage = "El stock no puede ser negativo.")]
         public int pnStoPro { get; set; }
+
+        [Required(ErrorMessage = "El ID de la sede es obligatorio.", AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = "El ID de la sede es inválido. Debe ser mayor a 0.")]
+        public int pnIdeSed { get; set; }
     }
 
     public class ProductoCrearRPT 
@@ -28,6 +32,7 @@ namespace Negocio.Esquemas
         public string pcDesPro { get; set; }
         public decimal pnPrePro { get; set; }
         public int pnStoPro { get; set; }
+        public int pnIdeSed { get; set; }
         public DateTime ptFecPro { get; set; }
     }
 
@@ -50,6 +55,10 @@ namespace Negocio.Esquemas
         [Required(ErrorMessage = "El número de stock del producto es obligatorio.", AllowEmptyStrings = false)]
         [Range(0, int.MaxValue, ErrorMessage = "El stock no puede ser negativo.")]
         public int pnStoPro { get; set; }
+
+        [Required(ErrorMessage = "El ID de la sede es obligatorio.", AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = "El ID de la sede es inválido. Debe ser mayor a 0.")]
+        public int pnIdeSed { get; set; }
     }
 
     public class ProductoActualizarRPT
@@ -59,6 +68,7 @@ namespace Negocio.Esquemas
         public string pcDesPro { get; set; }
         public decimal pnPrePro { get; set; }
         public int pnStoPro { get; set; }
+        public int pnIdeSed { get; set; }
         public DateTime ptFecPro { get; set; }
     }
 
@@ -69,6 +79,7 @@ namespace Negocio.Esquemas
         public string pcDesPro { get; set; }
         public decimal pnPrePro { get; set; }
         public int pnStoPro { get; set; }
+        public int pnIdeSed { get; set; }
         public DateTime ptFecPro { get; set; }
     }
 

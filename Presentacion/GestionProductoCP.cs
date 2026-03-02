@@ -10,7 +10,7 @@ namespace ProyectoPrueba.Vistas
 
         private WSGestionProductos loRefGestProdCR;
 
-        private int lnIdePro, lnStoPro;
+        private int lnIdePro, lnStoPro, lnIdeSed;
         private String lcNomPro, lcDescPro;
         private decimal lnPrePro;
 
@@ -31,7 +31,7 @@ namespace ProyectoPrueba.Vistas
         {
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
-                MessageBox.Show("El id es obligatorio");
+                MessageBox.Show("El id de producto es obligatorio");
                 txtNombre.Focus();
                 return;
             }
@@ -61,13 +61,15 @@ namespace ProyectoPrueba.Vistas
             this.lcDescPro = txtDescrip.Text;
             this.lnPrePro = Convert.ToDecimal(txtPrecio.Text);
             this.lnStoPro = Convert.ToInt32(txtStock.Text);
+            this.lnIdeSed = Convert.ToInt32(txtIdSede.Text);
 
             ProductoCrearRQT loProCreRQT = new ProductoCrearRQT
             {                
                 pcNomPro = this.lcNomPro,
                 pcDesPro = this.lcDescPro,
                 pnPrePro = this.lnPrePro,
-                pnStoPro = this.lnStoPro
+                pnStoPro = this.lnStoPro,
+                pnIdeSed = this.lnIdeSed
             };
 
             ProductoCrearRPT loProCreRPT = this.loRefGestProdCR.mxCrearProducto(loProCreRQT);
@@ -98,6 +100,7 @@ namespace ProyectoPrueba.Vistas
             this.lcDescPro = txtDescrip.Text;
             this.lnPrePro = Convert.ToDecimal(txtPrecio.Text);
             this.lnStoPro = Convert.ToInt32(txtStock.Text);
+            this.lnIdeSed = Convert.ToInt32(txtIdSede.Text);
 
             ProductoActualizarRQT loProActRQT = new ProductoActualizarRQT
             {
@@ -105,7 +108,8 @@ namespace ProyectoPrueba.Vistas
                 pcNomPro = this.lcNomPro,
                 pcDesPro = this.lcDescPro,
                 pnPrePro = this.lnPrePro,
-                pnStoPro = this.lnStoPro
+                pnStoPro = this.lnStoPro,
+                pnIdeSed = this.lnIdeSed
             };
 
             ProductoActualizarRPT loProActRPT = this.loRefGestProdCR.mxActualizarProducto(loProActRQT);
@@ -134,6 +138,7 @@ namespace ProyectoPrueba.Vistas
                 txtDescrip.Text = loFila.Cells["Descripcion"].Value.ToString();
                 txtPrecio.Text = loFila.Cells["Precio"].Value.ToString();
                 txtStock.Text = loFila.Cells["Stock"].Value.ToString();
+                txtIdSede.Text = loFila.Cells["IdSede"].Value.ToString();
             }
         }
 
@@ -158,6 +163,9 @@ namespace ProyectoPrueba.Vistas
             grdProd.Columns.Add("Stock", "Stock");
             grdProd.Columns["Stock"].DataPropertyName = "pnStoPro";
 
+            grdProd.Columns.Add("IdSede", "ID Sede");
+            grdProd.Columns["IdSede"].DataPropertyName = "pnIdeSed";
+
             grdProd.Columns.Add("Creado", "Creado");
             grdProd.Columns["Creado"].DataPropertyName = "ptFecPro";
 
@@ -176,6 +184,7 @@ namespace ProyectoPrueba.Vistas
             txtDescrip.Clear();
             txtPrecio.Clear();
             txtStock.Clear();
+            txtIdSede.Clear();
             txtNombre.Focus();
         }
 
@@ -222,6 +231,20 @@ namespace ProyectoPrueba.Vistas
             }
 
             if (stock < 0)
+            {
+                MessageBox.Show("El stock no puede ser negativo");
+                txtStock.Focus();
+                return false;
+            }
+
+            if (!int.TryParse(txtIdSede.Text, out int idSede))
+            {
+                MessageBox.Show("Ingrese un stock válido");
+                txtStock.Focus();
+                return false;
+            }
+
+            if (idSede < 0)
             {
                 MessageBox.Show("El stock no puede ser negativo");
                 txtStock.Focus();
