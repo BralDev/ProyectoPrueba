@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Negocio.Esquemas
 {
@@ -66,7 +62,7 @@ namespace Negocio.Esquemas
         public DateTime ptFecPro { get; set; }
     }
 
-    public class ProductoListCN
+    public class ProductoListaCN
     {
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }
@@ -78,12 +74,12 @@ namespace Negocio.Esquemas
 
     public class ProductosListRQT
     {
-        public ProductoListCN[] paProductos { get; set; }
+        public ProductoListaCN[] paProductos { get; set; }
     }
 
     public class ProductosListRPT
     {
-        public ProductoListCN[] paProductos { get; set; }
+        public ProductoListaCN[] paProductos { get; set; }
     }
     
 }

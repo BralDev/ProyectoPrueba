@@ -5,14 +5,14 @@ namespace Datos.Conexion
 {
     public class ConexionCD
     {
-        private readonly string cUrlConexion;
+        private readonly string lcUrlConexion;
 
         public ConexionCD()
         {
 
-            this.cUrlConexion = "Server=localhost;Database=PRUEBA;Trusted_Connection=True; Integrated Security = True; TrustServerCertificate = True; ";
+            this.lcUrlConexion = "Server=localhost;Database=PRUEBA;Trusted_Connection=True; Integrated Security = True; TrustServerCertificate = True; ";
         }
 
-        public IDbConnection mxObtenerConexion() => new SqlConnection(cUrlConexion);
+        public IDbConnection mxObtenerConexion() => new SqlConnection(lcUrlConexion);
     }
 }

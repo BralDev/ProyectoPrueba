@@ -20,11 +20,11 @@ namespace WSGestionProductos
     public class WSGestionProductos : System.Web.Services.WebService
     {
 
-        private readonly GestorProducto _gestorProducto;
+        private readonly ProductoGestorCN _gestorProducto;
 
         public WSGestionProductos()
         {
-            _gestorProducto = new GestorProducto();
+            _gestorProducto = new ProductoGestorCN();
         }
 
         [WebMethod(Description = "Obtiene la lista de todos los productos.")]

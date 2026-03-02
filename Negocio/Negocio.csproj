@@ -85,8 +85,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Esquemas\ProductDtos.cs" />
-    <Compile Include="Gestores\GestorProducto.cs" />
+    <Compile Include="Esquemas\ProductosCN.cs" />
+    <Compile Include="Gestores\ProductoGestorCN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
