@@ -5,24 +5,26 @@ using ReferenciaServicios.WRGestionProductos;
 
 namespace ProyectoPrueba.Vistas
 {
-    public partial class Form1 : Form
+    public partial class GestionProductoCP : Form
     {
 
-        private WSGestionProductos referenciaServicio;
+        private WSGestionProductos loRefGestProd;
 
-        private int id, stock;
-        private String nombre, descripcion;
-        private decimal precio;
+        private int lnIdePro, lnStoPro;
+        private String lcNomPro, lcDescPro;
+        private decimal lnPrePro;
 
-        public Form1()
+        public GestionProductoCP()
         {
             InitializeComponent();
-            this.referenciaServicio = new WSGestionProductos();            
-            txtId.Enabled = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            CargarProductos();
+            this.Text = "Sistema de Gestión de Productos - invmpro";
+
+            this.loRefGestProd = new WSGestionProductos();            
+            txtId.Enabled = false;                        
+            mxCargProds();
         }
 
         private void cmbElimin_Click(object sender, EventArgs e)
@@ -34,88 +36,85 @@ namespace ProyectoPrueba.Vistas
                 return;
             }
 
-            this.id = Convert.ToInt32(txtId.Text);
+            this.lnIdePro = Convert.ToInt32(txtId.Text);
 
-            int confirmacion = this.referenciaServicio.EliminarProducto(this.id);
+            int lnConfirmacion = this.loRefGestProd.mxEliminarProducto(this.lnIdePro);
 
-            if (confirmacion > 0)
+            if (lnConfirmacion > 0)
             {
-                MessageBox.Show("Se ha eliminado el producto " + id);
-                LimpiarCampos();
-                CargarProductos();
+                MessageBox.Show("Se ha eliminado el producto " + this.lnIdePro);
+                mxLimpCamp();
+                mxCargProds();
             }
             else
             {
                 MessageBox.Show("No se ha podido eliminar el producto");
             }
-
         }
 
         private void cmbInsert_Click(object sender, EventArgs e)
         {
-
-            if (!ValidarFormulario())
+            if (!mxValForm())
                 return;
 
-            this.nombre = txtNombre.Text;
-            this.descripcion = txtDescrip.Text;
-            this.precio = Convert.ToDecimal(txtPrecio.Text);
-            this.stock = Convert.ToInt32(txtStock.Text);
+            this.lcNomPro = txtNombre.Text;
+            this.lcDescPro = txtDescrip.Text;
+            this.lnPrePro = Convert.ToDecimal(txtPrecio.Text);
+            this.lnStoPro = Convert.ToInt32(txtStock.Text);
 
-            ProductoCrearRQT producto = new ProductoCrearRQT
+            ProductoCrearRQT loProCreRQT = new ProductoCrearRQT
             {                
-                pcNomPro = this.nombre,
-                pcDesPro = this.descripcion,
-                pnPrePro = this.precio,
-                pnStoPro = this.stock                
+                pcNomPro = this.lcNomPro,
+                pcDesPro = this.lcDescPro,
+                pnPrePro = this.lnPrePro,
+                pnStoPro = this.lnStoPro
             };
 
-            ProductoCrearRPT confirmacion = this.referenciaServicio.CrearProducto(producto);
+            ProductoCrearRPT loProCreRPT = this.loRefGestProd.mxCrearProducto(loProCreRQT);
 
-            if (confirmacion != null)
+            if (loProCreRPT != null)
             {
                 MessageBox.Show("Se ha creado un producto");
-                LimpiarCampos();
-                CargarProductos();
+                mxLimpCamp();
+                mxCargProds();
             }
             else
             {
                 MessageBox.Show("No se ha podido crear el producto");
             }
         }
-
         private void cmbListar_Click(object sender, EventArgs e)
         {
-            CargarProductos();
+            mxCargProds();
             MessageBox.Show(Constantes._M_CARGA_REGISTRO);
         }
         private void cmbEditar_Click(object sender, EventArgs e)
         {
-            if (!ValidarFormulario())
+            if (!mxValForm())
                 return;
 
-            this.id = Convert.ToInt32(txtId.Text);
-            this.nombre = txtNombre.Text;
-            this.descripcion = txtDescrip.Text;
-            this.precio = Convert.ToDecimal(txtPrecio.Text);
-            this.stock = Convert.ToInt32(txtStock.Text);
+            this.lnIdePro = Convert.ToInt32(txtId.Text);
+            this.lcNomPro = txtNombre.Text;
+            this.lcDescPro = txtDescrip.Text;
+            this.lnPrePro = Convert.ToDecimal(txtPrecio.Text);
+            this.lnStoPro = Convert.ToInt32(txtStock.Text);
 
-            ProductoActualizarRQT producto = new ProductoActualizarRQT
+            ProductoActualizarRQT loProActRQT = new ProductoActualizarRQT
             {
-                pnIdePro = this.id,
-                pcNomPro = this.nombre,
-                pcDesPro = this.descripcion,
-                pnPrePro = this.precio,
-                pnStoPro = this.stock
+                pnIdePro = this.lnIdePro,
+                pcNomPro = this.lcNomPro,
+                pcDesPro = this.lcDescPro,
+                pnPrePro = this.lnPrePro,
+                pnStoPro = this.lnStoPro
             };
 
-            ProductoActualizarRPT confirmacion = this.referenciaServicio.ActualizarProducto(producto);
+            ProductoActualizarRPT loProActRPT = this.loRefGestProd.mxActualizarProducto(loProActRQT);
 
-            if (confirmacion != null)
+            if (loProActRPT != null)
             {
-                MessageBox.Show("Se ha actualizado el producto " + this.id);
-                LimpiarCampos();
-                CargarProductos();
+                MessageBox.Show("Se ha actualizado el producto " + this.lnIdePro);
+                mxLimpCamp();
+                mxCargProds();
             }
             else
             {
@@ -125,20 +124,20 @@ namespace ProyectoPrueba.Vistas
 
         private void grdProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            LimpiarCampos();
+            mxLimpCamp();
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow fila = grdProd.Rows[e.RowIndex];
+                DataGridViewRow loFila = grdProd.Rows[e.RowIndex];
 
-                txtId.Text = fila.Cells["Id"].Value.ToString();
-                txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
-                txtDescrip.Text = fila.Cells["Descripcion"].Value.ToString();
-                txtPrecio.Text = fila.Cells["Precio"].Value.ToString();
-                txtStock.Text = fila.Cells["Stock"].Value.ToString();
+                txtId.Text = loFila.Cells["Id"].Value.ToString();
+                txtNombre.Text = loFila.Cells["Nombre"].Value.ToString();
+                txtDescrip.Text = loFila.Cells["Descripcion"].Value.ToString();
+                txtPrecio.Text = loFila.Cells["Precio"].Value.ToString();
+                txtStock.Text = loFila.Cells["Stock"].Value.ToString();
             }
         }
 
-        private void CargarProductos()
+        private void mxCargProds()
         {
             grdProd.AutoGenerateColumns = false;
 
@@ -162,16 +161,15 @@ namespace ProyectoPrueba.Vistas
             grdProd.Columns.Add("Creado", "Creado");
             grdProd.Columns["Creado"].DataPropertyName = "ptFecPro";
 
-            ProductosListRPT listaLlena = this.referenciaServicio.ListarProductos();
+            ProductosListRPT loProLstRPT = this.loRefGestProd.mxObtenerProductos();
 
-            if (listaLlena.paProductos.Length == 0)
+            if (loProLstRPT.paProductos.Length == 0)
             {
                 MessageBox.Show(Constantes._M_RECURSO_NO_EXISTENTE);
             }
-            grdProd.DataSource = listaLlena.paProductos;
+            grdProd.DataSource = loProLstRPT.paProductos;
         }
-
-        private void LimpiarCampos()
+        private void mxLimpCamp()
         {
             txtId.Clear();
             txtNombre.Clear();
@@ -181,13 +179,12 @@ namespace ProyectoPrueba.Vistas
             txtNombre.Focus();
         }
 
-
         private void cmbLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            mxLimpCamp();
         }
 
-        private bool ValidarFormulario()
+        private bool mxValForm()
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {

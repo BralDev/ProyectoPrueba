@@ -34,17 +34,17 @@ namespace WSGestionProductos
         }
 
         [WebMethod(Description = "Crea un nuevo producto.")]
-        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT requestProducto)
+        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toCrePro)
         {
-            mxValidarRequest(requestProducto);
-            return loProGesCN.mxCrearProducto(requestProducto);
+            mxValidarRequest(toCrePro);
+            return loProGesCN.mxCrearProducto(toCrePro);
         }
 
         [WebMethod(Description = "Actualiza un producto existente.")]
-        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT requestProducto)
+        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toActPro)
         {
-            mxValidarRequest(requestProducto);
-            return loProGesCN.mxActualizarProducto(requestProducto);
+            mxValidarRequest(toActPro);
+            return loProGesCN.mxActualizarProducto(toActPro);
         }
 
         [WebMethod(Description = "Elimina un producto por su identificador.")]

@@ -35,7 +35,7 @@
       <s:element name="mxCrearProducto">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="requestProducto" type="tns:ProductoCrearRQT" />
+            <s:element minOccurs="0" maxOccurs="1" name="toCrePro" type="tns:ProductoCrearRQT" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -67,7 +67,7 @@
       <s:element name="mxActualizarProducto">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="requestProducto" type="tns:ProductoActualizarRQT" />
+            <s:element minOccurs="0" maxOccurs="1" name="toActPro" type="tns:ProductoActualizarRQT" />
           </s:sequence>
         </s:complexType>
       </s:element>

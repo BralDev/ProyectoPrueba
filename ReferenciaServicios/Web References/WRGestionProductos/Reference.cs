@@ -116,24 +116,24 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/mxCrearProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT requestProducto) {
+        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toCrePro) {
             object[] results = this.Invoke("mxCrearProducto", new object[] {
-                        requestProducto});
+                        toCrePro});
             return ((ProductoCrearRPT)(results[0]));
         }
         
         /// <remarks/>
-        public void mxCrearProductoAsync(ProductoCrearRQT requestProducto) {
-            this.mxCrearProductoAsync(requestProducto, null);
+        public void mxCrearProductoAsync(ProductoCrearRQT toCrePro) {
+            this.mxCrearProductoAsync(toCrePro, null);
         }
         
         /// <remarks/>
-        public void mxCrearProductoAsync(ProductoCrearRQT requestProducto, object userState) {
+        public void mxCrearProductoAsync(ProductoCrearRQT toCrePro, object userState) {
             if ((this.mxCrearProductoOperationCompleted == null)) {
                 this.mxCrearProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmxCrearProductoOperationCompleted);
             }
             this.InvokeAsync("mxCrearProducto", new object[] {
-                        requestProducto}, this.mxCrearProductoOperationCompleted, userState);
+                        toCrePro}, this.mxCrearProductoOperationCompleted, userState);
         }
         
         private void OnmxCrearProductoOperationCompleted(object arg) {
@@ -145,24 +145,24 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/mxActualizarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT requestProducto) {
+        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toActPro) {
             object[] results = this.Invoke("mxActualizarProducto", new object[] {
-                        requestProducto});
+                        toActPro});
             return ((ProductoActualizarRPT)(results[0]));
         }
         
         /// <remarks/>
-        public void mxActualizarProductoAsync(ProductoActualizarRQT requestProducto) {
-            this.mxActualizarProductoAsync(requestProducto, null);
+        public void mxActualizarProductoAsync(ProductoActualizarRQT toActPro) {
+            this.mxActualizarProductoAsync(toActPro, null);
         }
         
         /// <remarks/>
-        public void mxActualizarProductoAsync(ProductoActualizarRQT requestProducto, object userState) {
+        public void mxActualizarProductoAsync(ProductoActualizarRQT toActPro, object userState) {
             if ((this.mxActualizarProductoOperationCompleted == null)) {
                 this.mxActualizarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmxActualizarProductoOperationCompleted);
             }
             this.InvokeAsync("mxActualizarProducto", new object[] {
-                        requestProducto}, this.mxActualizarProductoOperationCompleted, userState);
+                        toActPro}, this.mxActualizarProductoOperationCompleted, userState);
         }
         
         private void OnmxActualizarProductoOperationCompleted(object arg) {
