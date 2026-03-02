@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Datos.Conexion;
 using Datos.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace Datos.Repositorios
             }
         }
 
-        public int mxActualizarProducto(ProductoCD producto)
+        public DateTime mxActualizarProducto(ProductoCD producto)
         {
             using (IDbConnection conn = this.conexion.ObtenerConexion())
             {
@@ -62,7 +63,7 @@ namespace Datos.Repositorios
                 parametros.Add("tnPrePro", producto.nPrePro);
                 parametros.Add("tnStoPro", producto.nStoPro);
 
-                return conn.Execute(Constantes.SP_PRODUCTAR_EDITAR, parametros, commandType: CommandType.StoredProcedure);
+                return conn.QuerySingleOrDefault<DateTime>(Constantes.SP_PRODUCTAR_EDITAR, parametros, commandType: CommandType.StoredProcedure);
             }
         }
     }

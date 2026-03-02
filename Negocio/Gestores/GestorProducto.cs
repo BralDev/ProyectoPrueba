@@ -27,7 +27,7 @@ namespace Negocio.Gestores
             ProductoCrearRPT respuesta;
             int idProducto;
             try
-            {                
+            {
                 ProductoCD entiProducto = new ProductoCD
                 {
                     cNomPro = requestProducto.pcNomPro,
@@ -38,11 +38,11 @@ namespace Negocio.Gestores
                 };
 
                 idProducto = this.loProductosCD.mxCrearProducto(entiProducto);
-                
+
                 if (idProducto <= 0)
                 {
                     this._logger.LogWarning(Constantes._M_NO_REGISTRO, requestProducto.pcNomPro);
-                }                
+                }
 
                 respuesta = new ProductoCrearRPT
                 {
@@ -55,9 +55,9 @@ namespace Negocio.Gestores
                 };
             }
             catch (Exception ex)
-            {                
+            {
                 _logger.LogError(ex, $"Error crítico al intentar crear el producto: {requestProducto.pcNomPro}");
-    
+
                 throw new Exception("Ocurrió un problema interno al procesar el producto. Por favor, intente más tarde.", ex);
             }
             return respuesta;
@@ -88,7 +88,7 @@ namespace Negocio.Gestores
                     return loRespuesta;
                 }
 
-                foreach (var product in productos) 
+                foreach (var product in productos)
                 {
                     loProducto = new ProductoListCN();
                     loProducto.pnIdePro = product.nIdePro;
@@ -97,7 +97,7 @@ namespace Negocio.Gestores
                     loProducto.pnPrePro = product.nPrePro;
                     loProducto.pnStoPro = product.nStoPro;
                     loProducto.ptFecPro = product.tFecPro;
-                    laLstProductos.Add( loProducto );
+                    laLstProductos.Add(loProducto);
                 }
                 loRespuesta.paProductos = laLstProductos.ToArray();
             }
@@ -108,11 +108,11 @@ namespace Negocio.Gestores
 
             return loRespuesta;
         }
-            
+
         public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT requestProducto)
         {
             ProductoActualizarRPT respuesta;
-            int confirmacion;
+            DateTime confirmacion;
             try
             {
                 ProductoCD entiProducto = new ProductoCD
@@ -121,12 +121,12 @@ namespace Negocio.Gestores
                     cNomPro = requestProducto.pcNomPro,
                     cDesPro = requestProducto.pcDesPro,
                     nPrePro = requestProducto.pnPrePro,
-                    nStoPro = requestProducto.pnStoPro                    
+                    nStoPro = requestProducto.pnStoPro
                 };
 
                 confirmacion = this.loProductosCD.mxActualizarProducto(entiProducto);
 
-                if (confirmacion <= 0)
+                if (confirmacion == null)
                 {
                     this._logger.LogWarning(Constantes._M_NO_REGISTRO, requestProducto.pcNomPro);
                 }
@@ -138,7 +138,7 @@ namespace Negocio.Gestores
                     pcDesPro = entiProducto.cDesPro,
                     pnPrePro = entiProducto.nPrePro,
                     pnStoPro = entiProducto.nStoPro,
-                    ptFecPro = entiProducto.tFecPro
+                    ptFecPro = confirmacion
                 };
             }
             catch (Exception ex)
@@ -150,3 +150,4 @@ namespace Negocio.Gestores
             return respuesta;
         }
     }
+}
