@@ -9,19 +9,19 @@ using Transversal;
 
 namespace Datos.Repositorios
 {
-    public class ProductoRepositorio
+    public class ProductoRepositorioCD
     {
 
-        private readonly DbConexion conexion;
+        private readonly ConexionCD conexion;
 
-        public ProductoRepositorio()
+        public ProductoRepositorioCD()
         {            
-            this.conexion = new DbConexion();
+            this.conexion = new ConexionCD();
         }
 
         public int mxCrearProducto(ProductoCD producto)
         {
-            using (IDbConnection conn = this.conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.mxObtenerConexion())
             {
                 DynamicParameters parametros = new DynamicParameters();
                 parametros.Add("tcNomPro", producto.cNomPro);
@@ -36,7 +36,7 @@ namespace Datos.Repositorios
 
         public int mxEliminarProducto(int id)
         {
-            using (IDbConnection conn = this.conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.mxObtenerConexion())
             {
                 DynamicParameters parametros = new DynamicParameters();
                 parametros.Add("tnIdePro", id);
@@ -46,7 +46,7 @@ namespace Datos.Repositorios
         }
         public List<ProductoCD> mxObtenerProductos()
         {
-            using (IDbConnection conn = this.conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.mxObtenerConexion())
             {                
                 return conn.Query<ProductoCD>(Constantes.SP_PRODUCTO_LISTAR, commandType: CommandType.StoredProcedure).ToList();
             }
@@ -54,7 +54,7 @@ namespace Datos.Repositorios
 
         public DateTime mxActualizarProducto(ProductoCD producto)
         {
-            using (IDbConnection conn = this.conexion.ObtenerConexion())
+            using (IDbConnection conn = this.conexion.mxObtenerConexion())
             {
                 DynamicParameters parametros = new DynamicParameters();
                 parametros.Add("tnIdePro", producto.nIdePro);

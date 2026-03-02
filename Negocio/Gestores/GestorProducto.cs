@@ -12,13 +12,13 @@ namespace Negocio.Gestores
 {
     public class GestorProducto
     {
-        private readonly ProductoRepositorio loProductosCD;
+        private readonly ProductoRepositorioCD loProductosCD;
         private readonly ILogger<GestorProducto> _logger;
         private int confirmacion;
 
         public GestorProducto()
         {
-            this.loProductosCD = new ProductoRepositorio();
+            this.loProductosCD = new ProductoRepositorioCD();
             this._logger = new LoggerFactory().CreateLogger<GestorProducto>();
         }
 
