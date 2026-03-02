@@ -77,9 +77,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Negocio\Negocio.csproj">
-      <Project>{8940c10c-8c77-4418-8756-a1daeaf2fa01}</Project>
-      <Name>Negocio</Name>
+    <ProjectReference Include="..\ReferenciaServicios\ReferenciaServicios.csproj">
+      <Project>{3da40ef2-2cd4-41d6-8657-0cd76dd8aabd}</Project>
+      <Name>ReferenciaServicios</Name>
     </ProjectReference>
     <ProjectReference Include="..\Transversal\Transversal.csproj">
       <Project>{e23022d7-655d-4ee0-a3d7-e296b2e3d843}</Project>
