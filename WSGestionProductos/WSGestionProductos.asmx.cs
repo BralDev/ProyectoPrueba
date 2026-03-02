@@ -20,59 +20,59 @@ namespace WSGestionProductos
     public class WSGestionProductos : System.Web.Services.WebService
     {
 
-        private readonly ProductoGestorCN _gestorProducto;
+        private readonly ProductoGestorCN loProGesCN;
 
         public WSGestionProductos()
         {
-            _gestorProducto = new ProductoGestorCN();
+            loProGesCN = new ProductoGestorCN();
         }
 
         [WebMethod(Description = "Obtiene la lista de todos los productos.")]
-        public ProductosListRPT ListarProductos()
+        public ProductosListRPT mxObtenerProductos()
         {
-            return _gestorProducto.mxObtenerProductos();
+            return loProGesCN.mxObtenerProductos();
         }
 
         [WebMethod(Description = "Crea un nuevo producto.")]
-        public ProductoCrearRPT CrearProducto(ProductoCrearRQT requestProducto)
+        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT requestProducto)
         {
-            ValidarRequest(requestProducto);
-            return _gestorProducto.mxCrearProducto(requestProducto);
-        }
-
-        private void ValidarRequest<T>(T request)
-        {
-            if (request == null)
-                throw new SoapException("Request nulo.",
-                    SoapException.ClientFaultCode);
-
-            var contexto = new ValidationContext(request);
-            var errores = new List<ValidationResult>();
-
-            if (!Validator.TryValidateObject(request, contexto, errores, true))
-            {
-                string mensajes = string.Join(" | ", errores.Select(e => e.ErrorMessage));
-                throw new SoapException(
-                    $"Validación fallida: {mensajes}",
-                    SoapException.ClientFaultCode
-                );
-            }
+            mxValidarRequest(requestProducto);
+            return loProGesCN.mxCrearProducto(requestProducto);
         }
 
         [WebMethod(Description = "Actualiza un producto existente.")]
-        public ProductoActualizarRPT ActualizarProducto(ProductoActualizarRQT requestProducto)
+        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT requestProducto)
         {
-            ValidarRequest(requestProducto);
-            return _gestorProducto.mxActualizarProducto(requestProducto);
+            mxValidarRequest(requestProducto);
+            return loProGesCN.mxActualizarProducto(requestProducto);
         }
 
         [WebMethod(Description = "Elimina un producto por su identificador.")]
-        public int EliminarProducto(int idProducto)
+        public int mxEliminarProducto(int tnIdePro)
         {
-            if (idProducto <= 0)
+            if (tnIdePro <= 0)
                 throw new SoapException("El ID del producto debe ser mayor a 0.",
                     SoapException.ClientFaultCode);
-            return _gestorProducto.mxEliminarProducto(idProducto);
+            return loProGesCN.mxEliminarProducto(tnIdePro);
+        }
+
+        private void mxValidarRequest<T>(T toRequest)
+        {
+            if (toRequest == null)
+                throw new SoapException("Request nulo.",
+                    SoapException.ClientFaultCode);
+
+            ValidationContext loContexto = new ValidationContext(toRequest);
+            List<ValidationResult> loErrLst = new List<ValidationResult>();
+
+            if (!Validator.TryValidateObject(toRequest, loContexto, loErrLst, true))
+            {
+                string lcMensajes = string.Join(" | ", loErrLst.Select(e => e.ErrorMessage));
+                throw new SoapException(
+                    $"Validación fallida: {lcMensajes}",
+                    SoapException.ClientFaultCode
+                );
+            }
         }
     }
 }
