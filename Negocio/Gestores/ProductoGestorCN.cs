@@ -1,7 +1,7 @@
 ﻿using Datos.Entidades;
 using Datos.Repositorios;
 using Microsoft.Extensions.Logging;
-using Negocio.Esquemas;
+using Esquema.Esquemas;
 using System;
 using System.Collections.Generic;
 using Transversal;
@@ -58,18 +58,22 @@ namespace Negocio.Gestores
             return loProCreRPT;
         }
 
-        public int mxEliminarProducto(int tnIdePro)
+        public ProductoEliminarRPT mxEliminarProducto(ProductoEliminarRQT toProEliRQT)
         {
             ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
+            ProductoEliminarRPT loProEliRPT = new ProductoEliminarRPT();
+
             int lnConfirmacion = 0;
 
-            lnConfirmacion = loProRepoCD.mxEliminarProducto(tnIdePro);
+            lnConfirmacion = loProRepoCD.mxEliminarProducto(toProEliRQT.pnIdePro);
             if (lnConfirmacion <= 0)
             {
-                loLogger.LogWarning(Constantes._M_ERROR_ELIMINAR, tnIdePro);
+                loLogger.LogWarning(Constantes._M_ERROR_ELIMINAR, toProEliRQT.pnIdePro);
             }
-            return lnConfirmacion;
+
+            loProEliRPT.pnIdePro = toProEliRQT.pnIdePro;
+            return loProEliRPT;
         }
 
         public ProductosListRPT mxObtenerProductos()
@@ -115,8 +119,8 @@ namespace Negocio.Gestores
         {
             ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
-
             ProductoActualizarRPT loProActRPT = null;
+
             DateTime loConfirmacion = DateTime.Now;
             try
             {
@@ -134,7 +138,8 @@ namespace Negocio.Gestores
 
                 if (loConfirmacion == null)
                 {
-                    loLogger.LogWarning(Constantes._M_NO_REGISTRO, toProActRQT.pcNomPro);
+                    loProActRPT.Message = "";
+                    return loProActRPT;
                 }
 
                 loProActRPT = new ProductoActualizarRPT

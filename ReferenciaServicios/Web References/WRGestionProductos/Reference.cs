@@ -27,6 +27,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="WSGestionProductosSoap", Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Error))]
     public partial class WSGestionProductos : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback wmObtenerProductosOperationCompleted;
@@ -174,24 +175,24 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmEliminarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int wmEliminarProducto(int tnIdePro) {
+        public ProductoEliminarRPT wmEliminarProducto(ProductoEliminarRQT toEliPro) {
             object[] results = this.Invoke("wmEliminarProducto", new object[] {
-                        tnIdePro});
-            return ((int)(results[0]));
+                        toEliPro});
+            return ((ProductoEliminarRPT)(results[0]));
         }
         
         /// <remarks/>
-        public void wmEliminarProductoAsync(int tnIdePro) {
-            this.wmEliminarProductoAsync(tnIdePro, null);
+        public void wmEliminarProductoAsync(ProductoEliminarRQT toEliPro) {
+            this.wmEliminarProductoAsync(toEliPro, null);
         }
         
         /// <remarks/>
-        public void wmEliminarProductoAsync(int tnIdePro, object userState) {
+        public void wmEliminarProductoAsync(ProductoEliminarRQT toEliPro, object userState) {
             if ((this.wmEliminarProductoOperationCompleted == null)) {
                 this.wmEliminarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmEliminarProductoOperationCompleted);
             }
             this.InvokeAsync("wmEliminarProducto", new object[] {
-                        tnIdePro}, this.wmEliminarProductoOperationCompleted, userState);
+                        toEliPro}, this.wmEliminarProductoOperationCompleted, userState);
         }
         
         private void OnwmEliminarProductoOperationCompleted(object arg) {
@@ -340,7 +341,71 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoActualizarRPT {
+    public partial class ProductoEliminarRPT {
+        
+        private int pnIdeProField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoEliminarRQT {
+        
+        private int pnIdeProField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoActualizarRPT))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Error {
+        
+        private string messageField;
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoActualizarRPT : Error {
         
         private int pnIdeProField;
         
@@ -766,10 +831,10 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
-        public int Result {
+        public ProductoEliminarRPT Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return ((ProductoEliminarRPT)(this.results[0]));
             }
         }
     }

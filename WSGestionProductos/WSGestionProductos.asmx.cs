@@ -1,4 +1,4 @@
-﻿using Negocio.Esquemas;
+﻿using Esquema.Esquemas;
 using Negocio.Gestores;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -44,13 +44,14 @@ namespace WSGestionProductos
         }
 
         [WebMethod(Description = "Elimina un producto por su identificador.")]
-        public int wmEliminarProducto(int tnIdePro)
+        public ProductoEliminarRPT wmEliminarProducto(ProductoEliminarRQT toEliPro)
         {
+            int tnIdePro = toEliPro.pnIdePro;
             ProductoGestorCN loProGesCN = new ProductoGestorCN();
             if (tnIdePro <= 0)
                 throw new SoapException("El ID del producto debe ser mayor a 0.",
                     SoapException.ClientFaultCode);
-            return loProGesCN.mxEliminarProducto(tnIdePro);
+            return loProGesCN.mxEliminarProducto(toEliPro);
         }
 
         private void mxValidarRequest<T>(T toRequest)

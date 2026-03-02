@@ -85,7 +85,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Esquemas\ProductosCN.cs" />
     <Compile Include="Gestores\ProductoGestorCN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +92,10 @@
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{60e5e781-4901-4ee3-8178-0cf331efd935}</Project>
       <Name>Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Esquema\Esquema.csproj">
+      <Project>{b4dcd93a-918c-4180-9df5-a9ca8b638460}</Project>
+      <Name>Esquema</Name>
     </ProjectReference>
     <ProjectReference Include="..\Transversal\Transversal.csproj">
       <Project>{e23022d7-655d-4ee0-a3d7-e296b2e3d843}</Project>

@@ -29,6 +29,8 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbElimin_Click(object sender, EventArgs e)
         {
+            ProductoEliminarRQT productoEliminarRQT = new ProductoEliminarRQT();
+
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show("El id de producto es obligatorio");
@@ -36,11 +38,11 @@ namespace ProyectoPrueba.Vistas
                 return;
             }
 
-            this.lnIdePro = Convert.ToInt32(txtId.Text);
+            productoEliminarRQT.pnIdePro = Convert.ToInt32(txtId.Text);
 
-            int lnConfirmacion = this.loRefGestProdCR.mxEliminarProducto(this.lnIdePro);
+            ProductoEliminarRPT lnConfirmacion = this.loRefGestProdCR.wmEliminarProducto(productoEliminarRQT);
 
-            if (lnConfirmacion > 0)
+            if (lnConfirmacion.pnIdePro > 0)
             {
                 MessageBox.Show("Se ha eliminado el producto " + this.lnIdePro);
                 mxLimpCamp();
@@ -72,7 +74,7 @@ namespace ProyectoPrueba.Vistas
                 pnIdeSed = this.lnIdeSed
             };
 
-            ProductoCrearRPT loProCreRPT = this.loRefGestProdCR.mxCrearProducto(loProCreRQT);
+            ProductoCrearRPT loProCreRPT = this.loRefGestProdCR.wmCrearProducto(loProCreRQT);
 
             if (loProCreRPT != null)
             {
@@ -112,7 +114,7 @@ namespace ProyectoPrueba.Vistas
                 pnIdeSed = this.lnIdeSed
             };
 
-            ProductoActualizarRPT loProActRPT = this.loRefGestProdCR.mxActualizarProducto(loProActRQT);
+            ProductoActualizarRPT loProActRPT = this.loRefGestProdCR.wmActualizarProducto(loProActRQT);
 
             if (loProActRPT != null)
             {
@@ -169,7 +171,7 @@ namespace ProyectoPrueba.Vistas
             grdProd.Columns.Add("Creado", "Creado");
             grdProd.Columns["Creado"].DataPropertyName = "ptFecPro";
 
-            ProductosListRPT loProLstRPT = this.loRefGestProdCR.mxObtenerProductos();
+            ProductosListRPT loProLstRPT = this.loRefGestProdCR.wmObtenerProductos();
 
             if (loProLstRPT.paProductos.Length == 0)
             {
