@@ -28,6 +28,7 @@ namespace Datos.Repositorios
                 loParametros.Add("tcDesPro", toPro.cDesPro);
                 loParametros.Add("tnPrePro", toPro.nPrePro);
                 loParametros.Add("tnStoPro", toPro.nStoPro);
+                loParametros.Add("@tnIdeSed", toPro.nIdeSed);
                 loParametros.Add("@ttFecPro", toPro.tFecPro);
 
                 return loIConexion.ExecuteScalar<int>(Constantes.SP_PRODUCTO_CREAR, loParametros, commandType: CommandType.StoredProcedure);
@@ -62,6 +63,7 @@ namespace Datos.Repositorios
                 loParametros.Add("tcDesPro", producto.cDesPro);
                 loParametros.Add("tnPrePro", producto.nPrePro);
                 loParametros.Add("tnStoPro", producto.nStoPro);
+                loParametros.Add("@tnIdeSed", producto.nIdeSed);
 
                 return loIConexion.QuerySingleOrDefault<DateTime>(Constantes.SP_PRODUCTAR_EDITAR, loParametros, commandType: CommandType.StoredProcedure);
             }

@@ -172,6 +172,7 @@
   <ItemGroup>
     <Compile Include="Conexion\ConexionCD.cs" />
     <Compile Include="Entidades\ProductoCD.cs" />
+    <Compile Include="Entidades\SedeCD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\ProductoRepositorioCD.cs" />
   </ItemGroup>
