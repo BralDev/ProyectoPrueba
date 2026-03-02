@@ -8,7 +8,7 @@ namespace ProyectoPrueba.Vistas
     public partial class GestionProductoCP : Form
     {
 
-        private WSGestionProductos loRefGestProd;
+        private WSGestionProductos loRefGestProdCR;
 
         private int lnIdePro, lnStoPro;
         private String lcNomPro, lcDescPro;
@@ -22,7 +22,7 @@ namespace ProyectoPrueba.Vistas
             this.MaximizeBox = false;
             this.Text = "Sistema de Gestión de Productos - invmpro";
 
-            this.loRefGestProd = new WSGestionProductos();            
+            this.loRefGestProdCR = new WSGestionProductos();            
             txtId.Enabled = false;                        
             mxCargProds();
         }
@@ -38,7 +38,7 @@ namespace ProyectoPrueba.Vistas
 
             this.lnIdePro = Convert.ToInt32(txtId.Text);
 
-            int lnConfirmacion = this.loRefGestProd.mxEliminarProducto(this.lnIdePro);
+            int lnConfirmacion = this.loRefGestProdCR.mxEliminarProducto(this.lnIdePro);
 
             if (lnConfirmacion > 0)
             {
@@ -70,7 +70,7 @@ namespace ProyectoPrueba.Vistas
                 pnStoPro = this.lnStoPro
             };
 
-            ProductoCrearRPT loProCreRPT = this.loRefGestProd.mxCrearProducto(loProCreRQT);
+            ProductoCrearRPT loProCreRPT = this.loRefGestProdCR.mxCrearProducto(loProCreRQT);
 
             if (loProCreRPT != null)
             {
@@ -108,7 +108,7 @@ namespace ProyectoPrueba.Vistas
                 pnStoPro = this.lnStoPro
             };
 
-            ProductoActualizarRPT loProActRPT = this.loRefGestProd.mxActualizarProducto(loProActRQT);
+            ProductoActualizarRPT loProActRPT = this.loRefGestProdCR.mxActualizarProducto(loProActRQT);
 
             if (loProActRPT != null)
             {
@@ -161,7 +161,7 @@ namespace ProyectoPrueba.Vistas
             grdProd.Columns.Add("Creado", "Creado");
             grdProd.Columns["Creado"].DataPropertyName = "ptFecPro";
 
-            ProductosListRPT loProLstRPT = this.loRefGestProd.mxObtenerProductos();
+            ProductosListRPT loProLstRPT = this.loRefGestProdCR.mxObtenerProductos();
 
             if (loProLstRPT.paProductos.Length == 0)
             {
