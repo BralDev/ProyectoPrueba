@@ -116,10 +116,10 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CrearProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int CrearProducto(ProductoCrearRQT requestProducto) {
+        public ProductoCrearRPT CrearProducto(ProductoCrearRQT requestProducto) {
             object[] results = this.Invoke("CrearProducto", new object[] {
                         requestProducto});
-            return ((int)(results[0]));
+            return ((ProductoCrearRPT)(results[0]));
         }
         
         /// <remarks/>
@@ -145,10 +145,10 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ActualizarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int ActualizarProducto(ProductoActualizarRQT requestProducto) {
+        public ProductoActualizarRPT ActualizarProducto(ProductoActualizarRQT requestProducto) {
             object[] results = this.Invoke("ActualizarProducto", new object[] {
                         requestProducto});
-            return ((int)(results[0]));
+            return ((ProductoActualizarRPT)(results[0]));
         }
         
         /// <remarks/>
@@ -328,6 +328,87 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoActualizarRPT {
+        
+        private int pnIdeProField;
+        
+        private string pcNomProField;
+        
+        private string pcDesProField;
+        
+        private decimal pnPreProField;
+        
+        private int pnStoProField;
+        
+        private System.DateTime ptFecProField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcDesPro {
+            get {
+                return this.pcDesProField;
+            }
+            set {
+                this.pcDesProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal pnPrePro {
+            get {
+                return this.pnPreProField;
+            }
+            set {
+                this.pnPreProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnStoPro {
+            get {
+                return this.pnStoProField;
+            }
+            set {
+                this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ptFecPro {
+            get {
+                return this.ptFecProField;
+            }
+            set {
+                this.ptFecProField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class ProductoActualizarRQT {
         
         private int pnIdeProField;
@@ -387,6 +468,87 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.pnStoProField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoCrearRPT {
+        
+        private int pnIdeProField;
+        
+        private string pcNomProField;
+        
+        private string pcDesProField;
+        
+        private decimal pnPreProField;
+        
+        private int pnStoProField;
+        
+        private System.DateTime ptFecProField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcDesPro {
+            get {
+                return this.pcDesProField;
+            }
+            set {
+                this.pcDesProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal pnPrePro {
+            get {
+                return this.pnPreProField;
+            }
+            set {
+                this.pnPreProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnStoPro {
+            get {
+                return this.pnStoProField;
+            }
+            set {
+                this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ptFecPro {
+            get {
+                return this.ptFecProField;
+            }
+            set {
+                this.ptFecProField = value;
             }
         }
     }
@@ -492,10 +654,10 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
-        public int Result {
+        public ProductoCrearRPT Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return ((ProductoCrearRPT)(this.results[0]));
             }
         }
     }
@@ -518,10 +680,10 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
-        public int Result {
+        public ProductoActualizarRPT Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return ((ProductoActualizarRPT)(this.results[0]));
             }
         }
     }

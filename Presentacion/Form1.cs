@@ -1,15 +1,14 @@
-﻿using Negocio.Esquemas;
-using Negocio.Gestores;
-using System;
+﻿using System;
 using Transversal;
 using System.Windows.Forms;
+using ReferenciaServicios.WRGestionProductos;
 
 namespace ProyectoPrueba.Vistas
 {
     public partial class Form1 : Form
     {
 
-        private GestorProducto productoGestor;
+        private WSGestionProductos referenciaServicio;
 
         private int id, stock;
         private String nombre, descripcion;
@@ -18,12 +17,12 @@ namespace ProyectoPrueba.Vistas
         public Form1()
         {
             InitializeComponent();
-            this.productoGestor = new GestorProducto();
-            //CargarProductos();
+            this.referenciaServicio = new WSGestionProductos();            
             txtId.Enabled = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            CargarProductos();
         }
 
         private void cmbElimin_Click(object sender, EventArgs e)
@@ -37,7 +36,7 @@ namespace ProyectoPrueba.Vistas
 
             this.id = Convert.ToInt32(txtId.Text);
 
-            int confirmacion = this.productoGestor.mxEliminarProducto(id);
+            int confirmacion = this.referenciaServicio.EliminarProducto(this.id);
 
             if (confirmacion > 0)
             {
@@ -47,7 +46,7 @@ namespace ProyectoPrueba.Vistas
             }
             else
             {
-                MessageBox.Show("No hay conexion en la BD");
+                MessageBox.Show("No se ha podido eliminar el producto");
             }
 
         }
@@ -63,17 +62,17 @@ namespace ProyectoPrueba.Vistas
             this.precio = Convert.ToDecimal(txtPrecio.Text);
             this.stock = Convert.ToInt32(txtStock.Text);
 
-            ProductCreateDto producto = new ProductCreateDto
-            {
-                cNomPro = this.nombre,
-                cDesPro = this.descripcion,
-                nPrePro = this.precio,
-                nStoPro = this.stock
+            ProductoCrearRQT producto = new ProductoCrearRQT
+            {                
+                pcNomPro = this.nombre,
+                pcDesPro = this.descripcion,
+                pnPrePro = this.precio,
+                pnStoPro = this.stock                
             };
 
-            int confirmacion = this.productoGestor.mxCrearProducto(producto);
+            ProductoCrearRPT confirmacion = this.referenciaServicio.CrearProducto(producto);
 
-            if (confirmacion > 0)
+            if (confirmacion != null)
             {
                 MessageBox.Show("Se ha creado un producto");
                 LimpiarCampos();
@@ -81,7 +80,7 @@ namespace ProyectoPrueba.Vistas
             }
             else
             {
-                MessageBox.Show("No hay conexion en la BD");
+                MessageBox.Show("No se ha podido crear el producto");
             }
         }
 
@@ -101,18 +100,18 @@ namespace ProyectoPrueba.Vistas
             this.precio = Convert.ToDecimal(txtPrecio.Text);
             this.stock = Convert.ToInt32(txtStock.Text);
 
-            ProductUpdateDto producto = new ProductUpdateDto
+            ProductoActualizarRQT producto = new ProductoActualizarRQT
             {
-                nIdePro = this.id,
-                cNomPro = this.nombre,
-                cDesPro = this.descripcion,
-                nPrePro = this.precio,
-                nStoPro = this.stock
+                pnIdePro = this.id,
+                pcNomPro = this.nombre,
+                pcDesPro = this.descripcion,
+                pnPrePro = this.precio,
+                pnStoPro = this.stock
             };
 
-            int confirmacion = this.productoGestor.mxActualizarProducto(producto);
+            ProductoActualizarRPT confirmacion = this.referenciaServicio.ActualizarProducto(producto);
 
-            if (confirmacion > 0)
+            if (confirmacion != null)
             {
                 MessageBox.Show("Se ha actualizado el producto " + this.id);
                 LimpiarCampos();
@@ -120,7 +119,7 @@ namespace ProyectoPrueba.Vistas
             }
             else
             {
-                MessageBox.Show("No hay conexion en la BD");
+                MessageBox.Show("No se ha podido actualizar el producto");
             }
         }
 
@@ -146,30 +145,30 @@ namespace ProyectoPrueba.Vistas
             grdProd.Columns.Clear();
 
             grdProd.Columns.Add("Id", "ID");
-            grdProd.Columns["Id"].DataPropertyName = "nIdePro";
+            grdProd.Columns["Id"].DataPropertyName = "pnIdePro";
 
             grdProd.Columns.Add("Nombre", "Nombre");
-            grdProd.Columns["Nombre"].DataPropertyName = "cNomPro";
+            grdProd.Columns["Nombre"].DataPropertyName = "pcNomPro";
 
             grdProd.Columns.Add("Descripcion", "Descripcion");
-            grdProd.Columns["Descripcion"].DataPropertyName = "cDesPro";
+            grdProd.Columns["Descripcion"].DataPropertyName = "pcDesPro";
 
             grdProd.Columns.Add("Precio", "Precio");
-            grdProd.Columns["Precio"].DataPropertyName = "nPrePro";
+            grdProd.Columns["Precio"].DataPropertyName = "pnPrePro";
 
             grdProd.Columns.Add("Stock", "Stock");
-            grdProd.Columns["Stock"].DataPropertyName = "nStoPro";
+            grdProd.Columns["Stock"].DataPropertyName = "pnStoPro";
 
             grdProd.Columns.Add("Creado", "Creado");
-            grdProd.Columns["Creado"].DataPropertyName = "tFecPro";
+            grdProd.Columns["Creado"].DataPropertyName = "ptFecPro";
 
-            ProductosRPT listaLlena = this.productoGestor.mxObtenerProductos();
+            ProductosListRPT listaLlena = this.referenciaServicio.ListarProductos();
 
             if (listaLlena.paProductos.Length == 0)
             {
                 MessageBox.Show(Constantes._M_RECURSO_NO_EXISTENTE);
             }
-            grdProd.DataSource = listaLlena;
+            grdProd.DataSource = listaLlena.paProductos;
         }
 
         private void LimpiarCampos()
