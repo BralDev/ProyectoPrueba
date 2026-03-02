@@ -9,19 +9,13 @@ using Transversal;
 namespace Negocio.Gestores
 {
     public class ProductoGestorCN
-    {
-        private readonly ProductoRepositorioCD loProRepoCD;
-        private readonly ILogger<ProductoGestorCN> loLogger;        
-
-        public ProductoGestorCN()
-        {
-            this.loProRepoCD = new ProductoRepositorioCD();
-            this.loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
-        }
-
+    {                        
         public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toProCreRQT)
         {
-            ProductoCrearRPT loProCreRPT = null;
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
+            ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
+            
+            ProductoCrearRPT loProCreRPT = null;            
             int lnIdPro = 0;
             try
             {
@@ -35,11 +29,11 @@ namespace Negocio.Gestores
                     tFecPro = DateTime.Now
                 };
 
-                lnIdPro = this.loProRepoCD.mxCrearProducto(loProCD);
+                lnIdPro = loProRepoCD.mxCrearProducto(loProCD);
 
                 if (lnIdPro <= 0)
                 {
-                    this.loLogger.LogWarning(Constantes._M_NO_REGISTRO, toProCreRQT.pcNomPro);
+                    loLogger.LogWarning(Constantes._M_NO_REGISTRO, toProCreRQT.pcNomPro);
                 }
                 else
                 {
@@ -66,9 +60,11 @@ namespace Negocio.Gestores
 
         public int mxEliminarProducto(int tnIdePro)
         {
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
+            ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
             int lnConfirmacion = 0;
 
-            lnConfirmacion = this.loProRepoCD.mxEliminarProducto(tnIdePro);
+            lnConfirmacion = loProRepoCD.mxEliminarProducto(tnIdePro);
             if (lnConfirmacion <= 0)
             {
                 loLogger.LogWarning(Constantes._M_ERROR_ELIMINAR, tnIdePro);
@@ -78,12 +74,13 @@ namespace Negocio.Gestores
 
         public ProductosListRPT mxObtenerProductos()
         {
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();            
             ProductosListRPT loProLstRPT = new ProductosListRPT();
             ProductoListaCN loProLstCN = null;
             List<ProductoListaCN> laLstProductos = new List<ProductoListaCN>();
             try
             {
-                List<ProductoCD> loListProductos = this.loProRepoCD.mxObtenerProductos();
+                List<ProductoCD> loListProductos = loProRepoCD.mxObtenerProductos();
 
                 if (loListProductos == null || loListProductos.Count == 0)
                 {
@@ -116,6 +113,9 @@ namespace Negocio.Gestores
 
         public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toProActRQT)
         {
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
+            ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
+
             ProductoActualizarRPT loProActRPT = null;
             DateTime loConfirmacion = DateTime.Now;
             try
@@ -130,11 +130,11 @@ namespace Negocio.Gestores
                     nIdeSed = toProActRQT.pnIdeSed,
                 };
 
-                loConfirmacion = this.loProRepoCD.mxActualizarProducto(loProCD);
+                loConfirmacion = loProRepoCD.mxActualizarProducto(loProCD);
 
                 if (loConfirmacion == null)
                 {
-                    this.loLogger.LogWarning(Constantes._M_NO_REGISTRO, toProActRQT.pcNomPro);
+                    loLogger.LogWarning(Constantes._M_NO_REGISTRO, toProActRQT.pcNomPro);
                 }
 
                 loProActRPT = new ProductoActualizarRPT

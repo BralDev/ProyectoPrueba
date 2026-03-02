@@ -18,38 +18,35 @@ namespace WSGestionProductos
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
     // [System.Web.Script.Services.ScriptService]
     public class WSGestionProductos : System.Web.Services.WebService
-    {
-
-        private readonly ProductoGestorCN loProGesCN;
-
-        public WSGestionProductos()
-        {
-            loProGesCN = new ProductoGestorCN();
-        }
+    {                
 
         [WebMethod(Description = "Obtiene la lista de todos los productos.")]
-        public ProductosListRPT mxObtenerProductos()
+        public ProductosListRPT wmObtenerProductos()
         {
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();
             return loProGesCN.mxObtenerProductos();
         }
 
         [WebMethod(Description = "Crea un nuevo producto.")]
-        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toCrePro)
+        public ProductoCrearRPT wmCrearProducto(ProductoCrearRQT toCrePro)
         {
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();
             mxValidarRequest(toCrePro);
             return loProGesCN.mxCrearProducto(toCrePro);
         }
 
         [WebMethod(Description = "Actualiza un producto existente.")]
-        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toActPro)
+        public ProductoActualizarRPT wmActualizarProducto(ProductoActualizarRQT toActPro)
         {
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();
             mxValidarRequest(toActPro);
             return loProGesCN.mxActualizarProducto(toActPro);
         }
 
         [WebMethod(Description = "Elimina un producto por su identificador.")]
-        public int mxEliminarProducto(int tnIdePro)
+        public int wmEliminarProducto(int tnIdePro)
         {
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();
             if (tnIdePro <= 0)
                 throw new SoapException("El ID del producto debe ser mayor a 0.",
                     SoapException.ClientFaultCode);

@@ -21,9 +21,10 @@ namespace Datos.Repositorios
 
         public int mxCrearProducto(ProductoCD toPro)
         {
+            DynamicParameters loParametros;
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
             {
-                DynamicParameters loParametros = new DynamicParameters();
+                loParametros = new DynamicParameters();
                 loParametros.Add("tcNomPro", toPro.cNomPro);
                 loParametros.Add("tcDesPro", toPro.cDesPro);
                 loParametros.Add("tnPrePro", toPro.nPrePro);
@@ -37,9 +38,10 @@ namespace Datos.Repositorios
 
         public int mxEliminarProducto(int tnIdePro)
         {
+            DynamicParameters loParametros;
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
             {
-                DynamicParameters loParametros = new DynamicParameters();
+                loParametros = new DynamicParameters();
                 loParametros.Add("tnIdePro", tnIdePro);
 
                 return loIConexion.Execute(Constantes.SP_PRODUCTO_ELIMINAR, loParametros, commandType: CommandType.StoredProcedure);
@@ -55,9 +57,10 @@ namespace Datos.Repositorios
 
         public DateTime mxActualizarProducto(ProductoCD toPro)
         {
+            DynamicParameters loParametros;
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
             {
-                DynamicParameters loParametros = new DynamicParameters();
+                loParametros = new DynamicParameters();
                 loParametros.Add("tnIdePro", toPro.nIdePro);
                 loParametros.Add("tcNomPro", toPro.cNomPro);
                 loParametros.Add("tcDesPro", toPro.cDesPro);

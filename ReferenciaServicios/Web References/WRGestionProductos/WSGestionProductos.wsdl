@@ -2,13 +2,13 @@
 <wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="mxObtenerProductos">
+      <s:element name="wmObtenerProductos">
         <s:complexType />
       </s:element>
-      <s:element name="mxObtenerProductosResponse">
+      <s:element name="wmObtenerProductosResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="mxObtenerProductosResult" type="tns:ProductosListRPT" />
+            <s:element minOccurs="0" maxOccurs="1" name="wmObtenerProductosResult" type="tns:ProductosListRPT" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -33,7 +33,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
-      <s:element name="mxCrearProducto">
+      <s:element name="wmCrearProducto">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="toCrePro" type="tns:ProductoCrearRQT" />
@@ -49,10 +49,10 @@
           <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
         </s:sequence>
       </s:complexType>
-      <s:element name="mxCrearProductoResponse">
+      <s:element name="wmCrearProductoResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="mxCrearProductoResult" type="tns:ProductoCrearRPT" />
+            <s:element minOccurs="0" maxOccurs="1" name="wmCrearProductoResult" type="tns:ProductoCrearRPT" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -67,7 +67,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
-      <s:element name="mxActualizarProducto">
+      <s:element name="wmActualizarProducto">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="toActPro" type="tns:ProductoActualizarRQT" />
@@ -84,10 +84,10 @@
           <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
         </s:sequence>
       </s:complexType>
-      <s:element name="mxActualizarProductoResponse">
+      <s:element name="wmActualizarProductoResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="mxActualizarProductoResult" type="tns:ProductoActualizarRPT" />
+            <s:element minOccurs="0" maxOccurs="1" name="wmActualizarProductoResult" type="tns:ProductoActualizarRPT" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -102,72 +102,72 @@
           <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
-      <s:element name="mxEliminarProducto">
+      <s:element name="wmEliminarProducto">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="tnIdePro" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="mxEliminarProductoResponse">
+      <s:element name="wmEliminarProductoResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="mxEliminarProductoResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="wmEliminarProductoResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="mxObtenerProductosSoapIn">
-    <wsdl:part name="parameters" element="tns:mxObtenerProductos" />
+  <wsdl:message name="wmObtenerProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:wmObtenerProductos" />
   </wsdl:message>
-  <wsdl:message name="mxObtenerProductosSoapOut">
-    <wsdl:part name="parameters" element="tns:mxObtenerProductosResponse" />
+  <wsdl:message name="wmObtenerProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:wmObtenerProductosResponse" />
   </wsdl:message>
-  <wsdl:message name="mxCrearProductoSoapIn">
-    <wsdl:part name="parameters" element="tns:mxCrearProducto" />
+  <wsdl:message name="wmCrearProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmCrearProducto" />
   </wsdl:message>
-  <wsdl:message name="mxCrearProductoSoapOut">
-    <wsdl:part name="parameters" element="tns:mxCrearProductoResponse" />
+  <wsdl:message name="wmCrearProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmCrearProductoResponse" />
   </wsdl:message>
-  <wsdl:message name="mxActualizarProductoSoapIn">
-    <wsdl:part name="parameters" element="tns:mxActualizarProducto" />
+  <wsdl:message name="wmActualizarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmActualizarProducto" />
   </wsdl:message>
-  <wsdl:message name="mxActualizarProductoSoapOut">
-    <wsdl:part name="parameters" element="tns:mxActualizarProductoResponse" />
+  <wsdl:message name="wmActualizarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmActualizarProductoResponse" />
   </wsdl:message>
-  <wsdl:message name="mxEliminarProductoSoapIn">
-    <wsdl:part name="parameters" element="tns:mxEliminarProducto" />
+  <wsdl:message name="wmEliminarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmEliminarProducto" />
   </wsdl:message>
-  <wsdl:message name="mxEliminarProductoSoapOut">
-    <wsdl:part name="parameters" element="tns:mxEliminarProductoResponse" />
+  <wsdl:message name="wmEliminarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmEliminarProductoResponse" />
   </wsdl:message>
   <wsdl:portType name="WSGestionProductosSoap">
-    <wsdl:operation name="mxObtenerProductos">
+    <wsdl:operation name="wmObtenerProductos">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtiene la lista de todos los productos.</wsdl:documentation>
-      <wsdl:input message="tns:mxObtenerProductosSoapIn" />
-      <wsdl:output message="tns:mxObtenerProductosSoapOut" />
+      <wsdl:input message="tns:wmObtenerProductosSoapIn" />
+      <wsdl:output message="tns:wmObtenerProductosSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="mxCrearProducto">
+    <wsdl:operation name="wmCrearProducto">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Crea un nuevo producto.</wsdl:documentation>
-      <wsdl:input message="tns:mxCrearProductoSoapIn" />
-      <wsdl:output message="tns:mxCrearProductoSoapOut" />
+      <wsdl:input message="tns:wmCrearProductoSoapIn" />
+      <wsdl:output message="tns:wmCrearProductoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="mxActualizarProducto">
+    <wsdl:operation name="wmActualizarProducto">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualiza un producto existente.</wsdl:documentation>
-      <wsdl:input message="tns:mxActualizarProductoSoapIn" />
-      <wsdl:output message="tns:mxActualizarProductoSoapOut" />
+      <wsdl:input message="tns:wmActualizarProductoSoapIn" />
+      <wsdl:output message="tns:wmActualizarProductoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="mxEliminarProducto">
+    <wsdl:operation name="wmEliminarProducto">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina un producto por su identificador.</wsdl:documentation>
-      <wsdl:input message="tns:mxEliminarProductoSoapIn" />
-      <wsdl:output message="tns:mxEliminarProductoSoapOut" />
+      <wsdl:input message="tns:wmEliminarProductoSoapIn" />
+      <wsdl:output message="tns:wmEliminarProductoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSGestionProductosSoap" type="tns:WSGestionProductosSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="mxObtenerProductos">
-      <soap:operation soapAction="http://tempuri.org/mxObtenerProductos" style="document" />
+    <wsdl:operation name="wmObtenerProductos">
+      <soap:operation soapAction="http://tempuri.org/wmObtenerProductos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -175,8 +175,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mxCrearProducto">
-      <soap:operation soapAction="http://tempuri.org/mxCrearProducto" style="document" />
+    <wsdl:operation name="wmCrearProducto">
+      <soap:operation soapAction="http://tempuri.org/wmCrearProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -184,8 +184,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mxActualizarProducto">
-      <soap:operation soapAction="http://tempuri.org/mxActualizarProducto" style="document" />
+    <wsdl:operation name="wmActualizarProducto">
+      <soap:operation soapAction="http://tempuri.org/wmActualizarProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -193,8 +193,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mxEliminarProducto">
-      <soap:operation soapAction="http://tempuri.org/mxEliminarProducto" style="document" />
+    <wsdl:operation name="wmEliminarProducto">
+      <soap:operation soapAction="http://tempuri.org/wmEliminarProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -205,8 +205,8 @@
   </wsdl:binding>
   <wsdl:binding name="WSGestionProductosSoap12" type="tns:WSGestionProductosSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="mxObtenerProductos">
-      <soap12:operation soapAction="http://tempuri.org/mxObtenerProductos" style="document" />
+    <wsdl:operation name="wmObtenerProductos">
+      <soap12:operation soapAction="http://tempuri.org/wmObtenerProductos" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -214,8 +214,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mxCrearProducto">
-      <soap12:operation soapAction="http://tempuri.org/mxCrearProducto" style="document" />
+    <wsdl:operation name="wmCrearProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmCrearProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -223,8 +223,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mxActualizarProducto">
-      <soap12:operation soapAction="http://tempuri.org/mxActualizarProducto" style="document" />
+    <wsdl:operation name="wmActualizarProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmActualizarProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -232,8 +232,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mxEliminarProducto">
-      <soap12:operation soapAction="http://tempuri.org/mxEliminarProducto" style="document" />
+    <wsdl:operation name="wmEliminarProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmEliminarProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

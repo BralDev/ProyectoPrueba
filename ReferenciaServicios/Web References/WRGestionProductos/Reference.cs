@@ -29,13 +29,13 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Web.Services.WebServiceBindingAttribute(Name="WSGestionProductosSoap", Namespace="http://tempuri.org/")]
     public partial class WSGestionProductos : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback mxObtenerProductosOperationCompleted;
+        private System.Threading.SendOrPostCallback wmObtenerProductosOperationCompleted;
         
-        private System.Threading.SendOrPostCallback mxCrearProductoOperationCompleted;
+        private System.Threading.SendOrPostCallback wmCrearProductoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback mxActualizarProductoOperationCompleted;
+        private System.Threading.SendOrPostCallback wmActualizarProductoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback mxEliminarProductoOperationCompleted;
+        private System.Threading.SendOrPostCallback wmEliminarProductoOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -76,128 +76,128 @@ namespace ReferenciaServicios.WRGestionProductos {
         }
         
         /// <remarks/>
-        public event mxObtenerProductosCompletedEventHandler mxObtenerProductosCompleted;
+        public event wmObtenerProductosCompletedEventHandler wmObtenerProductosCompleted;
         
         /// <remarks/>
-        public event mxCrearProductoCompletedEventHandler mxCrearProductoCompleted;
+        public event wmCrearProductoCompletedEventHandler wmCrearProductoCompleted;
         
         /// <remarks/>
-        public event mxActualizarProductoCompletedEventHandler mxActualizarProductoCompleted;
+        public event wmActualizarProductoCompletedEventHandler wmActualizarProductoCompleted;
         
         /// <remarks/>
-        public event mxEliminarProductoCompletedEventHandler mxEliminarProductoCompleted;
+        public event wmEliminarProductoCompletedEventHandler wmEliminarProductoCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/mxObtenerProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductosListRPT mxObtenerProductos() {
-            object[] results = this.Invoke("mxObtenerProductos", new object[0]);
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmObtenerProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ProductosListRPT wmObtenerProductos() {
+            object[] results = this.Invoke("wmObtenerProductos", new object[0]);
             return ((ProductosListRPT)(results[0]));
         }
         
         /// <remarks/>
-        public void mxObtenerProductosAsync() {
-            this.mxObtenerProductosAsync(null);
+        public void wmObtenerProductosAsync() {
+            this.wmObtenerProductosAsync(null);
         }
         
         /// <remarks/>
-        public void mxObtenerProductosAsync(object userState) {
-            if ((this.mxObtenerProductosOperationCompleted == null)) {
-                this.mxObtenerProductosOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmxObtenerProductosOperationCompleted);
+        public void wmObtenerProductosAsync(object userState) {
+            if ((this.wmObtenerProductosOperationCompleted == null)) {
+                this.wmObtenerProductosOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmObtenerProductosOperationCompleted);
             }
-            this.InvokeAsync("mxObtenerProductos", new object[0], this.mxObtenerProductosOperationCompleted, userState);
+            this.InvokeAsync("wmObtenerProductos", new object[0], this.wmObtenerProductosOperationCompleted, userState);
         }
         
-        private void OnmxObtenerProductosOperationCompleted(object arg) {
-            if ((this.mxObtenerProductosCompleted != null)) {
+        private void OnwmObtenerProductosOperationCompleted(object arg) {
+            if ((this.wmObtenerProductosCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.mxObtenerProductosCompleted(this, new mxObtenerProductosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.wmObtenerProductosCompleted(this, new wmObtenerProductosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/mxCrearProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toCrePro) {
-            object[] results = this.Invoke("mxCrearProducto", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmCrearProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ProductoCrearRPT wmCrearProducto(ProductoCrearRQT toCrePro) {
+            object[] results = this.Invoke("wmCrearProducto", new object[] {
                         toCrePro});
             return ((ProductoCrearRPT)(results[0]));
         }
         
         /// <remarks/>
-        public void mxCrearProductoAsync(ProductoCrearRQT toCrePro) {
-            this.mxCrearProductoAsync(toCrePro, null);
+        public void wmCrearProductoAsync(ProductoCrearRQT toCrePro) {
+            this.wmCrearProductoAsync(toCrePro, null);
         }
         
         /// <remarks/>
-        public void mxCrearProductoAsync(ProductoCrearRQT toCrePro, object userState) {
-            if ((this.mxCrearProductoOperationCompleted == null)) {
-                this.mxCrearProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmxCrearProductoOperationCompleted);
+        public void wmCrearProductoAsync(ProductoCrearRQT toCrePro, object userState) {
+            if ((this.wmCrearProductoOperationCompleted == null)) {
+                this.wmCrearProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmCrearProductoOperationCompleted);
             }
-            this.InvokeAsync("mxCrearProducto", new object[] {
-                        toCrePro}, this.mxCrearProductoOperationCompleted, userState);
+            this.InvokeAsync("wmCrearProducto", new object[] {
+                        toCrePro}, this.wmCrearProductoOperationCompleted, userState);
         }
         
-        private void OnmxCrearProductoOperationCompleted(object arg) {
-            if ((this.mxCrearProductoCompleted != null)) {
+        private void OnwmCrearProductoOperationCompleted(object arg) {
+            if ((this.wmCrearProductoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.mxCrearProductoCompleted(this, new mxCrearProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.wmCrearProductoCompleted(this, new wmCrearProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/mxActualizarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toActPro) {
-            object[] results = this.Invoke("mxActualizarProducto", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmActualizarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ProductoActualizarRPT wmActualizarProducto(ProductoActualizarRQT toActPro) {
+            object[] results = this.Invoke("wmActualizarProducto", new object[] {
                         toActPro});
             return ((ProductoActualizarRPT)(results[0]));
         }
         
         /// <remarks/>
-        public void mxActualizarProductoAsync(ProductoActualizarRQT toActPro) {
-            this.mxActualizarProductoAsync(toActPro, null);
+        public void wmActualizarProductoAsync(ProductoActualizarRQT toActPro) {
+            this.wmActualizarProductoAsync(toActPro, null);
         }
         
         /// <remarks/>
-        public void mxActualizarProductoAsync(ProductoActualizarRQT toActPro, object userState) {
-            if ((this.mxActualizarProductoOperationCompleted == null)) {
-                this.mxActualizarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmxActualizarProductoOperationCompleted);
+        public void wmActualizarProductoAsync(ProductoActualizarRQT toActPro, object userState) {
+            if ((this.wmActualizarProductoOperationCompleted == null)) {
+                this.wmActualizarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmActualizarProductoOperationCompleted);
             }
-            this.InvokeAsync("mxActualizarProducto", new object[] {
-                        toActPro}, this.mxActualizarProductoOperationCompleted, userState);
+            this.InvokeAsync("wmActualizarProducto", new object[] {
+                        toActPro}, this.wmActualizarProductoOperationCompleted, userState);
         }
         
-        private void OnmxActualizarProductoOperationCompleted(object arg) {
-            if ((this.mxActualizarProductoCompleted != null)) {
+        private void OnwmActualizarProductoOperationCompleted(object arg) {
+            if ((this.wmActualizarProductoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.mxActualizarProductoCompleted(this, new mxActualizarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.wmActualizarProductoCompleted(this, new wmActualizarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/mxEliminarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int mxEliminarProducto(int tnIdePro) {
-            object[] results = this.Invoke("mxEliminarProducto", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmEliminarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int wmEliminarProducto(int tnIdePro) {
+            object[] results = this.Invoke("wmEliminarProducto", new object[] {
                         tnIdePro});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void mxEliminarProductoAsync(int tnIdePro) {
-            this.mxEliminarProductoAsync(tnIdePro, null);
+        public void wmEliminarProductoAsync(int tnIdePro) {
+            this.wmEliminarProductoAsync(tnIdePro, null);
         }
         
         /// <remarks/>
-        public void mxEliminarProductoAsync(int tnIdePro, object userState) {
-            if ((this.mxEliminarProductoOperationCompleted == null)) {
-                this.mxEliminarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmxEliminarProductoOperationCompleted);
+        public void wmEliminarProductoAsync(int tnIdePro, object userState) {
+            if ((this.wmEliminarProductoOperationCompleted == null)) {
+                this.wmEliminarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmEliminarProductoOperationCompleted);
             }
-            this.InvokeAsync("mxEliminarProducto", new object[] {
-                        tnIdePro}, this.mxEliminarProductoOperationCompleted, userState);
+            this.InvokeAsync("wmEliminarProducto", new object[] {
+                        tnIdePro}, this.wmEliminarProductoOperationCompleted, userState);
         }
         
-        private void OnmxEliminarProductoOperationCompleted(object arg) {
-            if ((this.mxEliminarProductoCompleted != null)) {
+        private void OnwmEliminarProductoOperationCompleted(object arg) {
+            if ((this.wmEliminarProductoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.mxEliminarProductoCompleted(this, new mxEliminarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.wmEliminarProductoCompleted(this, new wmEliminarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -672,17 +672,17 @@ namespace ReferenciaServicios.WRGestionProductos {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
-    public delegate void mxObtenerProductosCompletedEventHandler(object sender, mxObtenerProductosCompletedEventArgs e);
+    public delegate void wmObtenerProductosCompletedEventHandler(object sender, wmObtenerProductosCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class mxObtenerProductosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class wmObtenerProductosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal mxObtenerProductosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal wmObtenerProductosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -698,17 +698,17 @@ namespace ReferenciaServicios.WRGestionProductos {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
-    public delegate void mxCrearProductoCompletedEventHandler(object sender, mxCrearProductoCompletedEventArgs e);
+    public delegate void wmCrearProductoCompletedEventHandler(object sender, wmCrearProductoCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class mxCrearProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class wmCrearProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal mxCrearProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal wmCrearProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -724,17 +724,17 @@ namespace ReferenciaServicios.WRGestionProductos {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
-    public delegate void mxActualizarProductoCompletedEventHandler(object sender, mxActualizarProductoCompletedEventArgs e);
+    public delegate void wmActualizarProductoCompletedEventHandler(object sender, wmActualizarProductoCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class mxActualizarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class wmActualizarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal mxActualizarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal wmActualizarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -750,17 +750,17 @@ namespace ReferenciaServicios.WRGestionProductos {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
-    public delegate void mxEliminarProductoCompletedEventHandler(object sender, mxEliminarProductoCompletedEventArgs e);
+    public delegate void wmEliminarProductoCompletedEventHandler(object sender, wmEliminarProductoCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class mxEliminarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class wmEliminarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal mxEliminarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal wmEliminarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
