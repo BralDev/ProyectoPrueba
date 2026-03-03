@@ -39,6 +39,13 @@ namespace ProyectoPrueba.Vistas
             this.txnIdePro = new System.Windows.Forms.TextBox();
             this.cmbInsert = new System.Windows.Forms.Button();
             this.grdProd = new System.Windows.Forms.DataGridView();
+            this.txnColIdePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txnColNomPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txcColDesPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txnColPrePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tnColStoPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtColFecPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txnColIdeSed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblIdePro = new System.Windows.Forms.Label();
             this.lblNomPro = new System.Windows.Forms.Label();
             this.lblDesPro = new System.Windows.Forms.Label();
@@ -47,19 +54,12 @@ namespace ProyectoPrueba.Vistas
             this.cmbLimpiar = new System.Windows.Forms.Button();
             this.lblIdeSed = new System.Windows.Forms.Label();
             this.txnIdeSed = new System.Windows.Forms.TextBox();
-            this.txnColIdePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txnColNomPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txcColDesPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txnColPrePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tnColStoPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtColFecPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txnColIdeSed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdProd)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbEditar
             // 
-            this.cmbEditar.Location = new System.Drawing.Point(542, 88);
+            this.cmbEditar.Location = new System.Drawing.Point(813, 442);
             this.cmbEditar.Name = "cmbEditar";
             this.cmbEditar.Size = new System.Drawing.Size(75, 23);
             this.cmbEditar.TabIndex = 1;
@@ -69,7 +69,7 @@ namespace ProyectoPrueba.Vistas
             // 
             // cmbListar
             // 
-            this.cmbListar.Location = new System.Drawing.Point(633, 88);
+            this.cmbListar.Location = new System.Drawing.Point(542, 145);
             this.cmbListar.Name = "cmbListar";
             this.cmbListar.Size = new System.Drawing.Size(75, 23);
             this.cmbListar.TabIndex = 2;
@@ -79,7 +79,7 @@ namespace ProyectoPrueba.Vistas
             // 
             // cmbElimin
             // 
-            this.cmbElimin.Location = new System.Drawing.Point(542, 141);
+            this.cmbElimin.Location = new System.Drawing.Point(1041, 442);
             this.cmbElimin.Name = "cmbElimin";
             this.cmbElimin.Size = new System.Drawing.Size(75, 23);
             this.cmbElimin.TabIndex = 3;
@@ -89,28 +89,28 @@ namespace ProyectoPrueba.Vistas
             // 
             // txcNomPro
             // 
-            this.txcNomPro.Location = new System.Drawing.Point(201, 67);
+            this.txcNomPro.Location = new System.Drawing.Point(130, 263);
             this.txcNomPro.Name = "txcNomPro";
             this.txcNomPro.Size = new System.Drawing.Size(288, 20);
             this.txcNomPro.TabIndex = 4;
             // 
             // txcDesPro
             // 
-            this.txcDesPro.Location = new System.Drawing.Point(201, 93);
+            this.txcDesPro.Location = new System.Drawing.Point(130, 289);
             this.txcDesPro.Name = "txcDesPro";
             this.txcDesPro.Size = new System.Drawing.Size(288, 20);
             this.txcDesPro.TabIndex = 5;
             // 
             // txnPrePro
             // 
-            this.txnPrePro.Location = new System.Drawing.Point(201, 119);
+            this.txnPrePro.Location = new System.Drawing.Point(130, 315);
             this.txnPrePro.Name = "txnPrePro";
             this.txnPrePro.Size = new System.Drawing.Size(288, 20);
             this.txnPrePro.TabIndex = 6;
             // 
             // txnStoPro
             // 
-            this.txnStoPro.Location = new System.Drawing.Point(201, 143);
+            this.txnStoPro.Location = new System.Drawing.Point(130, 339);
             this.txnStoPro.Name = "txnStoPro";
             this.txnStoPro.Size = new System.Drawing.Size(288, 20);
             this.txnStoPro.TabIndex = 7;
@@ -118,14 +118,14 @@ namespace ProyectoPrueba.Vistas
             // txnIdePro
             // 
             this.txnIdePro.Enabled = false;
-            this.txnIdePro.Location = new System.Drawing.Point(201, 41);
+            this.txnIdePro.Location = new System.Drawing.Point(130, 237);
             this.txnIdePro.Name = "txnIdePro";
             this.txnIdePro.Size = new System.Drawing.Size(288, 20);
             this.txnIdePro.TabIndex = 9;
             // 
             // cmbInsert
             // 
-            this.cmbInsert.Location = new System.Drawing.Point(542, 36);
+            this.cmbInsert.Location = new System.Drawing.Point(343, 442);
             this.cmbInsert.Name = "cmbInsert";
             this.cmbInsert.Size = new System.Drawing.Size(75, 23);
             this.cmbInsert.TabIndex = 11;
@@ -145,83 +145,12 @@ namespace ProyectoPrueba.Vistas
             this.tnColStoPro,
             this.txtColFecPro,
             this.txnColIdeSed});
-            this.grdProd.Location = new System.Drawing.Point(12, 208);
+            this.grdProd.Location = new System.Drawing.Point(542, 189);
             this.grdProd.Name = "grdProd";
             this.grdProd.RowHeadersWidth = 51;
             this.grdProd.Size = new System.Drawing.Size(754, 230);
             this.grdProd.TabIndex = 12;
             this.grdProd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProd_CellContentClick);
-            // 
-            // lblIdePro
-            // 
-            this.lblIdePro.AutoSize = true;
-            this.lblIdePro.Location = new System.Drawing.Point(160, 44);
-            this.lblIdePro.Name = "lblIdePro";
-            this.lblIdePro.Size = new System.Drawing.Size(16, 13);
-            this.lblIdePro.TabIndex = 13;
-            this.lblIdePro.Text = "Id";
-            // 
-            // lblNomPro
-            // 
-            this.lblNomPro.AutoSize = true;
-            this.lblNomPro.Location = new System.Drawing.Point(140, 73);
-            this.lblNomPro.Name = "lblNomPro";
-            this.lblNomPro.Size = new System.Drawing.Size(44, 13);
-            this.lblNomPro.TabIndex = 14;
-            this.lblNomPro.Text = "Nombre";
-            // 
-            // lblDesPro
-            // 
-            this.lblDesPro.AutoSize = true;
-            this.lblDesPro.Location = new System.Drawing.Point(121, 100);
-            this.lblDesPro.Name = "lblDesPro";
-            this.lblDesPro.Size = new System.Drawing.Size(63, 13);
-            this.lblDesPro.TabIndex = 15;
-            this.lblDesPro.Text = "Descripcion";
-            // 
-            // lblPrePro
-            // 
-            this.lblPrePro.AutoSize = true;
-            this.lblPrePro.Location = new System.Drawing.Point(138, 122);
-            this.lblPrePro.Name = "lblPrePro";
-            this.lblPrePro.Size = new System.Drawing.Size(37, 13);
-            this.lblPrePro.TabIndex = 16;
-            this.lblPrePro.Text = "Precio";
-            // 
-            // lblStoPro
-            // 
-            this.lblStoPro.AutoSize = true;
-            this.lblStoPro.Location = new System.Drawing.Point(138, 146);
-            this.lblStoPro.Name = "lblStoPro";
-            this.lblStoPro.Size = new System.Drawing.Size(35, 13);
-            this.lblStoPro.TabIndex = 17;
-            this.lblStoPro.Text = "Stock";
-            // 
-            // cmbLimpiar
-            // 
-            this.cmbLimpiar.Location = new System.Drawing.Point(633, 34);
-            this.cmbLimpiar.Name = "cmbLimpiar";
-            this.cmbLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.cmbLimpiar.TabIndex = 18;
-            this.cmbLimpiar.Text = "Limpiar";
-            this.cmbLimpiar.UseVisualStyleBackColor = true;
-            this.cmbLimpiar.Click += new System.EventHandler(this.cmbLimpiar_Click);
-            // 
-            // lblIdeSed
-            // 
-            this.lblIdeSed.AutoSize = true;
-            this.lblIdeSed.Location = new System.Drawing.Point(138, 174);
-            this.lblIdeSed.Name = "lblIdeSed";
-            this.lblIdeSed.Size = new System.Drawing.Size(46, 13);
-            this.lblIdeSed.TabIndex = 20;
-            this.lblIdeSed.Text = "ID Sede";
-            // 
-            // txnIdeSed
-            // 
-            this.txnIdeSed.Location = new System.Drawing.Point(201, 171);
-            this.txnIdeSed.Name = "txnIdeSed";
-            this.txnIdeSed.Size = new System.Drawing.Size(288, 20);
-            this.txnIdeSed.TabIndex = 19;
             // 
             // txnColIdePro
             // 
@@ -265,11 +194,82 @@ namespace ProyectoPrueba.Vistas
             this.txnColIdeSed.HeaderText = "ID Sede";
             this.txnColIdeSed.Name = "txnColIdeSed";
             // 
+            // lblIdePro
+            // 
+            this.lblIdePro.AutoSize = true;
+            this.lblIdePro.Location = new System.Drawing.Point(89, 240);
+            this.lblIdePro.Name = "lblIdePro";
+            this.lblIdePro.Size = new System.Drawing.Size(16, 13);
+            this.lblIdePro.TabIndex = 13;
+            this.lblIdePro.Text = "Id";
+            // 
+            // lblNomPro
+            // 
+            this.lblNomPro.AutoSize = true;
+            this.lblNomPro.Location = new System.Drawing.Point(69, 269);
+            this.lblNomPro.Name = "lblNomPro";
+            this.lblNomPro.Size = new System.Drawing.Size(44, 13);
+            this.lblNomPro.TabIndex = 14;
+            this.lblNomPro.Text = "Nombre";
+            // 
+            // lblDesPro
+            // 
+            this.lblDesPro.AutoSize = true;
+            this.lblDesPro.Location = new System.Drawing.Point(50, 296);
+            this.lblDesPro.Name = "lblDesPro";
+            this.lblDesPro.Size = new System.Drawing.Size(63, 13);
+            this.lblDesPro.TabIndex = 15;
+            this.lblDesPro.Text = "Descripcion";
+            // 
+            // lblPrePro
+            // 
+            this.lblPrePro.AutoSize = true;
+            this.lblPrePro.Location = new System.Drawing.Point(67, 318);
+            this.lblPrePro.Name = "lblPrePro";
+            this.lblPrePro.Size = new System.Drawing.Size(37, 13);
+            this.lblPrePro.TabIndex = 16;
+            this.lblPrePro.Text = "Precio";
+            // 
+            // lblStoPro
+            // 
+            this.lblStoPro.AutoSize = true;
+            this.lblStoPro.Location = new System.Drawing.Point(67, 342);
+            this.lblStoPro.Name = "lblStoPro";
+            this.lblStoPro.Size = new System.Drawing.Size(35, 13);
+            this.lblStoPro.TabIndex = 17;
+            this.lblStoPro.Text = "Stock";
+            // 
+            // cmbLimpiar
+            // 
+            this.cmbLimpiar.Location = new System.Drawing.Point(130, 442);
+            this.cmbLimpiar.Name = "cmbLimpiar";
+            this.cmbLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.cmbLimpiar.TabIndex = 18;
+            this.cmbLimpiar.Text = "Limpiar";
+            this.cmbLimpiar.UseVisualStyleBackColor = true;
+            this.cmbLimpiar.Click += new System.EventHandler(this.cmbLimpiar_Click);
+            // 
+            // lblIdeSed
+            // 
+            this.lblIdeSed.AutoSize = true;
+            this.lblIdeSed.Location = new System.Drawing.Point(67, 370);
+            this.lblIdeSed.Name = "lblIdeSed";
+            this.lblIdeSed.Size = new System.Drawing.Size(46, 13);
+            this.lblIdeSed.TabIndex = 20;
+            this.lblIdeSed.Text = "ID Sede";
+            // 
+            // txnIdeSed
+            // 
+            this.txnIdeSed.Location = new System.Drawing.Point(130, 367);
+            this.txnIdeSed.Name = "txnIdeSed";
+            this.txnIdeSed.Size = new System.Drawing.Size(288, 20);
+            this.txnIdeSed.TabIndex = 19;
+            // 
             // GestionProductoCP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 450);
+            this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.lblIdeSed);
             this.Controls.Add(this.txnIdeSed);
             this.Controls.Add(this.cmbLimpiar);
