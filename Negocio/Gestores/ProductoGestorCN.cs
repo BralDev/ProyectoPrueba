@@ -16,10 +16,10 @@ namespace Negocio.Gestores
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
             
             ProductoCrearRPT loProCreRPT = null;            
-            int lnIdPro = 0;
+            ProductoEntidadCD loPro
             try
             {
-                ProductoCD loProCD = new ProductoCD
+                ProductoEntidadCD loProCD = new ProductoEntidadCD
                 {
                     cNomPro = toProCreRQT.pcNomPro,
                     cDesPro = toProCreRQT.pcDesPro,
@@ -84,7 +84,7 @@ namespace Negocio.Gestores
             List<ProductoListaCN> laLstProductos = new List<ProductoListaCN>();
             try
             {
-                List<ProductoCD> loListProductos = loProRepoCD.mxObtenerProductos();
+                List<ProductoEntidadCD> loListProductos = loProRepoCD.mxObtenerProductos();
 
                 if (loListProductos == null || loListProductos.Count == 0)
                 {
@@ -92,7 +92,7 @@ namespace Negocio.Gestores
                     return loProLstRPT;
                 }
 
-                foreach (ProductoCD loProCD in loListProductos)
+                foreach (ProductoEntidadCD loProCD in loListProductos)
                 {
                     loProLstCN = new ProductoListaCN();
                     loProLstCN.pnIdePro = loProCD.nIdePro;
@@ -124,7 +124,7 @@ namespace Negocio.Gestores
             DateTime loConfirmacion = DateTime.Now;
             try
             {
-                ProductoCD loProCD = new ProductoCD
+                ProductoEntidadCD loProCD = new ProductoEntidadCD
                 {
                     nIdePro = toProActRQT.pnIdePro,
                     cNomPro = toProActRQT.pcNomPro,

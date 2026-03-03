@@ -2,7 +2,7 @@
 
 namespace Datos.Entidades
 {
-    public class ProductoCD
+    public class ProductoEntidadCD
     {
         public int nIdePro { get; set; }
         public string cNomPro { get; set; }
