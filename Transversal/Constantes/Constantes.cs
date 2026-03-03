@@ -22,6 +22,8 @@
         public const string SP_PRODUCTAR_EDITAR = "PROC_U_INVMPRO";
         public const string SP_PRODUCTO_OBTENER = "PROC_S_INVMPRO_nIdePro";
 
+        public const string SP_SEDE_OBTENER = "PROC_S_INVMSED_nIdeSed";
+
         public const string FECHA_ESTANDAR = "dd/MM/yyyy";
         public const string MONEDA_CULTURA = "es-PE";
         public const string FORMATO_DECIMAL = "0.00";

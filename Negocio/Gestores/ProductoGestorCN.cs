@@ -1,9 +1,10 @@
 ﻿using Datos.Entidades;
 using Datos.Repositorios;
-using Microsoft.Extensions.Logging;
 using Esquema.Esquemas;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Transversal;
 
 namespace Negocio.Gestores
@@ -13,13 +14,26 @@ namespace Negocio.Gestores
         public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toProCreRQT)
         {
             ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
+            SedeRepositorioCD loSedeRepoCD = new SedeRepositorioCD();
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
             
             ProductoCrearRPT loProCreRPT = new ProductoCrearRPT();
             ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
             ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
+
+            SedeEntidadCD loSedeEntRQT = new SedeEntidadCD();
+            SedeEntidadCD loSedeEntRPT = new SedeEntidadCD();
+
             try
-            {
+            {     
+                loSedeEntRPT = loSedeRepoCD.mxObtenerSede(toProCreRQT.pnIdeSed);
+                if (loSedeEntRPT == null)
+                {
+                    loProCreRPT.Code = "404";
+                    loProCreRPT.Message = $"La sede con ID {toProCreRQT.pnIdeSed} no existe.";
+                    return loProCreRPT;
+                }
+
                 loProEntRQT.cNomPro = toProCreRQT.pcNomPro;
                 loProEntRQT.cDesPro = toProCreRQT.pcDesPro;
                 loProEntRQT.nPrePro = toProCreRQT.pnPrePro;
@@ -83,7 +97,7 @@ namespace Negocio.Gestores
 
         public ProductosListRPT mxObtenerProductos()
         {
-            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();            
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
             ProductosListRPT loProLstRPT = new ProductosListRPT();
             ProductoListaCN loProLstCN = null;
             List<ProductoListaCN> laLstProductos = new List<ProductoListaCN>();
@@ -91,9 +105,10 @@ namespace Negocio.Gestores
             {
                 List<ProductoEntidadCD> loListProductos = loProRepoCD.mxObtenerProductos();
 
-                if (loListProductos == null || loListProductos.Count == 0)
+                if (loListProductos.Count == 0)
                 {
-                    loProLstRPT.paProductos = new ProductoListaCN[0];
+                    loProLstRPT.Code = "204";
+                    loProLstRPT.Message = "La lista de productos se encuentra vacia.";                    
                     return loProLstRPT;
                 }
 
@@ -118,27 +133,39 @@ namespace Negocio.Gestores
             }
 
             return loProLstRPT;
-        }
+        }     
 
         public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toProActRQT)
         {
             ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
+            SedeRepositorioCD loSedeRepoCD = new SedeRepositorioCD();
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
             ProductoActualizarRPT loProActRPT = new ProductoActualizarRPT();
             
             ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
             ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
 
+            SedeEntidadCD loSedeEntRQT = new SedeEntidadCD();
+            SedeEntidadCD loSedeEntRPT = new SedeEntidadCD();
+
             try
             {
                 loProEntRPT = loProRepoCD.mxObtenerProducto(toProActRQT.pnIdePro);
-                if (loProEntRQT == null)
+                if (loProEntRPT == null)
                 {
                     loProActRPT.Code = "404";
                     loProActRPT.Message = $"El producto con ID {toProActRQT.pnIdePro} no existe.";
                     return loProActRPT;
                 }
-                
+
+                loSedeEntRPT = loSedeRepoCD.mxObtenerSede(toProActRQT.pnIdeSed);
+                if (loSedeEntRPT == null)
+                {
+                    loProActRPT.Code = "404";
+                    loProActRPT.Message = $"La sede con ID {toProActRQT.pnIdeSed} no existe.";
+                    return loProActRPT;
+                }
+
                 loProEntRQT.nIdePro = toProActRQT.pnIdePro;
                 loProEntRQT.cNomPro = toProActRQT.pcNomPro;
                 loProEntRQT.cDesPro = toProActRQT.pcDesPro;
