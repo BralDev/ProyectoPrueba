@@ -25,7 +25,7 @@ namespace Esquema.Esquemas
         public int pnIdeSed { get; set; }
     }
 
-    public class ProductoCrearRPT : Error
+    public class ProductoCrearRPT : Status
     {
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }
@@ -61,7 +61,7 @@ namespace Esquema.Esquemas
         public int pnIdeSed { get; set; }
     }
 
-    public class ProductoActualizarRPT : Error
+    public class ProductoActualizarRPT : Status
     {
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }
@@ -72,9 +72,9 @@ namespace Esquema.Esquemas
         public DateTime ptFecPro { get; set; }
     }
 
-    public class Error
+    public class Status
     {
-        public string Code { get; set; }
+        public int Code { get; set; }
         public string Message { get; set; }
     }
 
@@ -94,7 +94,7 @@ namespace Esquema.Esquemas
         public ProductoListaCN[] paProductos { get; set; }
     }
 
-    public class ProductosListRPT : Error
+    public class ProductosListRPT : Status
     {
         public ProductoListaCN[] paProductos { get; set; }
     }
@@ -104,7 +104,7 @@ namespace Esquema.Esquemas
         public int pnIdePro { get; set; }
     }
 
-    public class ProductoEliminarRPT : Error
+    public class ProductoEliminarRPT : Status
     {
         public int pnIdePro { get; set; }
     }

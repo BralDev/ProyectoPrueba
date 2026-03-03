@@ -29,7 +29,7 @@ namespace Negocio.Gestores
                 loSedeEntRPT = loSedeRepoCD.mxObtenerSede(toProCreRQT.pnIdeSed);
                 if (loSedeEntRPT == null)
                 {
-                    loProCreRPT.Code = "404";
+                    loProCreRPT.Code = 404;
                     loProCreRPT.Message = $"La sede con ID {toProCreRQT.pnIdeSed} no existe.";
                     return loProCreRPT;
                 }
@@ -45,7 +45,7 @@ namespace Negocio.Gestores
 
                 if (loProEntRPT == null)
                 {                    
-                    loProCreRPT.Code = "500";
+                    loProCreRPT.Code = 500;
                     loProCreRPT.Message = "No se pudo crear el producto.";
                 }
                 else
@@ -57,6 +57,8 @@ namespace Negocio.Gestores
                     loProCreRPT.pnStoPro = loProEntRPT.nStoPro;
                     loProCreRPT.pnIdeSed = loProEntRPT.nIdeSed;
                     loProCreRPT.ptFecPro = loProEntRPT.tFecPro;
+                    loProCreRPT.Message = "Producto creado exitosamente.";
+                    loProCreRPT.Code = 201;
                 }
             }
             catch (Exception ex)
@@ -78,7 +80,7 @@ namespace Negocio.Gestores
             loProEntCD = loProRepoCD.mxObtenerProducto(toProEliRQT.pnIdePro);
             if (loProEntCD == null)
             {
-                loProEliRPT.Code = "404";
+                loProEliRPT.Code = 404;
                 loProEliRPT.Message = $"El producto con ID {toProEliRQT.pnIdePro} no existe.";                
                 return loProEliRPT;
             }
@@ -86,12 +88,14 @@ namespace Negocio.Gestores
             lnConfirmacion = loProRepoCD.mxEliminarProducto(toProEliRQT.pnIdePro);
             if (lnConfirmacion <= 0)
             {
-                loProEliRPT.Code = "500";
+                loProEliRPT.Code = 500;
                 loProEliRPT.Message = $"No se pudo eliminar el producto con ID {toProEliRQT.pnIdePro}.";                
                 return loProEliRPT;
             }                
 
             loProEliRPT.pnIdePro = loProEntCD.nIdePro;
+            loProEliRPT.Code = 200;
+            loProEliRPT.Message = $"Producto con ID {toProEliRQT.pnIdePro} eliminado exitosamente.";
             return loProEliRPT;
         }
 
@@ -107,7 +111,7 @@ namespace Negocio.Gestores
 
                 if (loListProductos.Count == 0)
                 {
-                    loProLstRPT.Code = "204";
+                    loProLstRPT.Code = 204;
                     loProLstRPT.Message = "La lista de productos se encuentra vacia.";                    
                     return loProLstRPT;
                 }
@@ -126,14 +130,15 @@ namespace Negocio.Gestores
                     laLstProductos.Add(loProLstCN);
                 }
                 loProLstRPT.paProductos = laLstProductos.ToArray();
+                loProLstRPT.Code = 200;
+                loProLstRPT.Message = "Productos obtenidos exitosamente.";
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener los productos desde la base de datos.", ex);
-            }
-
+            }            
             return loProLstRPT;
-        }     
+        }
 
         public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toProActRQT)
         {
@@ -153,7 +158,7 @@ namespace Negocio.Gestores
                 loProEntRPT = loProRepoCD.mxObtenerProducto(toProActRQT.pnIdePro);
                 if (loProEntRPT == null)
                 {
-                    loProActRPT.Code = "404";
+                    loProActRPT.Code = 404;
                     loProActRPT.Message = $"El producto con ID {toProActRQT.pnIdePro} no existe.";
                     return loProActRPT;
                 }
@@ -161,7 +166,7 @@ namespace Negocio.Gestores
                 loSedeEntRPT = loSedeRepoCD.mxObtenerSede(toProActRQT.pnIdeSed);
                 if (loSedeEntRPT == null)
                 {
-                    loProActRPT.Code = "404";
+                    loProActRPT.Code = 404;
                     loProActRPT.Message = $"La sede con ID {toProActRQT.pnIdeSed} no existe.";
                     return loProActRPT;
                 }
@@ -177,7 +182,7 @@ namespace Negocio.Gestores
 
                 if (loProEntRPT == null)
                 {
-                    loProActRPT.Code = "500";
+                    loProActRPT.Code = 500;
                     loProActRPT.Message = $"No se pudo actualizar el producto con ID {toProActRQT.pnIdePro}.";
                     return loProActRPT;
                 }
@@ -189,6 +194,8 @@ namespace Negocio.Gestores
                 loProActRPT.pnStoPro = loProEntRPT.nStoPro;
                 loProActRPT.pnIdeSed = loProEntRPT.nIdeSed;
                 loProActRPT.ptFecPro = loProEntRPT.tFecPro;
+                loProActRPT.Code = 200;
+                loProActRPT.Message = $"Producto con ID {toProActRQT.pnIdePro} actualizado exitosamente.";
             }
             catch (Exception ex)
             {

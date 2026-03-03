@@ -27,7 +27,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="WSGestionProductosSoap", Namespace="http://tempuri.org/")]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Error))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Status))]
     public partial class WSGestionProductos : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback wmObtenerProductosOperationCompleted;
@@ -227,7 +227,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductosListRPT : Error {
+    public partial class ProductosListRPT : Status {
         
         private ProductoListaCN[] paProductosField;
         
@@ -516,14 +516,14 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class Error {
+    public partial class Status {
         
-        private string codeField;
+        private int codeField;
         
         private string messageField;
         
         /// <remarks/>
-        public string Code {
+        public int Code {
             get {
                 return this.codeField;
             }
@@ -549,7 +549,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoEliminarRPT : Error {
+    public partial class ProductoEliminarRPT : Status {
         
         private int pnIdeProField;
         
@@ -570,7 +570,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoActualizarRPT : Error {
+    public partial class ProductoActualizarRPT : Status {
         
         private int pnIdeProField;
         
@@ -663,7 +663,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoCrearRPT : Error {
+    public partial class ProductoCrearRPT : Status {
         
         private int pnIdeProField;
         

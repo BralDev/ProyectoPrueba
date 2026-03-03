@@ -2,6 +2,7 @@
 using Transversal;
 using System.Windows.Forms;
 using ReferenciaServicios.WRGestionProductos;
+using System.Linq;
 
 namespace ProyectoPrueba.Vistas
 {
@@ -27,18 +28,14 @@ namespace ProyectoPrueba.Vistas
 
             productoEliminarRQT.pnIdePro = Convert.ToInt32(txnIdePro.Text);
 
-            ProductoEliminarRPT loConfirmacion = loRefGestProdCR.wmEliminarProducto(productoEliminarRQT);
+            ProductoEliminarRPT loProEliRPT = loRefGestProdCR.wmEliminarProducto(productoEliminarRQT);
 
-            if (loConfirmacion.pnIdePro > 0)
+            if (loProEliRPT.Code == 200)
             {
-                MessageBox.Show("Se ha eliminado el producto " + productoEliminarRQT.pnIdePro);
                 mxLimpCamp();
                 mxCargProds();
             }
-            else
-            {
-                MessageBox.Show("No se ha podido eliminar el producto");
-            }
+            MessageBox.Show(loProEliRPT.Message);
         }
 
         private void cmbInsert_Click(object sender, EventArgs e)
@@ -68,16 +65,12 @@ namespace ProyectoPrueba.Vistas
 
             ProductoCrearRPT loProCreRPT = loRefGestProdCR.wmCrearProducto(loProCreRQT);
 
-            if (loProCreRPT != null)
-            {
-                MessageBox.Show("Se ha creado un producto");
+            if (loProCreRPT.Code == 201)
+            {                
                 mxLimpCamp();
                 mxCargProds();
             }
-            else
-            {
-                MessageBox.Show("No se ha podido crear el producto");
-            }
+            MessageBox.Show(loProCreRPT.Message);
         }
         private void cmbListar_Click(object sender, EventArgs e)
         {
@@ -113,16 +106,12 @@ namespace ProyectoPrueba.Vistas
 
             ProductoActualizarRPT loProActRPT = loRefGestProdCR.wmActualizarProducto(loProActRQT);
 
-            if (loProActRPT != null)
-            {
-                MessageBox.Show("Se ha actualizado el producto " + lnIdePro);
+            if (loProActRPT.Code == 200)
+            {                
                 mxLimpCamp();
                 mxCargProds();
             }
-            else
-            {
-                MessageBox.Show("No se ha podido actualizar el producto");
-            }
+            MessageBox.Show(loProActRPT.Message);
         }
 
         private void grdProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -146,11 +135,14 @@ namespace ProyectoPrueba.Vistas
             WSGestionProductos loRefGestProdCR = new WSGestionProductos();
             ProductosListRPT loProLstRPT = loRefGestProdCR.wmObtenerProductos();
 
-            if (loProLstRPT.paProductos.Length == 0)
+            if (loProLstRPT.Code == 200)
             {
-                MessageBox.Show(Constantes._M_RECURSO_NO_EXISTENTE);
+                grdProd.DataSource = loProLstRPT.paProductos;
             }
-            grdProd.DataSource = loProLstRPT.paProductos;
+            else
+            {
+                MessageBox.Show(loProLstRPT.Message);
+            }                
         }
 
         private void GestionProductoCP_Load(object sender, EventArgs e)
