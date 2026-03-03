@@ -227,7 +227,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductosListRPT {
+    public partial class ProductosListRPT : Error {
         
         private ProductoListaCN[] paProductosField;
         
@@ -341,27 +341,6 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoEliminarRPT {
-        
-        private int pnIdeProField;
-        
-        /// <remarks/>
-        public int pnIdePro {
-            get {
-                return this.pnIdeProField;
-            }
-            set {
-                this.pnIdeProField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class ProductoEliminarRQT {
         
         private int pnIdeProField;
@@ -378,7 +357,160 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoActualizarRQT {
+        
+        private int pnIdeProField;
+        
+        private string pcNomProField;
+        
+        private string pcDesProField;
+        
+        private decimal pnPreProField;
+        
+        private int pnStoProField;
+        
+        private int pnIdeSedField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcDesPro {
+            get {
+                return this.pcDesProField;
+            }
+            set {
+                this.pcDesProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal pnPrePro {
+            get {
+                return this.pnPreProField;
+            }
+            set {
+                this.pnPreProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnStoPro {
+            get {
+                return this.pnStoProField;
+            }
+            set {
+                this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoCrearRQT {
+        
+        private string pcNomProField;
+        
+        private string pcDesProField;
+        
+        private decimal pnPreProField;
+        
+        private int pnStoProField;
+        
+        private int pnIdeSedField;
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcDesPro {
+            get {
+                return this.pcDesProField;
+            }
+            set {
+                this.pcDesProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal pnPrePro {
+            get {
+                return this.pnPreProField;
+            }
+            set {
+                this.pnPreProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnStoPro {
+            get {
+                return this.pnStoProField;
+            }
+            set {
+                this.pnStoProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSed {
+            get {
+                return this.pnIdeSedField;
+            }
+            set {
+                this.pnIdeSedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoEliminarRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoActualizarRPT))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoCrearRPT))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductosListRPT))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -386,7 +518,19 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class Error {
         
+        private string codeField;
+        
         private string messageField;
+        
+        /// <remarks/>
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
         
         /// <remarks/>
         public string Message {
@@ -395,6 +539,27 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.messageField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoEliminarRPT : Error {
+        
+        private int pnIdeProField;
+        
+        /// <remarks/>
+        public int pnIdePro {
+            get {
+                return this.pnIdeProField;
+            }
+            set {
+                this.pnIdeProField = value;
             }
         }
     }
@@ -498,88 +663,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoActualizarRQT {
-        
-        private int pnIdeProField;
-        
-        private string pcNomProField;
-        
-        private string pcDesProField;
-        
-        private decimal pnPreProField;
-        
-        private int pnStoProField;
-        
-        private int pnIdeSedField;
-        
-        /// <remarks/>
-        public int pnIdePro {
-            get {
-                return this.pnIdeProField;
-            }
-            set {
-                this.pnIdeProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string pcNomPro {
-            get {
-                return this.pcNomProField;
-            }
-            set {
-                this.pcNomProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string pcDesPro {
-            get {
-                return this.pcDesProField;
-            }
-            set {
-                this.pcDesProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal pnPrePro {
-            get {
-                return this.pnPreProField;
-            }
-            set {
-                this.pnPreProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnStoPro {
-            get {
-                return this.pnStoProField;
-            }
-            set {
-                this.pnStoProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnIdeSed {
-            get {
-                return this.pnIdeSedField;
-            }
-            set {
-                this.pnIdeSedField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoCrearRPT {
+    public partial class ProductoCrearRPT : Error {
         
         private int pnIdeProField;
         
@@ -662,75 +746,6 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.ptFecProField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoCrearRQT {
-        
-        private string pcNomProField;
-        
-        private string pcDesProField;
-        
-        private decimal pnPreProField;
-        
-        private int pnStoProField;
-        
-        private int pnIdeSedField;
-        
-        /// <remarks/>
-        public string pcNomPro {
-            get {
-                return this.pcNomProField;
-            }
-            set {
-                this.pcNomProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string pcDesPro {
-            get {
-                return this.pcDesProField;
-            }
-            set {
-                this.pcDesProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal pnPrePro {
-            get {
-                return this.pnPreProField;
-            }
-            set {
-                this.pnPreProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnStoPro {
-            get {
-                return this.pnStoProField;
-            }
-            set {
-                this.pnStoProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnIdeSed {
-            get {
-                return this.pnIdeSedField;
-            }
-            set {
-                this.pnIdeSedField = value;
             }
         }
     }

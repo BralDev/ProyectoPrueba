@@ -25,7 +25,7 @@ namespace Esquema.Esquemas
         public int pnIdeSed { get; set; }
     }
 
-    public class ProductoCrearRPT
+    public class ProductoCrearRPT : Error
     {
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }
@@ -94,7 +94,7 @@ namespace Esquema.Esquemas
         public ProductoListaCN[] paProductos { get; set; }
     }
 
-    public class ProductosListRPT
+    public class ProductosListRPT : Error
     {
         public ProductoListaCN[] paProductos { get; set; }
     }
@@ -104,7 +104,7 @@ namespace Esquema.Esquemas
         public int pnIdePro { get; set; }
     }
 
-    public class ProductoEliminarRPT
+    public class ProductoEliminarRPT : Error
     {
         public int pnIdePro { get; set; }
     }

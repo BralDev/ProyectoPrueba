@@ -15,38 +15,34 @@ namespace Negocio.Gestores
             ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
             
-            ProductoCrearRPT loProCreRPT = null;            
-            ProductoEntidadCD loPro
+            ProductoCrearRPT loProCreRPT = new ProductoCrearRPT();
+            ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
+            ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
             try
             {
-                ProductoEntidadCD loProCD = new ProductoEntidadCD
-                {
-                    cNomPro = toProCreRQT.pcNomPro,
-                    cDesPro = toProCreRQT.pcDesPro,
-                    nPrePro = toProCreRQT.pnPrePro,
-                    nStoPro = toProCreRQT.pnStoPro,
-                    nIdeSed = toProCreRQT.pnIdeSed,
-                    tFecPro = DateTime.Now
-                };
+                loProEntRQT.cNomPro = toProCreRQT.pcNomPro;
+                loProEntRQT.cDesPro = toProCreRQT.pcDesPro;
+                loProEntRQT.nPrePro = toProCreRQT.pnPrePro;
+                loProEntRQT.nStoPro = toProCreRQT.pnStoPro;
+                loProEntRQT.nIdeSed = toProCreRQT.pnIdeSed;
+                loProEntRQT.tFecPro = DateTime.Now;
 
-                lnIdPro = loProRepoCD.mxCrearProducto(loProCD);
+                loProEntRPT = loProRepoCD.mxCrearProducto(loProEntRQT);
 
-                if (lnIdPro <= 0)
-                {
-                    loLogger.LogWarning(Constantes._M_NO_REGISTRO, toProCreRQT.pcNomPro);
+                if (loProEntRPT == null)
+                {                    
+                    loProCreRPT.Code = "500";
+                    loProCreRPT.Message = "No se pudo crear el producto.";
                 }
                 else
                 {
-                    loProCreRPT = new ProductoCrearRPT
-                    {
-                        pnIdePro = lnIdPro,
-                        pcNomPro = toProCreRQT.pcNomPro,
-                        pcDesPro = toProCreRQT.pcDesPro,
-                        pnPrePro = toProCreRQT.pnPrePro,
-                        pnStoPro = toProCreRQT.pnStoPro,
-                        pnIdeSed = toProCreRQT.pnIdeSed,
-                        ptFecPro = loProCD.tFecPro
-                    };
+                    loProCreRPT.pnIdePro = loProEntRPT.nIdePro;
+                    loProCreRPT.pcNomPro = loProEntRPT.cNomPro;
+                    loProCreRPT.pcDesPro = loProEntRPT.cDesPro;
+                    loProCreRPT.pnPrePro = loProEntRPT.nPrePro;
+                    loProCreRPT.pnStoPro = loProEntRPT.nStoPro;
+                    loProCreRPT.pnIdeSed = loProEntRPT.nIdeSed;
+                    loProCreRPT.ptFecPro = loProEntRPT.tFecPro;
                 }
             }
             catch (Exception ex)
@@ -60,19 +56,28 @@ namespace Negocio.Gestores
 
         public ProductoEliminarRPT mxEliminarProducto(ProductoEliminarRQT toProEliRQT)
         {
-            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
-            ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();            
             ProductoEliminarRPT loProEliRPT = new ProductoEliminarRPT();
+            ProductoEntidadCD loProEntCD = new ProductoEntidadCD();
+            int lnConfirmacion = new int();
 
-            int lnConfirmacion = 0;
+            loProEntCD = loProRepoCD.mxObtenerProducto(toProEliRQT.pnIdePro);
+            if (loProEntCD == null)
+            {
+                loProEliRPT.Code = "404";
+                loProEliRPT.Message = $"El producto con ID {toProEliRQT.pnIdePro} no existe.";                
+                return loProEliRPT;
+            }
 
             lnConfirmacion = loProRepoCD.mxEliminarProducto(toProEliRQT.pnIdePro);
             if (lnConfirmacion <= 0)
             {
-                loLogger.LogWarning(Constantes._M_ERROR_ELIMINAR, toProEliRQT.pnIdePro);
-            }
+                loProEliRPT.Code = "500";
+                loProEliRPT.Message = $"No se pudo eliminar el producto con ID {toProEliRQT.pnIdePro}.";                
+                return loProEliRPT;
+            }                
 
-            loProEliRPT.pnIdePro = toProEliRQT.pnIdePro;
+            loProEliRPT.pnIdePro = loProEntCD.nIdePro;
             return loProEliRPT;
         }
 
@@ -92,16 +97,16 @@ namespace Negocio.Gestores
                     return loProLstRPT;
                 }
 
-                foreach (ProductoEntidadCD loProCD in loListProductos)
+                foreach (ProductoEntidadCD loProEntCD in loListProductos)
                 {
                     loProLstCN = new ProductoListaCN();
-                    loProLstCN.pnIdePro = loProCD.nIdePro;
-                    loProLstCN.pcNomPro = loProCD.cNomPro;
-                    loProLstCN.pcDesPro = loProCD.cDesPro;
-                    loProLstCN.pnPrePro = loProCD.nPrePro;
-                    loProLstCN.pnStoPro = loProCD.nStoPro;
-                    loProLstCN.pnIdeSed = loProCD.nIdeSed;
-                    loProLstCN.ptFecPro = loProCD.tFecPro;
+                    loProLstCN.pnIdePro = loProEntCD.nIdePro;
+                    loProLstCN.pcNomPro = loProEntCD.cNomPro;
+                    loProLstCN.pcDesPro = loProEntCD.cDesPro;
+                    loProLstCN.pnPrePro = loProEntCD.nPrePro;
+                    loProLstCN.pnStoPro = loProEntCD.nStoPro;
+                    loProLstCN.pnIdeSed = loProEntCD.nIdeSed;
+                    loProLstCN.ptFecPro = loProEntCD.tFecPro;
 
                     laLstProductos.Add(loProLstCN);
                 }
@@ -119,40 +124,44 @@ namespace Negocio.Gestores
         {
             ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
             ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
-            ProductoActualizarRPT loProActRPT = null;
+            ProductoActualizarRPT loProActRPT = new ProductoActualizarRPT();
+            
+            ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
+            ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
 
-            DateTime loConfirmacion = DateTime.Now;
             try
             {
-                ProductoEntidadCD loProCD = new ProductoEntidadCD
+                loProEntRPT = loProRepoCD.mxObtenerProducto(toProActRQT.pnIdePro);
+                if (loProEntRQT == null)
                 {
-                    nIdePro = toProActRQT.pnIdePro,
-                    cNomPro = toProActRQT.pcNomPro,
-                    cDesPro = toProActRQT.pcDesPro,
-                    nPrePro = toProActRQT.pnPrePro,
-                    nStoPro = toProActRQT.pnStoPro,
-                    nIdeSed = toProActRQT.pnIdeSed,
-                };
+                    loProActRPT.Code = "404";
+                    loProActRPT.Message = $"El producto con ID {toProActRQT.pnIdePro} no existe.";
+                    return loProActRPT;
+                }
+                
+                loProEntRQT.nIdePro = toProActRQT.pnIdePro;
+                loProEntRQT.cNomPro = toProActRQT.pcNomPro;
+                loProEntRQT.cDesPro = toProActRQT.pcDesPro;
+                loProEntRQT.nPrePro = toProActRQT.pnPrePro;
+                loProEntRQT.nStoPro = toProActRQT.pnStoPro;
+                loProEntRQT.nIdeSed = toProActRQT.pnIdeSed;                                                   
 
-                loConfirmacion = loProRepoCD.mxActualizarProducto(loProCD);
+                loProEntRPT = loProRepoCD.mxActualizarProducto(loProEntRQT);
 
-                if (loConfirmacion == null)
+                if (loProEntRPT == null)
                 {
                     loProActRPT.Code = "500";
-                    loProActRPT.Message = Constantes._M_ERROR_BASE_DATOS;
+                    loProActRPT.Message = $"No se pudo actualizar el producto con ID {toProActRQT.pnIdePro}.";
                     return loProActRPT;
                 }
 
-                loProActRPT = new ProductoActualizarRPT
-                {
-                    pnIdePro = toProActRQT.pnIdePro,
-                    pcNomPro = toProActRQT.pcNomPro,
-                    pcDesPro = toProActRQT.pcDesPro,
-                    pnPrePro = toProActRQT.pnPrePro,
-                    pnStoPro = toProActRQT.pnStoPro,
-                    pnIdeSed = toProActRQT.pnIdeSed,
-                    ptFecPro = loConfirmacion
-                };
+                loProActRPT.pnIdePro = loProEntRPT.nIdePro;
+                loProActRPT.pcNomPro = loProEntRPT.cNomPro;
+                loProActRPT.pcDesPro = loProEntRPT.cDesPro;
+                loProActRPT.pnPrePro = loProEntRPT.nPrePro;
+                loProActRPT.pnStoPro = loProEntRPT.nStoPro;
+                loProActRPT.pnIdeSed = loProEntRPT.nIdeSed;
+                loProActRPT.ptFecPro = loProEntRPT.tFecPro;
             }
             catch (Exception ex)
             {
