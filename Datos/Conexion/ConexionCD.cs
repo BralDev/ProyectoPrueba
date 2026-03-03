@@ -10,8 +10,8 @@ namespace Datos.Conexion
         public ConexionCD()
         {
 
-            this.lcUrlConexion = "Server=localhost\\SQLEXPRESS;Database=PRUEBA;Trusted_Connection=True; Integrated Security = True; TrustServerCertificate = True; ";
-            //this.lcUrlConexion = "Server=localhost;Database=PRUEBA;User Id=sa;Password=Inicio12.;TrustServerCertificate=True;";
+            //this.lcUrlConexion = "Server=localhost\\SQLEXPRESS;Database=PRUEBA;Trusted_Connection=True; Integrated Security = True; TrustServerCertificate = True; ";
+            this.lcUrlConexion = "Server=localhost;Database=PRUEBA;User Id=sa;Password=Inicio12.;TrustServerCertificate=True;";
         }
 
         public IDbConnection mxObtenerConexion() => new SqlConnection(lcUrlConexion);

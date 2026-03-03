@@ -8,43 +8,30 @@ namespace ProyectoPrueba.Vistas
     public partial class GestionProductoCP : Form
     {
 
-        private WSGestionProductos loRefGestProdCR;
-
-        private int lnIdePro, lnStoPro, lnIdeSed;
-        private String lcNomPro, lcDescPro;
-        private decimal lnPrePro;
-
         public GestionProductoCP()
         {
-            InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Text = "Sistema de Gestión de Productos - invmpro";
-
-            this.loRefGestProdCR = new WSGestionProductos();            
-            txtId.Enabled = false;                        
-            mxCargProds();
+            InitializeComponent();            
         }
 
         private void cmbElimin_Click(object sender, EventArgs e)
-        {
+        {            
+            WSGestionProductos loRefGestProdCR = new WSGestionProductos();
             ProductoEliminarRQT productoEliminarRQT = new ProductoEliminarRQT();
 
-            if (string.IsNullOrWhiteSpace(txtId.Text))
+            if (string.IsNullOrWhiteSpace(txnIdePro.Text))
             {
                 MessageBox.Show("El id de producto es obligatorio");
-                txtNombre.Focus();
+                txcNomPro.Focus();
                 return;
             }
 
-            productoEliminarRQT.pnIdePro = Convert.ToInt32(txtId.Text);
+            productoEliminarRQT.pnIdePro = Convert.ToInt32(txnIdePro.Text);
 
-            ProductoEliminarRPT lnConfirmacion = this.loRefGestProdCR.wmEliminarProducto(productoEliminarRQT);
+            ProductoEliminarRPT loConfirmacion = loRefGestProdCR.wmEliminarProducto(productoEliminarRQT);
 
-            if (lnConfirmacion.pnIdePro > 0)
+            if (loConfirmacion.pnIdePro > 0)
             {
-                MessageBox.Show("Se ha eliminado el producto " + this.lnIdePro);
+                MessageBox.Show("Se ha eliminado el producto " + productoEliminarRQT.pnIdePro);
                 mxLimpCamp();
                 mxCargProds();
             }
@@ -56,25 +43,30 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbInsert_Click(object sender, EventArgs e)
         {
+            int lnIdeSed, lnStoPro;
+            decimal lnPrePro;
+            string lcNomPro, lcDescPro;
+            WSGestionProductos loRefGestProdCR = new WSGestionProductos();
+
             if (!mxValForm())
                 return;
-
-            this.lcNomPro = txtNombre.Text;
-            this.lcDescPro = txtDescrip.Text;
-            this.lnPrePro = Convert.ToDecimal(txtPrecio.Text);
-            this.lnStoPro = Convert.ToInt32(txtStock.Text);
-            this.lnIdeSed = Convert.ToInt32(txtIdSede.Text);
+                        
+            lcNomPro = txcNomPro.Text;
+            lcDescPro = txcDesPro.Text;
+            lnPrePro = Convert.ToDecimal(txnPrePro.Text);
+            lnStoPro = Convert.ToInt32(txnStoPro.Text);
+            lnIdeSed = Convert.ToInt32(txnIdeSed.Text);
 
             ProductoCrearRQT loProCreRQT = new ProductoCrearRQT
             {                
-                pcNomPro = this.lcNomPro,
-                pcDesPro = this.lcDescPro,
-                pnPrePro = this.lnPrePro,
-                pnStoPro = this.lnStoPro,
-                pnIdeSed = this.lnIdeSed
+                pcNomPro = lcNomPro,
+                pcDesPro = lcDescPro,
+                pnPrePro = lnPrePro,
+                pnStoPro = lnStoPro,
+                pnIdeSed = lnIdeSed
             };
 
-            ProductoCrearRPT loProCreRPT = this.loRefGestProdCR.wmCrearProducto(loProCreRQT);
+            ProductoCrearRPT loProCreRPT = loRefGestProdCR.wmCrearProducto(loProCreRQT);
 
             if (loProCreRPT != null)
             {
@@ -94,31 +86,36 @@ namespace ProyectoPrueba.Vistas
         }
         private void cmbEditar_Click(object sender, EventArgs e)
         {
+            int lnIdePro, lnStoPro, lnIdeSed;
+            decimal lnPrePro;
+            string lcNomPro, lcDescPro;
+            WSGestionProductos loRefGestProdCR = new WSGestionProductos();
+
             if (!mxValForm())
                 return;
 
-            this.lnIdePro = Convert.ToInt32(txtId.Text);
-            this.lcNomPro = txtNombre.Text;
-            this.lcDescPro = txtDescrip.Text;
-            this.lnPrePro = Convert.ToDecimal(txtPrecio.Text);
-            this.lnStoPro = Convert.ToInt32(txtStock.Text);
-            this.lnIdeSed = Convert.ToInt32(txtIdSede.Text);
+            lnIdePro = Convert.ToInt32(txnIdePro.Text);
+            lcNomPro = txcNomPro.Text;
+            lcDescPro = txcDesPro.Text;
+            lnPrePro = Convert.ToDecimal(txnPrePro.Text);
+            lnStoPro = Convert.ToInt32(txnStoPro.Text);
+            lnIdeSed = Convert.ToInt32(txnIdeSed.Text);
 
             ProductoActualizarRQT loProActRQT = new ProductoActualizarRQT
             {
-                pnIdePro = this.lnIdePro,
-                pcNomPro = this.lcNomPro,
-                pcDesPro = this.lcDescPro,
-                pnPrePro = this.lnPrePro,
-                pnStoPro = this.lnStoPro,
-                pnIdeSed = this.lnIdeSed
+                pnIdePro = lnIdePro,
+                pcNomPro = lcNomPro,
+                pcDesPro = lcDescPro,
+                pnPrePro = lnPrePro,
+                pnStoPro = lnStoPro,
+                pnIdeSed = lnIdeSed
             };
 
-            ProductoActualizarRPT loProActRPT = this.loRefGestProdCR.wmActualizarProducto(loProActRQT);
+            ProductoActualizarRPT loProActRPT = loRefGestProdCR.wmActualizarProducto(loProActRQT);
 
             if (loProActRPT != null)
             {
-                MessageBox.Show("Se ha actualizado el producto " + this.lnIdePro);
+                MessageBox.Show("Se ha actualizado el producto " + lnIdePro);
                 mxLimpCamp();
                 mxCargProds();
             }
@@ -131,47 +128,23 @@ namespace ProyectoPrueba.Vistas
         private void grdProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             mxLimpCamp();
+            WSGestionProductos loRefGestProdCR = new WSGestionProductos();
+            ProductosListRPT loProLstRPT = loRefGestProdCR.wmObtenerProductos();
             if (e.RowIndex >= 0)
-            {
-                DataGridViewRow loFila = grdProd.Rows[e.RowIndex];
-
-                txtId.Text = loFila.Cells["Id"].Value.ToString();
-                txtNombre.Text = loFila.Cells["Nombre"].Value.ToString();
-                txtDescrip.Text = loFila.Cells["Descripcion"].Value.ToString();
-                txtPrecio.Text = loFila.Cells["Precio"].Value.ToString();
-                txtStock.Text = loFila.Cells["Stock"].Value.ToString();
-                txtIdSede.Text = loFila.Cells["IdSede"].Value.ToString();
+            {               
+                txnIdePro.Text = loProLstRPT.paProductos[e.RowIndex].pnIdePro.ToString();
+                txcNomPro.Text = loProLstRPT.paProductos[e.RowIndex].pcNomPro;
+                txcDesPro.Text = loProLstRPT.paProductos[e.RowIndex].pcDesPro;
+                txnPrePro.Text = loProLstRPT.paProductos[e.RowIndex].pnPrePro.ToString();
+                txnStoPro.Text = loProLstRPT.paProductos[e.RowIndex].pnStoPro.ToString();
+                txnIdeSed.Text = loProLstRPT.paProductos[e.RowIndex].pnIdeSed.ToString();
             }
         }
 
         private void mxCargProds()
-        {
-            grdProd.AutoGenerateColumns = false;
-
-            grdProd.Columns.Clear();
-
-            grdProd.Columns.Add("Id", "ID");
-            grdProd.Columns["Id"].DataPropertyName = "pnIdePro";
-
-            grdProd.Columns.Add("Nombre", "Nombre");
-            grdProd.Columns["Nombre"].DataPropertyName = "pcNomPro";
-
-            grdProd.Columns.Add("Descripcion", "Descripcion");
-            grdProd.Columns["Descripcion"].DataPropertyName = "pcDesPro";
-
-            grdProd.Columns.Add("Precio", "Precio");
-            grdProd.Columns["Precio"].DataPropertyName = "pnPrePro";
-
-            grdProd.Columns.Add("Stock", "Stock");
-            grdProd.Columns["Stock"].DataPropertyName = "pnStoPro";
-
-            grdProd.Columns.Add("IdSede", "ID Sede");
-            grdProd.Columns["IdSede"].DataPropertyName = "pnIdeSed";
-
-            grdProd.Columns.Add("Creado", "Creado");
-            grdProd.Columns["Creado"].DataPropertyName = "ptFecPro";
-
-            ProductosListRPT loProLstRPT = this.loRefGestProdCR.wmObtenerProductos();
+        {            
+            WSGestionProductos loRefGestProdCR = new WSGestionProductos();
+            ProductosListRPT loProLstRPT = loRefGestProdCR.wmObtenerProductos();
 
             if (loProLstRPT.paProductos.Length == 0)
             {
@@ -179,15 +152,21 @@ namespace ProyectoPrueba.Vistas
             }
             grdProd.DataSource = loProLstRPT.paProductos;
         }
+
+        private void GestionProductoCP_Load(object sender, EventArgs e)
+        {
+            mxCargProds();
+        }
+
         private void mxLimpCamp()
         {
-            txtId.Clear();
-            txtNombre.Clear();
-            txtDescrip.Clear();
-            txtPrecio.Clear();
-            txtStock.Clear();
-            txtIdSede.Clear();
-            txtNombre.Focus();
+            txnIdePro.Clear();
+            txcNomPro.Clear();
+            txcDesPro.Clear();
+            txnPrePro.Clear();
+            txnStoPro.Clear();
+            txnIdeSed.Clear();
+            txcNomPro.Focus();
         }
 
         private void cmbLimpiar_Click(object sender, EventArgs e)
@@ -197,59 +176,59 @@ namespace ProyectoPrueba.Vistas
 
         private bool mxValForm()
         {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            if (string.IsNullOrWhiteSpace(txcNomPro.Text))
             {
                 MessageBox.Show("El nombre es obligatorio");
-                txtNombre.Focus();
+                txcNomPro.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtDescrip.Text))
+            if (string.IsNullOrWhiteSpace(txcDesPro.Text))
             {
                 MessageBox.Show("La descripción es obligatoria");
-                txtDescrip.Focus();
+                txcDesPro.Focus();
                 return false;
             }
 
-            if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
+            if (!decimal.TryParse(txnPrePro.Text, out decimal precio))
             {
                 MessageBox.Show("Ingrese un precio válido");
-                txtPrecio.Focus();
+                txnPrePro.Focus();
                 return false;
             }
 
             if (precio <= 0)
             {
                 MessageBox.Show("El precio debe ser mayor que 0");
-                txtPrecio.Focus();
+                txnPrePro.Focus();
                 return false;
             }
 
-            if (!int.TryParse(txtStock.Text, out int stock))
+            if (!int.TryParse(txnStoPro.Text, out int stock))
             {
                 MessageBox.Show("Ingrese un stock válido");
-                txtStock.Focus();
+                txnStoPro.Focus();
                 return false;
             }
 
             if (stock < 0)
             {
                 MessageBox.Show("El stock no puede ser negativo");
-                txtStock.Focus();
+                txnStoPro.Focus();
                 return false;
             }
 
-            if (!int.TryParse(txtIdSede.Text, out int idSede))
+            if (!int.TryParse(txnIdeSed.Text, out int idSede))
             {
                 MessageBox.Show("Ingrese un stock válido");
-                txtStock.Focus();
+                txnStoPro.Focus();
                 return false;
             }
 
             if (idSede < 0)
             {
                 MessageBox.Show("El stock no puede ser negativo");
-                txtStock.Focus();
+                txnStoPro.Focus();
                 return false;
             }
             return true;

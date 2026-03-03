@@ -30,47 +30,22 @@ namespace WSGestionProductos
         [WebMethod(Description = "Crea un nuevo producto.")]
         public ProductoCrearRPT wmCrearProducto(ProductoCrearRQT toCrePro)
         {
-            ProductoGestorCN loProGesCN = new ProductoGestorCN();
-            mxValidarRequest(toCrePro);
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();            
             return loProGesCN.mxCrearProducto(toCrePro);
         }
 
         [WebMethod(Description = "Actualiza un producto existente.")]
         public ProductoActualizarRPT wmActualizarProducto(ProductoActualizarRQT toActPro)
         {
-            ProductoGestorCN loProGesCN = new ProductoGestorCN();
-            mxValidarRequest(toActPro);
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();            
             return loProGesCN.mxActualizarProducto(toActPro);
         }
 
         [WebMethod(Description = "Elimina un producto por su identificador.")]
         public ProductoEliminarRPT wmEliminarProducto(ProductoEliminarRQT toEliPro)
-        {
-            int tnIdePro = toEliPro.pnIdePro;
-            ProductoGestorCN loProGesCN = new ProductoGestorCN();
-            if (tnIdePro <= 0)
-                throw new SoapException("El ID del producto debe ser mayor a 0.",
-                    SoapException.ClientFaultCode);
+        {            
+            ProductoGestorCN loProGesCN = new ProductoGestorCN();           
             return loProGesCN.mxEliminarProducto(toEliPro);
-        }
-
-        private void mxValidarRequest<T>(T toRequest)
-        {
-            if (toRequest == null)
-                throw new SoapException("Request nulo.",
-                    SoapException.ClientFaultCode);
-
-            ValidationContext loContexto = new ValidationContext(toRequest);
-            List<ValidationResult> loErrLst = new List<ValidationResult>();
-
-            if (!Validator.TryValidateObject(toRequest, loContexto, loErrLst, true))
-            {
-                string lcMensajes = string.Join(" | ", loErrLst.Select(e => e.ErrorMessage));
-                throw new SoapException(
-                    $"Validación fallida: {lcMensajes}",
-                    SoapException.ClientFaultCode
-                );
-            }
         }
     }
 }

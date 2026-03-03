@@ -138,7 +138,8 @@ namespace Negocio.Gestores
 
                 if (loConfirmacion == null)
                 {
-                    loProActRPT.Message = "";
+                    loProActRPT.Code = "500";
+                    loProActRPT.Message = Constantes._M_ERROR_BASE_DATOS;
                     return loProActRPT;
                 }
 
