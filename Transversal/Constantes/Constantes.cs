@@ -20,6 +20,7 @@
         public const string SP_PRODUCTO_LISTAR = "PROC_S_INVMPRO_TraerTodo";
         public const string SP_PRODUCTO_ELIMINAR = "PROC_D_INVMPRO_nIdePro";
         public const string SP_PRODUCTAR_EDITAR = "PROC_U_INVMPRO";
+        public const string SP_PRODUCTO_OBTENER = "PROC_S_INVMPRO_nIdePro";
 
         public const string FECHA_ESTANDAR = "dd/MM/yyyy";
         public const string MONEDA_CULTURA = "es-PE";

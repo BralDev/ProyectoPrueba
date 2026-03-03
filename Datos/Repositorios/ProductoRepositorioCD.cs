@@ -15,13 +15,13 @@ namespace Datos.Repositorios
         private readonly ConexionCD loConexion;
 
         public ProductoRepositorioCD()
-        {            
+        {
             this.loConexion = new ConexionCD();
         }
 
-        public int mxCrearProducto(ProductoCD toPro)
+        public ProductoCD mxCrearProducto(ProductoCD toPro)
         {
-            DynamicParameters loParametros;
+            DynamicParameters loParametros;            
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
             {
                 loParametros = new DynamicParameters();
@@ -32,7 +32,7 @@ namespace Datos.Repositorios
                 loParametros.Add("@tnIdeSed", toPro.nIdeSed);
                 loParametros.Add("@ttFecPro", toPro.tFecPro);
 
-                return loIConexion.ExecuteScalar<int>(Constantes.SP_PRODUCTO_CREAR, loParametros, commandType: CommandType.StoredProcedure);
+                return loIConexion.QuerySingle<ProductoCD>(Constantes.SP_PRODUCTO_CREAR, loParametros, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -47,15 +47,16 @@ namespace Datos.Repositorios
                 return loIConexion.Execute(Constantes.SP_PRODUCTO_ELIMINAR, loParametros, commandType: CommandType.StoredProcedure);
             }
         }
+   
         public List<ProductoCD> mxObtenerProductos()
         {
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
-            {                
+            {
                 return loIConexion.Query<ProductoCD>(Constantes.SP_PRODUCTO_LISTAR, commandType: CommandType.StoredProcedure).ToList();
             }
         }
 
-        public DateTime mxActualizarProducto(ProductoCD toPro)
+        public ProductoCD mxActualizarProducto(ProductoCD toPro)
         {
             DynamicParameters loParametros;
             using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
@@ -68,7 +69,18 @@ namespace Datos.Repositorios
                 loParametros.Add("tnStoPro", toPro.nStoPro);
                 loParametros.Add("@tnIdeSed", toPro.nIdeSed);
 
-                return loIConexion.QuerySingleOrDefault<DateTime>(Constantes.SP_PRODUCTAR_EDITAR, loParametros, commandType: CommandType.StoredProcedure);
+                return loIConexion.QuerySingle<ProductoCD>(Constantes.SP_PRODUCTAR_EDITAR, loParametros, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public ProductoCD mxObtenerProducto(int tnIdePro)
+        {
+            DynamicParameters loParametros;
+            using (IDbConnection loIConexion = this.loConexion.mxObtenerConexion())
+            {
+                loParametros = new DynamicParameters();
+                loParametros.Add("tnIdePro", tnIdePro);
+                return loIConexion.QuerySingleOrDefault<ProductoCD>(Constantes.SP_PRODUCTO_OBTENER, loParametros, commandType: CommandType.StoredProcedure);
             }
         }
     }
