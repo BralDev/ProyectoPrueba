@@ -23,11 +23,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSGestionProductos", "WSGes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenciaServicios", "ReferenciaServicios\ReferenciaServicios.csproj", "{3DA40EF2-2CD4-41D6-8657-0CD76DD8AABD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_CPresentacion", "5_CPresentacion", "{6CCF50E4-C8BF-4AE6-90C0-CADFA7C0F0A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6_CPresentacion", "6_CPresentacion", "{6CCF50E4-C8BF-4AE6-90C0-CADFA7C0F0A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{EE559107-09C0-4358-81FF-5ACC4CD3512C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esquema", "Esquema\Esquema.csproj", "{B4DCD93A-918C-4180-9DF5-A9CA8B638460}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_CWebAPI", "5_CWebAPI", "{842088AC-CDB7-48C2-850A-6CFF59C44C29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
