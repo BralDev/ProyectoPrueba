@@ -38,7 +38,7 @@ namespace Negocio.Transacciones
         {
             try
             {
-                Transaccion?.Rollback();
+                Transaccion?.Rollback();                
             }
             catch
             {

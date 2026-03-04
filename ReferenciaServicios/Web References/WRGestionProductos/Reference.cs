@@ -518,27 +518,27 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class Status {
         
-        private int codeField;
+        private int pnCodigoField;
         
-        private string messageField;
+        private string pcMensajeField;
         
         /// <remarks/>
-        public int Code {
+        public int pnCodigo {
             get {
-                return this.codeField;
+                return this.pnCodigoField;
             }
             set {
-                this.codeField = value;
+                this.pnCodigoField = value;
             }
         }
         
         /// <remarks/>
-        public string Message {
+        public string pcMensaje {
             get {
-                return this.messageField;
+                return this.pcMensajeField;
             }
             set {
-                this.messageField = value;
+                this.pcMensajeField = value;
             }
         }
     }

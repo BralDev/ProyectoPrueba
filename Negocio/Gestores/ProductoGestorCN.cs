@@ -33,7 +33,6 @@ namespace Negocio.Gestores
             ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
             ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
 
-            SedeEntidadCD loSedeEntRQT = new SedeEntidadCD();
             SedeEntidadCD loSedeEntRPT = new SedeEntidadCD();
 
             using (TransaccionCN loTran = new TransaccionCN(this.loConexionCD.mxObtenerConexion()))
@@ -44,8 +43,8 @@ namespace Negocio.Gestores
                     if (loSedeEntRPT == null)
                     {
                         loTran.mxRollback();
-                        loProCreRPT.Code = 404;
-                        loProCreRPT.Message = $"La sede con ID {toProCreRQT.pnIdeSed} no existe.";
+                        loProCreRPT.pnCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                        loProCreRPT.pcMensaje = Constantes._M_SEDE_NO_EXISTE;
                         return loProCreRPT;
                     }
 
@@ -60,8 +59,8 @@ namespace Negocio.Gestores
                     if (loProEntRPT == null)
                     {
                         loTran.mxRollback();
-                        loProCreRPT.Code = 500;
-                        loProCreRPT.Message = "No se pudo crear el producto.";
+                        loProCreRPT.pnCodigo = Constantes._M_CODIGO_ERROR;
+                        loProCreRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
                         return loProCreRPT;
                     }
 
@@ -72,15 +71,15 @@ namespace Negocio.Gestores
                     loProCreRPT.pnStoPro = loProEntRPT.nStoPro;
                     loProCreRPT.pnIdeSed = loProEntRPT.nIdeSed;
                     loProCreRPT.ptFecPro = loProEntRPT.tFecPro;
-                    loProCreRPT.Code = 201;
-                    loProCreRPT.Message = "Producto creado exitosamente.";
+                    loProCreRPT.pnCodigo = Constantes._M_CODIGO_CREDADO;
+                    loProCreRPT.pcMensaje = Constantes._M_REGISTRO_EXITOSO;
                     loTran.mxCommit();
                 }
                 catch (Exception ex)
                 {
                     loTran.mxRollback();
-                    loLogger.LogError(ex, $"Error crítico al crear el producto: {toProCreRQT.pcNomPro}");
-                    throw new Exception("Ocurrió un problema interno al procesar el producto.", ex);
+                    loLogger.LogError(ex, Constantes._M_ERROR_REGISTRO);
+                    throw new Exception(Constantes._M_ERROR_REGISTRO, ex);
                 }
             }
             return loProCreRPT;
@@ -103,8 +102,8 @@ namespace Negocio.Gestores
                     if (loProEntCD == null)
                     {
                         loTran.mxRollback();
-                        loProEliRPT.Code = 404;
-                        loProEliRPT.Message = $"El producto con ID {toProEliRQT.pnIdePro} no existe.";
+                        loProEliRPT.pnCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                        loProEliRPT.pcMensaje = Constantes._M_PRODUCTO_NO_EXISTE;
                         return loProEliRPT;
                     }
 
@@ -113,14 +112,14 @@ namespace Negocio.Gestores
                     if (lnConfirmacion <= 0)
                     {
                         loTran.mxRollback();
-                        loProEliRPT.Code = 500;
-                        loProEliRPT.Message = $"No se pudo eliminar el producto con ID {toProEliRQT.pnIdePro}.";
+                        loProEliRPT.pnCodigo = Constantes._M_CODIGO_ERROR;
+                        loProEliRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
                         return loProEliRPT;
                     }
                         
                     loProEliRPT.pnIdePro = loProEntCD.nIdePro;
-                    loProEliRPT.Code = 200;
-                    loProEliRPT.Message = $"Producto con ID {toProEliRQT.pnIdePro} eliminado exitosamente.";
+                    loProEliRPT.pnCodigo = Constantes._M_CODIGO_EXITOSO;
+                    loProEliRPT.pcMensaje = Constantes._M_ELIMINACION_EXITOSA;
 
                     // Todo ok                        
                     loTran.mxCommit();
@@ -128,8 +127,8 @@ namespace Negocio.Gestores
                 catch (Exception ex)
                 {
                     loTran.mxRollback();
-                    loLogger.LogError(ex, $"Error crítico al intentar eliminar el producto: {toProEliRQT.pnIdePro}");
-                    throw new Exception("Ocurrió un problema interno al eliminar el producto. Por favor, intente más tarde.", ex);
+                    loLogger.LogError(ex, Constantes._M_ERROR_ELIMINAR);
+                    throw new Exception(Constantes._M_ERROR_ELIMINAR, ex);
                 }
                 
             }
@@ -154,8 +153,8 @@ namespace Negocio.Gestores
 
                     if (loListProductos.Count == 0)
                     {
-                        loProLstRPT.Code = 204;
-                        loProLstRPT.Message = "La lista de productos se encuentra vacía.";
+                        loProLstRPT.pnCodigo = Constantes._M_CODIGO_SIN_CONTENIDO;
+                        loProLstRPT.pcMensaje = Constantes._M_RECURSO_LISTA_VACIO;
                         return loProLstRPT;
                     }
 
@@ -173,12 +172,14 @@ namespace Negocio.Gestores
                     }
 
                     loProLstRPT.paProductos = laLstProductos.ToArray();
-                    loProLstRPT.Code = 200;
-                    loProLstRPT.Message = "Productos obtenidos exitosamente.";
+                    loProLstRPT.pnCodigo = Constantes._M_CODIGO_EXITOSO;
+                    loProLstRPT.pcMensaje = Constantes._M_CARGA_REGISTROS;
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al obtener los productos desde la base de datos.", ex);
+                    loProLstRPT.pnCodigo = Constantes._M_CODIGO_ERROR;
+                    loProLstRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
+                    throw new Exception(Constantes._M_ERROR_BASE_DATOS, ex);
                 }
             }
 
@@ -195,10 +196,8 @@ namespace Negocio.Gestores
 
             ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
             ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
-
-            SedeEntidadCD loSedeEntRQT = new SedeEntidadCD();
+            
             SedeEntidadCD loSedeEntRPT = new SedeEntidadCD();
-
 
             using (TransaccionCN loTran = new TransaccionCN(this.loConexionCD.mxObtenerConexion()))
             {
@@ -209,8 +208,8 @@ namespace Negocio.Gestores
                     if (loProEntRPT == null)
                     {
                         loTran.mxRollback();
-                        loProActRPT.Code = 404;
-                        loProActRPT.Message = $"El producto con ID {toProActRQT.pnIdePro} no existe.";
+                        loProActRPT.pnCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                        loProActRPT.pcMensaje = Constantes._M_PRODUCTO_NO_EXISTE;
                         return loProActRPT;
                     }
 
@@ -219,8 +218,8 @@ namespace Negocio.Gestores
                     if (loSedeEntRPT == null)
                     {
                         loTran.mxRollback();
-                        loProActRPT.Code = 404;
-                        loProActRPT.Message = $"La sede con ID {toProActRQT.pnIdeSed} no existe.";
+                        loProActRPT.pnCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                        loProActRPT.pcMensaje = Constantes._M_SEDE_NO_EXISTE;
                         return loProActRPT;
                     }
 
@@ -237,8 +236,8 @@ namespace Negocio.Gestores
                     if (loProEntRPT == null)
                     {
                         loTran.mxRollback();
-                        loProActRPT.Code = 500;
-                        loProActRPT.Message = $"No se pudo actualizar el producto con ID {toProActRQT.pnIdePro}.";
+                        loProActRPT.pnCodigo = Constantes._M_CODIGO_ERROR;
+                        loProActRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
                         return loProActRPT;
                     }
                         
@@ -249,8 +248,8 @@ namespace Negocio.Gestores
                     loProActRPT.pnStoPro = loProEntRPT.nStoPro;
                     loProActRPT.pnIdeSed = loProEntRPT.nIdeSed;
                     loProActRPT.ptFecPro = loProEntRPT.tFecPro;
-                    loProActRPT.Code = 200;
-                    loProActRPT.Message = $"Producto con ID {toProActRQT.pnIdePro} actualizado exitosamente.";
+                    loProActRPT.pnCodigo = Constantes._M_CODIGO_EXITOSO;
+                    loProActRPT.pcMensaje = Constantes._M_ACTUALIZACION_EXITOSA;
 
                     // Todo ok
                     loTran.mxCommit();
@@ -258,8 +257,8 @@ namespace Negocio.Gestores
                 catch (Exception ex)
                 {
                     loTran.mxRollback();
-                    loLogger.LogError(ex, $"Error crítico al intentar actualizar el producto: {toProActRQT.pcNomPro}");
-                    throw new Exception("Ocurrió un problema interno al procesar el producto. Por favor, intente más tarde.", ex);
+                    loLogger.LogError(ex, Constantes._M_ERROR_ACTUALIZAR);
+                    throw new Exception(Constantes._M_ERROR_ACTUALIZAR, ex);
                 }                
             }
 

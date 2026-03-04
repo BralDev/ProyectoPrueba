@@ -74,8 +74,8 @@ namespace Esquema.Esquemas
 
     public class Status
     {
-        public int Code { get; set; }
-        public string Message { get; set; }
+        public int pnCodigo { get; set; }
+        public string pcMensaje { get; set; }
     }
 
     public class ProductoListaCN

@@ -21,8 +21,8 @@ namespace ProyectoPrueba.Vistas
 
             if (string.IsNullOrWhiteSpace(this.txnIdePro.Text))
             {
-                MessageBox.Show("El id de producto es obligatorio");
-                txcNomPro.Focus();
+                MessageBox.Show(Constantes._M_CAMPO_OBLIGATORIO, "Id");
+                this.txcNomPro.Focus();
                 return;
             }
 
@@ -30,12 +30,12 @@ namespace ProyectoPrueba.Vistas
 
             ProductoEliminarRPT loProEliRPT = loRefGestProdCR.wmEliminarProducto(loProEliRQT);
 
-            if (loProEliRPT.Code == 200)
+            if (loProEliRPT.pnCodigo == Constantes._M_CODIGO_EXITOSO)
             {
-                mxLimpCamp();
-                mxCargProds();
+                this.mxLimpCamp();
+                this.mxCargProds();
             }
-            MessageBox.Show(loProEliRPT.Message);
+            MessageBox.Show(loProEliRPT.pcMensaje);
         }
 
         private void cmbInsert_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace ProyectoPrueba.Vistas
             string lcNomPro, lcDescPro;
             WSGestionProductos loRefGestProdCR = new WSGestionProductos();
 
-            if (!mxValForm())
+            if (!this.mxValForm())
                 return;
                         
             lcNomPro = this.txcNomPro.Text;
@@ -65,17 +65,17 @@ namespace ProyectoPrueba.Vistas
 
             ProductoCrearRPT loProCreRPT = loRefGestProdCR.wmCrearProducto(loProCreRQT);
 
-            if (loProCreRPT.Code == 201)
+            if (loProCreRPT.pnCodigo == Constantes._M_CODIGO_CREDADO)
             {                
-                mxLimpCamp();
-                mxCargProds();
+                this.mxLimpCamp();
+                this.mxCargProds();
             }
-            MessageBox.Show(loProCreRPT.Message);
+            MessageBox.Show(loProCreRPT.pcMensaje);
         }
         private void cmbListar_Click(object sender, EventArgs e)
         {
-            mxCargProds();
-            MessageBox.Show(Constantes._M_CARGA_REGISTRO);
+            this.mxCargProds();
+            MessageBox.Show(Constantes._M_CARGA_REGISTROS);
         }
         private void cmbEditar_Click(object sender, EventArgs e)
         {
@@ -84,7 +84,7 @@ namespace ProyectoPrueba.Vistas
             string lcNomPro, lcDescPro;
             WSGestionProductos loRefGestProdCR = new WSGestionProductos();
 
-            if (!mxValForm())
+            if (!this.mxValForm())
                 return;
 
             lnIdePro = Convert.ToInt32(this.txnIdePro.Text);
@@ -106,17 +106,17 @@ namespace ProyectoPrueba.Vistas
 
             ProductoActualizarRPT loProActRPT = loRefGestProdCR.wmActualizarProducto(loProActRQT);
 
-            if (loProActRPT.Code == 200)
+            if (loProActRPT.pnCodigo == Constantes._M_CODIGO_EXITOSO)
             {                
-                mxLimpCamp();
-                mxCargProds();
+                this.mxLimpCamp();
+                this.mxCargProds();
             }
-            MessageBox.Show(loProActRPT.Message);
+            MessageBox.Show(loProActRPT.pcMensaje);
         }
 
         private void grdProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            mxLimpCamp();
+            this.mxLimpCamp();
             WSGestionProductos loRefGestProdCR = new WSGestionProductos();
             ProductosListRPT loProLstRPT = loRefGestProdCR.wmObtenerProductos();
             if (e.RowIndex >= 0)
@@ -135,19 +135,19 @@ namespace ProyectoPrueba.Vistas
             WSGestionProductos loRefGestProdCR = new WSGestionProductos();
             ProductosListRPT loProLstRPT = loRefGestProdCR.wmObtenerProductos();
 
-            if (loProLstRPT.Code == 200)
+            if (loProLstRPT.pnCodigo == Constantes._M_CODIGO_EXITOSO)
             {
-                grdProd.DataSource = loProLstRPT.paProductos;
+                this.grdProd.DataSource = loProLstRPT.paProductos;
             }
             else
             {
-                MessageBox.Show(loProLstRPT.Message);
+                MessageBox.Show(loProLstRPT.pcMensaje);
             }                
         }
 
         private void GestionProductoCP_Load(object sender, EventArgs e)
         {
-            mxCargProds();
+            this.mxCargProds();
         }
 
         private void mxLimpCamp()
@@ -163,63 +163,63 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbLimpiar_Click(object sender, EventArgs e)
         {
-            mxLimpCamp();
+            this.mxLimpCamp();
         }
 
         private bool mxValForm()
         {
             if (string.IsNullOrWhiteSpace(this.txcNomPro.Text))
             {
-                MessageBox.Show("El nombre es obligatorio");
+                MessageBox.Show(Constantes._M_CAMPO_OBLIGATORIO, "Nombre");
                 this.txcNomPro.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(this.txcDesPro.Text))
             {
-                MessageBox.Show("La descripción es obligatoria");
+                MessageBox.Show(Constantes._M_CAMPO_OBLIGATORIO, "Descripcion");
                 this.txcDesPro.Focus();
                 return false;
             }
 
             if (!decimal.TryParse(this.txnPrePro.Text, out decimal precio))
             {
-                MessageBox.Show("Ingrese un precio válido");
+                MessageBox.Show(Constantes._M_CAMPO_NUMERICO, "Precio");
                 this.txnPrePro.Focus();
                 return false;
             }
 
             if (precio <= 0)
             {
-                MessageBox.Show("El precio debe ser mayor que 0");
+                MessageBox.Show(Constantes._M_CAMPO_MAYOR_CERO, "Precio");
                 this.txnPrePro.Focus();
                 return false;
             }
 
             if (!int.TryParse(this.txnStoPro.Text, out int stock))
             {
-                MessageBox.Show("Ingrese un stock válido");
+                MessageBox.Show(Constantes._M_CAMPO_NUMERICO, "Stock");
                 this.txnStoPro.Focus();
                 return false;
             }
 
             if (stock < 0)
             {
-                MessageBox.Show("El stock no puede ser negativo");
+                MessageBox.Show(Constantes._M_CAMPO_MAYOR_CERO, "Stock");
                 this.txnStoPro.Focus();
                 return false;
             }
 
             if (!int.TryParse(this.txnIdeSed.Text, out int idSede))
             {
-                MessageBox.Show("Ingrese una sede válida");
+                MessageBox.Show(Constantes._M_CAMPO_NUMERICO, "ID Sede");
                 this.txnIdeSed.Focus();
                 return false;
             }
 
             if (idSede < 0)
             {
-                MessageBox.Show("El Id de Sede no puede ser negativo");
+                MessageBox.Show(Constantes._M_CAMPO_MAYOR_CERO, "ID Sede");
                 this.txnIdeSed.Focus();
                 return false;
             }
