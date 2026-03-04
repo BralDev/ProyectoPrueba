@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 **/ConexionCD.cs
 /Datos/Conexion/ConexionCD.cs
+/WSGestionProductos/Web.config
+/WSGestionProductos/Web.Debug.config
+/WSGestionProductos/Web.Release.config
