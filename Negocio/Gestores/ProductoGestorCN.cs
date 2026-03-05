@@ -372,6 +372,9 @@ namespace Negocio.Gestores
                     }
                     
                     // RESPUESTAS DEL ESQUEMA
+                    loProTrasladarRPT.pnIdeProOrigen = toProTrasladarRQT.pnIdeProOrigen;
+                    loProTrasladarRPT.pnIdeSedDestino = toProTrasladarRQT.pnIdeSedDestino;
+                    loProTrasladarRPT.pnCanTraslado = toProTrasladarRQT.pnCanTraslado;
                     loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_EXITOSO;
                     loProTrasladarRPT.pcMensaje = Constantes._M_TRASLADO_EXITOSO;
                     // Todo ok
