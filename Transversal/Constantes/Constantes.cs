@@ -1,4 +1,6 @@
-﻿namespace Transversal
+﻿using System.Security.Policy;
+
+namespace Transversal
 {
     public static class Constantes
     {
@@ -21,6 +23,11 @@
         public const string SP_PRODUCTAR_EDITAR = "PROC_U_INVMPRO";
         public const string SP_PRODUCTO_OBTENER = "PROC_S_INVMPRO_nIdePro";
 
+        public const string SP_OBTENER_STOCK_PRODUCTO = "PROC_S_INVMPRO_nIdePronIdeSed_Stock";
+        public const string SP_VALIRDAR_NOMBRE_PRODUCTO = "PROC_S_INVMPRO_cNomPronIdeSed";
+        public const string SP_ACTUALIZAR_STOCK_PRODUCTO = "PROC_U_INVMPRO_nIdePronStocknIdeSed";
+
+
         public const string SP_SEDE_OBTENER = "PROC_S_INVMSED_nIdeSed";
 
         public const int _M_CODIGO_EXITOSO = 200;
@@ -40,6 +47,11 @@
         public const string _M_CAMPO_NUMERICO = "El siguiente campo debe ser numérico: ";
         public const string _M_CAMPO_MAYOR_CERO = "El siguiente campo debe ser mayor a cero: ";
 
+
+        public const string _M_CANTIDAD_NO_VALIDO = "La cantidad ingresada no puede ser cero o negativa.";
+        public const string _M_STOCK_INSUFICIENTE = "No hay suficiente stock disponible para completar la operación.";
+        public const string _M_TRASLADO_EXITOSO = "El traslado se realizó correctamente.";
+        public const string _M_TRASLADO_MISMA_SEDE = "No se puede realizar un traslado a la misma sede de origen.";
 
         public const string FECHA_ESTANDAR = "dd/MM/yyyy";
         public const string MONEDA_CULTURA = "es-PE";

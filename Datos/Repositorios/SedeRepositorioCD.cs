@@ -8,7 +8,7 @@ namespace Datos.Repositorios
     public class SedeRepositorioCD
     {
 
-        public SedeEntidadCD mxObtenerSede(int tnIdeSed, IDbConnection toIConexion, IDbTransaction toTransaccion)
+        public SedeEntidadCD mxObtenerSedeId(int tnIdeSed, IDbConnection toIConexion, IDbTransaction toTransaccion)
         {
              DynamicParameters loParametros = new DynamicParameters();
              loParametros.Add("tnIdeSed", tnIdeSed);

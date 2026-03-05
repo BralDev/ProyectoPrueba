@@ -32,7 +32,7 @@ namespace WSGestionProductos
         public ProductoCrearRPT wmCrearProducto(ProductoCrearRQT toCrePro)
         {
             string lcConexion = ConfigurationManager.ConnectionStrings["SQLConexion"].ConnectionString;
-            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);            
+            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);
             return loProGesCN.mxCrearProducto(toCrePro);
         }
 
@@ -40,7 +40,7 @@ namespace WSGestionProductos
         public ProductoActualizarRPT wmActualizarProducto(ProductoActualizarRQT toActPro)
         {
             string lcConexion = ConfigurationManager.ConnectionStrings["SQLConexion"].ConnectionString;
-            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);            
+            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);
             return loProGesCN.mxActualizarProducto(toActPro);
         }
 
@@ -48,8 +48,16 @@ namespace WSGestionProductos
         public ProductoEliminarRPT wmEliminarProducto(ProductoEliminarRQT toEliPro)
         {
             string lcConexion = ConfigurationManager.ConnectionStrings["SQLConexion"].ConnectionString;
-            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);           
+            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);
             return loProGesCN.mxEliminarProducto(toEliPro);
+        }
+
+        [WebMethod(Description = "Realizar un traslado de productos entre sedes")]
+        public ProductoTrasladarRPT wmTrasladarProducto(ProductoTrasladarRQT toTraPro)
+        {
+            string lcConexion = ConfigurationManager.ConnectionStrings["SQLConexion"].ConnectionString;
+            ProductoGestorCN loProGesCN = new ProductoGestorCN(lcConexion);
+            return loProGesCN.mxTrasladarProducto(toTraPro);
         }
     }
 }

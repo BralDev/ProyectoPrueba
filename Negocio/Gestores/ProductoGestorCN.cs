@@ -39,7 +39,7 @@ namespace Negocio.Gestores
             {
                 try
                 {
-                    loSedeEntRPT = loSedeRepoCD.mxObtenerSede(toProCreRQT.pnIdeSed, loTran.Conexion, loTran.Transaccion);
+                    loSedeEntRPT = loSedeRepoCD.mxObtenerSedeId(toProCreRQT.pnIdeSed, loTran.Conexion, loTran.Transaccion);
                     if (loSedeEntRPT == null)
                     {
                         loTran.mxRollback();
@@ -116,7 +116,7 @@ namespace Negocio.Gestores
                         loProEliRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
                         return loProEliRPT;
                     }
-                        
+
                     loProEliRPT.pnIdePro = loProEntCD.nIdePro;
                     loProEliRPT.pnCodigo = Constantes._M_CODIGO_EXITOSO;
                     loProEliRPT.pcMensaje = Constantes._M_ELIMINACION_EXITOSA;
@@ -130,7 +130,7 @@ namespace Negocio.Gestores
                     loLogger.LogError(ex, Constantes._M_ERROR_ELIMINAR);
                     throw new Exception(Constantes._M_ERROR_ELIMINAR, ex);
                 }
-                
+
             }
 
             return loProEliRPT;
@@ -196,7 +196,7 @@ namespace Negocio.Gestores
 
             ProductoEntidadCD loProEntRQT = new ProductoEntidadCD();
             ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
-            
+
             SedeEntidadCD loSedeEntRPT = new SedeEntidadCD();
 
             using (TransaccionCN loTran = new TransaccionCN(this.loConexionCD.mxObtenerConexion()))
@@ -214,7 +214,7 @@ namespace Negocio.Gestores
                     }
 
                     // Validar que la sede existe
-                    loSedeEntRPT = loSedeRepoCD.mxObtenerSede(toProActRQT.pnIdeSed, loTran.Conexion, loTran.Transaccion);
+                    loSedeEntRPT = loSedeRepoCD.mxObtenerSedeId(toProActRQT.pnIdeSed, loTran.Conexion, loTran.Transaccion);
                     if (loSedeEntRPT == null)
                     {
                         loTran.mxRollback();
@@ -240,7 +240,7 @@ namespace Negocio.Gestores
                         loProActRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
                         return loProActRPT;
                     }
-                        
+
                     loProActRPT.pnIdePro = loProEntRPT.nIdePro;
                     loProActRPT.pcNomPro = loProEntRPT.cNomPro;
                     loProActRPT.pcDesPro = loProEntRPT.cDesPro;
@@ -259,10 +259,134 @@ namespace Negocio.Gestores
                     loTran.mxRollback();
                     loLogger.LogError(ex, Constantes._M_ERROR_ACTUALIZAR);
                     throw new Exception(Constantes._M_ERROR_ACTUALIZAR, ex);
-                }                
+                }
             }
 
             return loProActRPT;
+        }
+
+        public ProductoTrasladarRPT mxTrasladarProducto(ProductoTrasladarRQT toProTrasladarRQT)
+        {
+            ProductoRepositorioCD loProRepoCD = new ProductoRepositorioCD();
+            SedeRepositorioCD loSedeRepoCD = new SedeRepositorioCD();
+            ILogger<ProductoGestorCN> loLogger = new LoggerFactory().CreateLogger<ProductoGestorCN>();
+
+            ProductoTrasladarRPT loProTrasladarRPT = new ProductoTrasladarRPT();
+
+            ProductoEntidadCD loProEntRPT = new ProductoEntidadCD();
+
+            SedeEntidadCD loSedeEntRPT = new SedeEntidadCD();
+
+            int lnCantidadTraslado = 0;
+            int lnStockOrigen = 0;
+            int lnStockDestino = 0;
+
+            using (TransaccionCN loTran = new TransaccionCN(this.loConexionCD.mxObtenerConexion()))
+            {
+                try
+                {
+                    // Validar que el producto existe
+                    loProEntRPT = loProRepoCD.mxObtenerProductoId(toProTrasladarRQT.pnIdeProOrigen, loTran.Conexion, loTran.Transaccion);
+                    if (loProEntRPT == null)
+                    {
+                        loTran.mxRollback();
+                        loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                        loProTrasladarRPT.pcMensaje = Constantes._M_PRODUCTO_NO_EXISTE;
+                        return loProTrasladarRPT;
+                    }
+
+                    // Validar que la sede existe
+                    loSedeEntRPT = loSedeRepoCD.mxObtenerSedeId(toProTrasladarRQT.pnIdeSedDestino, loTran.Conexion, loTran.Transaccion);
+                    if (loSedeEntRPT == null)
+                    {
+                        loTran.mxRollback();
+                        loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                        loProTrasladarRPT.pcMensaje = Constantes._M_SEDE_NO_EXISTE;
+                        return loProTrasladarRPT;
+                    }
+
+                    // Validar que el stock a trasladar es menor o igual al stock disponible
+                    lnCantidadTraslado = toProTrasladarRQT.pnCanTraslado;
+                    lnStockOrigen = loProEntRPT.nStoPro;
+
+                    if (lnCantidadTraslado <= 0)
+                    {
+                        loTran.mxRollback();
+                        loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_VALIDACION;
+                        loProTrasladarRPT.pcMensaje = Constantes._M_CANTIDAD_NO_VALIDO;
+                        return loProTrasladarRPT;
+                    }
+
+                    // Validar que el stock a trasladar no supera el stock disponible en la sede origen
+                    if (lnCantidadTraslado > lnStockOrigen)
+                    {
+                        loTran.mxRollback();
+                        loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_VALIDACION;
+                        loProTrasladarRPT.pcMensaje = Constantes._M_STOCK_INSUFICIENTE;
+                        return loProTrasladarRPT;
+                    }
+
+                    int lnIdeProSedDes = loProRepoCD.mxValidarProductoNombre(loProEntRPT.cNomPro, toProTrasladarRQT.pnIdeSedDestino, loTran.Conexion, loTran.Transaccion);
+
+                    if (lnIdeProSedDes < 0) // ERROR BASE DE DATOS
+                    {
+                        loTran.mxRollback();
+                        loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_ERROR;
+                        loProTrasladarRPT.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
+                        return loProTrasladarRPT;
+                    }     
+
+                    // VALIDAR QUE EL PRODUCTO NO SE TRASLADA A LA MISMA SEDE
+                    if (lnIdeProSedDes == toProTrasladarRQT.pnIdeProOrigen)
+                    {
+                        loTran.mxRollback();
+                        loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_VALIDACION;
+                        loProTrasladarRPT.pcMensaje = Constantes._M_TRASLADO_MISMA_SEDE;
+                        return loProTrasladarRPT;
+                    }
+
+                    // CALCULAR NUEVO STOCK EN SEDE ORIGEN
+                    int lnNueStockOrigen = lnStockOrigen - lnCantidadTraslado;
+                    // ACTUALIZAR STOCK DE ORIGEN
+                    loProRepoCD.mxActualizarStockProducto(loProEntRPT.nIdePro, lnNueStockOrigen, loProEntRPT.nIdeSed, loTran.Conexion, loTran.Transaccion);
+
+                    if (lnIdeProSedDes > 0) // PRODUCTO EXISTE EN SEDE DESTINO, SE ACTUALIZA STOCK
+                    {                                                
+                        lnStockDestino = loProRepoCD.mxObtenerStockProducto(lnIdeProSedDes, toProTrasladarRQT.pnIdeSedDestino, loTran.Conexion, loTran.Transaccion);
+                        
+                        int lnNueStockDestino = lnStockDestino + lnCantidadTraslado;
+                        // ACTUALIZAR STOCK DE DESTINO
+                        loProRepoCD.mxActualizarStockProducto(lnIdeProSedDes, lnNueStockDestino, toProTrasladarRQT.pnIdeSedDestino, loTran.Conexion, loTran.Transaccion);                       
+                    }
+                    else // PRODUCTO NO EXISTE EN SEDE DESTINO, SE CREA EL PRODUCTO
+                    {
+                        ProductoEntidadCD loProEntTrasladarRQT = new ProductoEntidadCD();
+                        loProEntTrasladarRQT.cNomPro = loProEntRPT.cNomPro;
+                        loProEntTrasladarRQT.cDesPro = loProEntRPT.cDesPro;
+                        loProEntTrasladarRQT.nPrePro = loProEntRPT.nPrePro;
+                        loProEntTrasladarRQT.nStoPro = lnCantidadTraslado;
+                        loProEntTrasladarRQT.nIdeSed = toProTrasladarRQT.pnIdeSedDestino;
+                        loProEntTrasladarRQT.tFecPro = DateTime.Now;
+
+                        loProRepoCD.mxCrearProducto(loProEntTrasladarRQT, loTran.Conexion, loTran.Transaccion);
+                    }
+                    
+                    // RESPUESTAS DEL ESQUEMA
+                    loProTrasladarRPT.pnCodigo = Constantes._M_CODIGO_EXITOSO;
+                    loProTrasladarRPT.pcMensaje = Constantes._M_TRASLADO_EXITOSO;
+                    // Todo ok
+                    loTran.mxCommit();
+
+                }
+                catch (Exception ex)
+                {
+                    loTran.mxRollback();
+                    loLogger.LogError(ex, Constantes._M_ERROR_ACTUALIZAR);
+                    throw new Exception(Constantes._M_ERROR_ACTUALIZAR, ex);
+                }
+            }
+
+            return loProTrasladarRPT;
         }
     }
 }

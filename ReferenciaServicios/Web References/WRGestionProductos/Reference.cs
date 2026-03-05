@@ -38,6 +38,8 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         private System.Threading.SendOrPostCallback wmEliminarProductoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback wmTrasladarProductoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -87,6 +89,9 @@ namespace ReferenciaServicios.WRGestionProductos {
         
         /// <remarks/>
         public event wmEliminarProductoCompletedEventHandler wmEliminarProductoCompleted;
+        
+        /// <remarks/>
+        public event wmTrasladarProductoCompletedEventHandler wmTrasladarProductoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmObtenerProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -199,6 +204,35 @@ namespace ReferenciaServicios.WRGestionProductos {
             if ((this.wmEliminarProductoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.wmEliminarProductoCompleted(this, new wmEliminarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmTrasladarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ProductoTrasladarRPT wmTrasladarProducto(ProductoTrasladarRQT toTraPro) {
+            object[] results = this.Invoke("wmTrasladarProducto", new object[] {
+                        toTraPro});
+            return ((ProductoTrasladarRPT)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void wmTrasladarProductoAsync(ProductoTrasladarRQT toTraPro) {
+            this.wmTrasladarProductoAsync(toTraPro, null);
+        }
+        
+        /// <remarks/>
+        public void wmTrasladarProductoAsync(ProductoTrasladarRQT toTraPro, object userState) {
+            if ((this.wmTrasladarProductoOperationCompleted == null)) {
+                this.wmTrasladarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmTrasladarProductoOperationCompleted);
+            }
+            this.InvokeAsync("wmTrasladarProducto", new object[] {
+                        toTraPro}, this.wmTrasladarProductoOperationCompleted, userState);
+        }
+        
+        private void OnwmTrasladarProductoOperationCompleted(object arg) {
+            if ((this.wmTrasladarProductoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.wmTrasladarProductoCompleted(this, new wmTrasladarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -331,6 +365,51 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.ptFecProField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoTrasladarRQT {
+        
+        private int pnIdeProOrigenField;
+        
+        private int pnCanTrasladoField;
+        
+        private int pnIdeSedDestinoField;
+        
+        /// <remarks/>
+        public int pnIdeProOrigen {
+            get {
+                return this.pnIdeProOrigenField;
+            }
+            set {
+                this.pnIdeProOrigenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnCanTraslado {
+            get {
+                return this.pnCanTrasladoField;
+            }
+            set {
+                this.pnCanTrasladoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSedDestino {
+            get {
+                return this.pnIdeSedDestinoField;
+            }
+            set {
+                this.pnIdeSedDestinoField = value;
             }
         }
     }
@@ -507,6 +586,7 @@ namespace ReferenciaServicios.WRGestionProductos {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoTrasladarRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoEliminarRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoActualizarRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoCrearRPT))]
@@ -539,6 +619,51 @@ namespace ReferenciaServicios.WRGestionProductos {
             }
             set {
                 this.pcMensajeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoTrasladarRPT : Status {
+        
+        private int pnIdeProOrigenField;
+        
+        private int pnCanTrasladoField;
+        
+        private int pnIdeSedDestinoField;
+        
+        /// <remarks/>
+        public int pnIdeProOrigen {
+            get {
+                return this.pnIdeProOrigenField;
+            }
+            set {
+                this.pnIdeProOrigenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnCanTraslado {
+            get {
+                return this.pnCanTrasladoField;
+            }
+            set {
+                this.pnCanTrasladoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeSedDestino {
+            get {
+                return this.pnIdeSedDestinoField;
+            }
+            set {
+                this.pnIdeSedDestinoField = value;
             }
         }
     }
@@ -850,6 +975,32 @@ namespace ReferenciaServicios.WRGestionProductos {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((ProductoEliminarRPT)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
+    public delegate void wmTrasladarProductoCompletedEventHandler(object sender, wmTrasladarProductoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9221.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class wmTrasladarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal wmTrasladarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ProductoTrasladarRPT Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ProductoTrasladarRPT)(this.results[0]));
             }
         }
     }
