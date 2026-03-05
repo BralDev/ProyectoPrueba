@@ -22,7 +22,7 @@ namespace Datos.Repositorios
             return toIConexion.QuerySingle<ProductoEntidadCD>(Constantes.SP_PRODUCTO_CREAR, loParametros, transaction: toTransaccion, commandType: CommandType.StoredProcedure);            
         }
 
-        public int mxEliminarProducto(int tnIdePro, IDbConnection toIConexion, IDbTransaction toTransaccion)
+        public int mxEliminarProductoId(int tnIdePro, IDbConnection toIConexion, IDbTransaction toTransaccion)
         {         
             DynamicParameters loParametros = new DynamicParameters();
             loParametros.Add("tnIdePro", tnIdePro);
@@ -36,7 +36,7 @@ namespace Datos.Repositorios
             return toIDbConexion.Query<ProductoEntidadCD>(Constantes.SP_PRODUCTO_LISTAR, commandType: CommandType.StoredProcedure).ToList();
         }
 
-        public ProductoEntidadCD mxActualizarProducto(ProductoEntidadCD toPro, IDbConnection toIConexion, IDbTransaction toTransaccion)
+        public ProductoEntidadCD mxActualizarProductoId(ProductoEntidadCD toPro, IDbConnection toIConexion, IDbTransaction toTransaccion)
         {       
             DynamicParameters loParametros = new DynamicParameters();
             loParametros.Add("tnIdePro", toPro.nIdePro);
@@ -49,7 +49,7 @@ namespace Datos.Repositorios
             return toIConexion.QuerySingle<ProductoEntidadCD>(Constantes.SP_PRODUCTAR_EDITAR, loParametros, transaction: toTransaccion, commandType: CommandType.StoredProcedure);            
         }
 
-        public ProductoEntidadCD mxObtenerProducto(int tnIdePro, IDbConnection toIConexion, IDbTransaction toTransaccion)
+        public ProductoEntidadCD mxObtenerProductoId(int tnIdePro, IDbConnection toIConexion, IDbTransaction toTransaccion)
         {                        
             DynamicParameters loParametros = new DynamicParameters();
             loParametros.Add("tnIdePro", tnIdePro);

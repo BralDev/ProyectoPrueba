@@ -98,7 +98,7 @@ namespace Negocio.Gestores
                 try
                 {
                     // Validar que el producto existe
-                    loProEntCD = loProRepoCD.mxObtenerProducto(toProEliRQT.pnIdePro, loTran.Conexion, loTran.Transaccion);
+                    loProEntCD = loProRepoCD.mxObtenerProductoId(toProEliRQT.pnIdePro, loTran.Conexion, loTran.Transaccion);
                     if (loProEntCD == null)
                     {
                         loTran.mxRollback();
@@ -108,7 +108,7 @@ namespace Negocio.Gestores
                     }
 
                     // Eliminar producto
-                    lnConfirmacion = loProRepoCD.mxEliminarProducto(toProEliRQT.pnIdePro, loTran.Conexion, loTran.Transaccion);
+                    lnConfirmacion = loProRepoCD.mxEliminarProductoId(toProEliRQT.pnIdePro, loTran.Conexion, loTran.Transaccion);
                     if (lnConfirmacion <= 0)
                     {
                         loTran.mxRollback();
@@ -204,7 +204,7 @@ namespace Negocio.Gestores
                 try
                 {
                     // Validar que el producto existe
-                    loProEntRPT = loProRepoCD.mxObtenerProducto(toProActRQT.pnIdePro, loTran.Conexion, loTran.Transaccion);
+                    loProEntRPT = loProRepoCD.mxObtenerProductoId(toProActRQT.pnIdePro, loTran.Conexion, loTran.Transaccion);
                     if (loProEntRPT == null)
                     {
                         loTran.mxRollback();
@@ -232,7 +232,7 @@ namespace Negocio.Gestores
                     loProEntRQT.nIdeSed = toProActRQT.pnIdeSed;
 
                     // Actualizar producto
-                    loProEntRPT = loProRepoCD.mxActualizarProducto(loProEntRQT, loTran.Conexion, loTran.Transaccion);
+                    loProEntRPT = loProRepoCD.mxActualizarProductoId(loProEntRQT, loTran.Conexion, loTran.Transaccion);
                     if (loProEntRPT == null)
                     {
                         loTran.mxRollback();
