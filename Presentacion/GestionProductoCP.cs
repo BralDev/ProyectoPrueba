@@ -225,5 +225,31 @@ namespace ProyectoPrueba.Vistas
             }
             return true;
         }
+
+        private void cmbTrasladar_Click(object sender, EventArgs e)
+        {
+            WSGestionProductos loRefGestProdCR = new WSGestionProductos();
+            int lnIdeProOrigen, lnCanTraslado, lnIdeSedDestino;
+
+            lnIdeProOrigen = Convert.ToInt32(this.txnIdeProMov.Text);
+            lnCanTraslado = nudCantMov.Value > 0 ? Convert.ToInt32(nudCantMov.Value) : 0;
+            lnIdeSedDestino = Convert.ToInt32(this.txnIdeSedMov.Text);
+
+            ProductoTrasladarRQT loProTrasladarRQT = new ProductoTrasladarRQT
+            {
+                pnIdeProOrigen = lnIdeProOrigen,
+                pnCanTraslado = lnCanTraslado,
+                pnIdeSedDestino = lnIdeSedDestino
+            };
+
+            ProductoTrasladarRPT loProTrasladarRPT = loRefGestProdCR.wmTrasladarProducto(loProTrasladarRQT);
+
+            if (loProTrasladarRPT.pnCodigo == Constantes._M_CODIGO_EXITOSO)
+            {
+                this.mxLimpCamp();
+                this.mxCargProds();
+            }
+            MessageBox.Show(loProTrasladarRPT.pcMensaje);
+        }
     }
 }
