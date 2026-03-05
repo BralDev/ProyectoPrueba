@@ -8,11 +8,11 @@ namespace Datos.Repositorios
     public class SedeRepositorioCD
     {
 
-        public SedeEntidadCD mxObtenerSede(int tnIdeSed, IDbConnection loIConexion, IDbTransaction loTransaccion)
+        public SedeEntidadCD mxObtenerSede(int tnIdeSed, IDbConnection toIConexion, IDbTransaction toTransaccion)
         {
              DynamicParameters loParametros = new DynamicParameters();
              loParametros.Add("tnIdeSed", tnIdeSed);
-             return loIConexion.QuerySingleOrDefault<SedeEntidadCD>(Constantes.SP_SEDE_OBTENER, loParametros, transaction: loTransaccion, commandType: CommandType.StoredProcedure);            
+             return toIConexion.QuerySingleOrDefault<SedeEntidadCD>(Constantes.SP_SEDE_OBTENER, loParametros, transaction: toTransaccion, commandType: CommandType.StoredProcedure);            
         }
     }
 }

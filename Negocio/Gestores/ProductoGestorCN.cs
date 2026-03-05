@@ -18,9 +18,9 @@ namespace Negocio.Gestores
 
         private readonly ConexionCD loConexionCD;
 
-        public ProductoGestorCN(string lcConexion)
+        public ProductoGestorCN(string tcConexion)
         {
-            this.loConexionCD = new ConexionCD(lcConexion);
+            this.loConexionCD = new ConexionCD(tcConexion);
         }
 
         public ProductoCrearRPT mxCrearProducto(ProductoCrearRQT toProCreRQT)
