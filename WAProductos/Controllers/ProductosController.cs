@@ -9,12 +9,12 @@ using WS = ReferenciaServicios.WRGestionProductos;
 
 namespace WAProductos.Controllers
 {
-    [RoutePrefix("api/productos")]
+    [RoutePrefix("api")]
     public class ProductosController : ApiController
     {     
         // GET api/productos
         [HttpGet]
-        [Route("")]
+        [Route("obtenerProductos")]
         public IHttpActionResult rmObtenerProductos()
         {
             try
@@ -187,7 +187,7 @@ namespace WAProductos.Controllers
 
         // TRASLADAR api/productos/trasladar
         [HttpPost]
-        [Route("trasladar")]
+        [Route("trasladarProducto")]
         public IHttpActionResult rmTrasladarProducto(ProductoTrasladarRQT toTraPro)
         {
             try
