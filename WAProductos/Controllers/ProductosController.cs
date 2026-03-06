@@ -15,7 +15,7 @@ namespace WAProductos.Controllers
         // GET api/productos
         [HttpGet]
         [Route("")]
-        public IHttpActionResult waObtenerProductos()
+        public IHttpActionResult rmObtenerProductos()
         {
             try
             {
@@ -65,7 +65,7 @@ namespace WAProductos.Controllers
         // POST api/productos
         [HttpPost]
         [Route("")]
-        public IHttpActionResult waCrearProducto(ProductoCrearRQT toProCreRQT)
+        public IHttpActionResult rmCrearProducto(ProductoCrearRQT toProCreRQT)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace WAProductos.Controllers
         // PUT api/productos
         [HttpPut]
         [Route("")]
-        public IHttpActionResult waActualizarProducto(ProductoActualizarRQT toActPro)
+        public IHttpActionResult rmActualizarProducto(ProductoActualizarRQT toActPro)
         {
             try
             {
@@ -154,7 +154,7 @@ namespace WAProductos.Controllers
         // DELETE api/productos
         [HttpDelete]
         [Route("")]
-        public IHttpActionResult waEliminarProducto(ProductoEliminarRQT toEliPro)
+        public IHttpActionResult rmEliminarProducto(ProductoEliminarRQT toEliPro)
         {
             try
             {
@@ -188,7 +188,7 @@ namespace WAProductos.Controllers
         // TRASLADAR api/productos/trasladar
         [HttpPost]
         [Route("trasladar")]
-        public IHttpActionResult waTrasladarProducto(ProductoTrasladarRQT toTraPro)
+        public IHttpActionResult rmTrasladarProducto(ProductoTrasladarRQT toTraPro)
         {
             try
             {
