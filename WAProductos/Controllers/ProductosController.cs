@@ -1,5 +1,6 @@
 ﻿using EsquemaAPI.Esquemas;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -10,7 +11,7 @@ namespace WAProductos.Controllers
 {
     [RoutePrefix("api/productos")]
     public class ProductosController : ApiController
-    {
+    {     
         // GET api/productos
         [HttpGet]
         [Route("")]
@@ -21,20 +22,36 @@ namespace WAProductos.Controllers
                 WS.WSGestionProductos loWS = new WS.WSGestionProductos();
                 WS.ProductosListRPT loWSRPT = loWS.wmObtenerProductos();
 
+                ProductoListaCN[] laProductosCN = null;
+
+                if (loWSRPT.paProductos != null)
+                {
+                    List<ProductoListaCN> loProLstCN = new List<ProductoListaCN>();
+
+                    foreach (WS.ProductoListaCN loProLst in loWSRPT.paProductos)
+                    {
+                        ProductoListaCN loProducto = new ProductoListaCN
+                        {
+                            pnIdePro = loProLst.pnIdePro,
+                            pcNomPro = loProLst.pcNomPro,
+                            pcDesPro = loProLst.pcDesPro,
+                            pnPrePro = loProLst.pnPrePro,
+                            pnStoPro = loProLst.pnStoPro,
+                            pnIdeSed = loProLst.pnIdeSed,
+                            ptFecPro = loProLst.ptFecPro
+                        };
+
+                        loProLstCN.Add(loProducto);
+                    }
+
+                    laProductosCN = loProLstCN.ToArray();
+                }
+
                 ProductosListRPT loRPT = new ProductosListRPT
                 {
                     pnCodigo = loWSRPT.pnCodigo,
                     pcMensaje = loWSRPT.pcMensaje,
-                    paProductos = loWSRPT.paProductos?.Select(p => new ProductoListaCN
-                    {
-                        pnIdePro = p.pnIdePro,
-                        pcNomPro = p.pcNomPro,
-                        pcDesPro = p.pcDesPro,
-                        pnPrePro = p.pnPrePro,
-                        pnStoPro = p.pnStoPro,
-                        pnIdeSed = p.pnIdeSed,
-                        ptFecPro = p.ptFecPro
-                    }).ToArray()
+                    paProductos = laProductosCN
                 };
 
                 return Content((HttpStatusCode)loRPT.pnCodigo, loRPT);
@@ -59,12 +76,14 @@ namespace WAProductos.Controllers
                     return BadRequest(ModelState);
 
                 WS.WSGestionProductos loWS = new WS.WSGestionProductos();
-                WS.ProductoCrearRPT loWSRPT = loWS.wmCrearProducto(new WS.ProductoCrearRQT { 
+                WS.ProductoCrearRPT loWSRPT = loWS.wmCrearProducto(new WS.ProductoCrearRQT
+                {
                     pcNomPro = toProCreRQT.pcNomPro,
                     pcDesPro = toProCreRQT.pcDesPro,
                     pnPrePro = toProCreRQT.pnPrePro,
                     pnStoPro = toProCreRQT.pnStoPro,
-                    pnIdeSed = toProCreRQT.pnIdeSed});
+                    pnIdeSed = toProCreRQT.pnIdeSed
+                });
 
                 ProductoCrearRPT loRPT = new ProductoCrearRPT
                 {
@@ -79,7 +98,7 @@ namespace WAProductos.Controllers
                     ptFecPro = loWSRPT.ptFecPro
                 };
 
-                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT); 
+                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT);
             }
             catch (Exception ex)
             {
@@ -164,6 +183,43 @@ namespace WAProductos.Controllers
             {
                 return InternalServerError(ex);
             }
+        }
+
+        // TRASLADAR api/productos/trasladar
+        [HttpPost]
+        [Route("trasladar")]
+        public IHttpActionResult waTrasladarProducto(ProductoTrasladarRQT toTraPro)
+        {
+            try
+            {
+                if (toTraPro == null)
+                    return BadRequest(Constantes._M_CUERPO_SOLICITUD_VACIO);
+
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                WS.WSGestionProductos loWS = new WS.WSGestionProductos();
+                WS.ProductoTrasladarRPT loWSRPT = loWS.wmTrasladarProducto(new WS.ProductoTrasladarRQT
+                {
+                    pnIdeProOrigen = toTraPro.pnIdeProOrigen,                    
+                    pnIdeSedDestino = toTraPro.pnIdeSedDestino,
+                    pnCanTraslado = toTraPro.pnCanTraslado
+                });
+                ProductoTrasladarRPT loRPT = new ProductoTrasladarRPT
+                {
+                    pnCodigo = loWSRPT.pnCodigo,
+                    pcMensaje = loWSRPT.pcMensaje,
+                    pnIdeProOrigen = loWSRPT.pnIdeProOrigen,                    
+                    pnIdeSedDestino = loWSRPT.pnIdeSedDestino,
+                    pnCanTraslado = loWSRPT.pnCanTraslado                    
+                };
+                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
         }
     }
 }
