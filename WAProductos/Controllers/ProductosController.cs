@@ -201,11 +201,12 @@ namespace WAProductos.Controllers
                 WS.WSGestionProductos loWS = new WS.WSGestionProductos();
                 WS.ProductoTrasladarRPT loWSRPT = loWS.wmTrasladarProducto(new WS.ProductoTrasladarRQT
                 {
-                    pnIdeProOrigen = toTraPro.pnIdeProOrigen,                    
-                    pnIdeSedDestino = toTraPro.pnIdeSedDestino,
-                    pnCanTraslado = toTraPro.pnCanTraslado
+                    pnIdeProOrigen = toTraPro.pnIdeProOrigen,
+                    pnCanTraslado = toTraPro.pnCanTraslado,
+                    pnIdeSedDestino = toTraPro.pnIdeSedDestino                    
                 });
-                ProductoTrasladarRPT loRPT = new ProductoTrasladarRPT
+
+        ProductoTrasladarRPT loRPT = new ProductoTrasladarRPT
                 {
                     pnCodigo = loWSRPT.pnCodigo,
                     pcMensaje = loWSRPT.pcMensaje,
