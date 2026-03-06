@@ -64,7 +64,7 @@ namespace WAProductos.Controllers
 
         // POST api/productos
         [HttpPost]
-        [Route("")]
+        [Route("crearProducto")]
         public IHttpActionResult rmCrearProducto(ProductoCrearRQT toProCreRQT)
         {
             try
@@ -108,7 +108,7 @@ namespace WAProductos.Controllers
 
         // PUT api/productos
         [HttpPut]
-        [Route("")]
+        [Route("actualizarProducto")]
         public IHttpActionResult rmActualizarProducto(ProductoActualizarRQT toActPro)
         {
             try
@@ -153,7 +153,7 @@ namespace WAProductos.Controllers
 
         // DELETE api/productos
         [HttpDelete]
-        [Route("")]
+        [Route("eliminarProducto")]
         public IHttpActionResult rmEliminarProducto(ProductoEliminarRQT toEliPro)
         {
             try
