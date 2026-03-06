@@ -21,11 +21,6 @@ namespace WAProductos.Controllers
                 WS.WSGestionProductos loWS = new WS.WSGestionProductos();
                 WS.ProductosListRPT loWSRPT = loWS.wmObtenerProductos();
 
-                if (loWSRPT.pnCodigo == Constantes._M_CODIGO_SIN_CONTENIDO)
-                    return StatusCode(HttpStatusCode.NoContent);
-                if (loWSRPT.pnCodigo != Constantes._M_CODIGO_EXITOSO)
-                    return BadRequest(loWSRPT.pcMensaje);
-                
                 ProductosListRPT loRPT = new ProductosListRPT
                 {
                     pnCodigo = loWSRPT.pnCodigo,
@@ -42,7 +37,7 @@ namespace WAProductos.Controllers
                     }).ToArray()
                 };
 
-                return Ok(loRPT);
+                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT);
             }
             catch (Exception ex)
             {
@@ -64,14 +59,12 @@ namespace WAProductos.Controllers
                     return BadRequest(ModelState);
 
                 WS.WSGestionProductos loWS = new WS.WSGestionProductos();
-                WS.ProductoCrearRPT loWSRPT = loWS.wmCrearProducto(new WS.ProductoCrearRQT
-                {
+                WS.ProductoCrearRPT loWSRPT = loWS.wmCrearProducto(new WS.ProductoCrearRQT { 
                     pcNomPro = toProCreRQT.pcNomPro,
                     pcDesPro = toProCreRQT.pcDesPro,
                     pnPrePro = toProCreRQT.pnPrePro,
                     pnStoPro = toProCreRQT.pnStoPro,
-                    pnIdeSed = toProCreRQT.pnIdeSed
-                });
+                    pnIdeSed = toProCreRQT.pnIdeSed});
 
                 ProductoCrearRPT loRPT = new ProductoCrearRPT
                 {
@@ -86,12 +79,7 @@ namespace WAProductos.Controllers
                     ptFecPro = loWSRPT.ptFecPro
                 };
 
-                if (loRPT.pnCodigo == Constantes._M_CODIGO_NO_ENCONTRADO)
-                    return NotFound();
-                if (loRPT.pnCodigo != Constantes._M_CODIGO_CREDADO)
-                    return BadRequest(loRPT.pcMensaje);
-
-                return Created($"api/productos/{loRPT.pnIdePro}", loRPT);
+                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT); 
             }
             catch (Exception ex)
             {
@@ -136,12 +124,7 @@ namespace WAProductos.Controllers
                     ptFecPro = loWSRPT.ptFecPro
                 };
 
-                if (loRPT.pnCodigo == Constantes._M_CODIGO_NO_ENCONTRADO)
-                    return NotFound();
-                if (loRPT.pnCodigo != Constantes._M_CODIGO_EXITOSO)
-                    return BadRequest(loRPT.pcMensaje);
-
-                return Ok(loRPT);
+                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT);
             }
             catch (Exception ex)
             {
@@ -175,7 +158,7 @@ namespace WAProductos.Controllers
                     pnIdePro = loWSRPT.pnIdePro
                 };
 
-                return StatusCode((HttpStatusCode)loRPT.pnCodigo);
+                return Content((HttpStatusCode)loRPT.pnCodigo, loRPT);
             }
             catch (Exception ex)
             {
