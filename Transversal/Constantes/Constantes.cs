@@ -47,6 +47,8 @@ namespace Transversal
         public const string _M_CAMPO_NUMERICO = "El siguiente campo debe ser numérico: ";
         public const string _M_CAMPO_MAYOR_CERO = "El siguiente campo debe ser mayor a cero: ";
 
+        public const string _M_CUERPO_SOLICITUD_VACIO = "El cuerpo de la solicitud no puede ser nulo.";
+
 
         public const string _M_CANTIDAD_NO_VALIDO = "La cantidad ingresada no puede ser cero o negativa.";
         public const string _M_STOCK_INSUFICIENTE = "No hay suficiente stock disponible para completar la operación.";
