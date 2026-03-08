@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace AppProductos.Vistas.Modelos
 {
-    public class ProductoFormVM : BindableObject
+    public class ProductoAgreVistaModelo : BindableObject
     {
         private readonly ProductoServicio loProductoServicio;
 
@@ -61,14 +61,14 @@ namespace AppProductos.Vistas.Modelos
         public ICommand GuardarCommand { get; }
 
         // ─── CONSTRUCTOR NUEVO ─────────────────────────────────
-        public ProductoFormVM()
+        public ProductoAgreVistaModelo()
         {
             loProductoServicio = new ProductoServicio();
             GuardarCommand = new Command(async () => await mxGuardar());
         }
 
         // ─── CONSTRUCTOR EDITAR ────────────────────────────────
-        public ProductoFormVM(ProductoListaModel toProducto) : this()
+        public ProductoAgreVistaModelo(ProductoListaModel toProducto) : this()
         {
             pcTitulo = "Editar Producto";
             pnIdePro = toProducto.pnIdePro;
@@ -82,7 +82,8 @@ namespace AppProductos.Vistas.Modelos
         // ─── GUARDAR ───────────────────────────────────────────
         private async Task mxGuardar()
         {
-            var loMainPage = Application.Current?.MainPage;
+            var loMainPage = Application.Current?.Windows[0].Page as NavigationPage;
+            var loCurrentPage = loMainPage?.CurrentPage ?? Application.Current?.MainPage;
 
             // Validación básica en la UI
             if (string.IsNullOrWhiteSpace(pcNomPro))

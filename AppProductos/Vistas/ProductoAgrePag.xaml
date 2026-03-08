@@ -6,7 +6,7 @@
              Title="{Binding pcTitulo}">
 
     <ContentPage.BindingContext>
-        <viewmodels:ProductoFormVM />
+        <viewmodels:ProductoAgreVistaModelo />
     </ContentPage.BindingContext>
 
     <ScrollView>

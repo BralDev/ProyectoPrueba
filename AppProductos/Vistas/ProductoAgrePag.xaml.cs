@@ -9,13 +9,13 @@ public partial class ProductoAgrePag : ContentPage
     public ProductoAgrePag()
     {
         InitializeComponent();
-        BindingContext = new ProductoFormVM();
+        BindingContext = new ProductoAgreVistaModelo();
     }
 
     // Constructor para editar producto
     public ProductoAgrePag(ProductoListaModel toProducto)
     {
         InitializeComponent();
-        BindingContext = new ProductoFormVM(toProducto);
+        BindingContext = new ProductoAgreVistaModelo(toProducto);
     }
 }

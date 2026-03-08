@@ -5,18 +5,18 @@ namespace AppProductos.Vistas;
 
 public partial class ProductoListaPage : ContentPage
 {
+    private readonly ProductoListVistaModelo loVM;
     public ProductoListaPage()
     {
         InitializeComponent();
+        loVM = new ProductoListVistaModelo();
+        BindingContext = loVM;
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        if (BindingContext is ProductoListaVM loVM)
-        {
-            await loVM.mxCargarProductos();
-        }
+        await loVM.mxCargarProductos();
     }
 
     private async void OnAgregarProductoClick(object sender, EventArgs e)

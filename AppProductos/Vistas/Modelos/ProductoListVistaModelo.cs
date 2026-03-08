@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace AppProductos.Vistas.Modelos
 {
-    public class ProductoListaVM : BindableObject
+    public class ProductoListVistaModelo : BindableObject
     {
         private readonly ProductoServicio loProductoServicio;
 
@@ -35,11 +35,10 @@ namespace AppProductos.Vistas.Modelos
 
         public ICommand CargarProductosCommand { get; }
 
-        public ProductoListaVM()
+        public ProductoListVistaModelo()
         {
             loProductoServicio = new ProductoServicio();
-            CargarProductosCommand = new Command(async () => await mxCargarProductos());
-            Task.Run(async () => await mxCargarProductos());
+            CargarProductosCommand = new Command(async () => await mxCargarProductos());            
         }
 
         public async Task mxCargarProductos()

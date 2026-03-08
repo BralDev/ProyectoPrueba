@@ -1,14 +1,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:AppProductos.Vistas.Modelos"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
              xmlns:models="clr-namespace:EsquemaMAUI.Esquemas;assembly=EsquemaMAUI"
              x:Class="AppProductos.Vistas.ProductoListaPage"
              Title="Inventario BralDev">
-
-    <ContentPage.BindingContext>
-        <viewmodels:ProductoListaVM />
-    </ContentPage.BindingContext>
-
     <Grid RowDefinitions="Auto, *, Auto">
 
         <Label Grid.Row="0"
