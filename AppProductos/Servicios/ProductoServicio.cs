@@ -36,7 +36,8 @@ namespace AppProductos.Servicios
         {
             try
             {
-                HttpResponseMessage loResponse = await loHttpCli.PostAsJsonAsync(lcUrlAPI, toProCreRQT);
+                String varUrl = lcUrlAPI + "crearProducto";
+                HttpResponseMessage loResponse = await loHttpCli.PostAsJsonAsync(varUrl, toProCreRQT);
                 ProductoCrearRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoCrearRPT>();
                 return loRPT ?? new ProductoCrearRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
             }
@@ -52,7 +53,8 @@ namespace AppProductos.Servicios
         {
             try
             {
-                HttpResponseMessage loResponse = await loHttpCli.PutAsJsonAsync(lcUrlAPI, toProActRQT);
+                String varUrl = lcUrlAPI + "actualizarProducto";
+                HttpResponseMessage loResponse = await loHttpCli.PutAsJsonAsync(varUrl, toProActRQT);
                 ProductoActualizarRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoActualizarRPT>();
                 return loRPT ?? new ProductoActualizarRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
             }
@@ -68,7 +70,8 @@ namespace AppProductos.Servicios
         {
             try
             {
-                HttpRequestMessage loRequest = new HttpRequestMessage(HttpMethod.Delete, lcUrlAPI)
+                String varUrl = lcUrlAPI + "eliminarProducto";
+                HttpRequestMessage loRequest = new HttpRequestMessage(HttpMethod.Delete, varUrl)
                 {
                     Content = JsonContent.Create(toProEliRQT)
                 };
