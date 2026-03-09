@@ -35,14 +35,20 @@ namespace AppProductos.Vistas.Modelos
 
         public ICommand CargarProductosCommand { get; }
 
+        private bool lbCargando = false;        
+
         public ProductoListVistaModelo()
         {
             loProductoServicio = new ProductoServicio();
-            CargarProductosCommand = new Command(async () => await mxCargarProductos());            
+            lbRefrescando = false;
+            CargarProductosCommand = new Command(async () => await mxCargarProductos());
         }
 
         public async Task mxCargarProductos()
         {
+            if (lbCargando) return;
+            lbCargando = true;
+
             IsRefreshing = true;
             pbHayError = false;
             paProductos.Clear();
@@ -50,12 +56,8 @@ namespace AppProductos.Vistas.Modelos
             ProductosListRPT loRPT = await loProductoServicio.amObtenerProductos();
 
             if (loRPT.pnCodigo == 200 && loRPT.paProductos != null)
-            {
-                foreach (ProductoListaModel loProducto in loRPT.paProductos)
-                {
-                    paProductos.Add(loProducto);
-                }
-            }
+                foreach (var p in loRPT.paProductos)
+                    paProductos.Add(p);
             else
             {
                 pbHayError = true;
@@ -63,6 +65,7 @@ namespace AppProductos.Vistas.Modelos
             }
 
             IsRefreshing = false;
+            lbCargando = false;
         }
     }
 }

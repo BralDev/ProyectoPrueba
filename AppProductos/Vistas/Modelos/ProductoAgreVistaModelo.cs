@@ -57,26 +57,40 @@ namespace AppProductos.Vistas.Modelos
             get => lcTitulo;
             set { lcTitulo = value; OnPropertyChanged(); }
         }
+        
+        private string lcTextoBoton = "Guardar";
+        public string pcTextoBoton
+        {
+            get => lcTextoBoton;
+            set { lcTextoBoton = value; OnPropertyChanged(); }
+        }
 
         public ICommand GuardarCommand { get; }
+
+        public ICommand EliminarCommand { get; }
+
+        public bool pbEsEditar => pnIdePro != 0;
 
         // ─── CONSTRUCTOR NUEVO ─────────────────────────────────
         public ProductoAgreVistaModelo()
         {
             loProductoServicio = new ProductoServicio();
             GuardarCommand = new Command(async () => await mxGuardar());
+            EliminarCommand = new Command(async () => await mxEliminar(), () => pnIdePro != 0);
         }
 
         // ─── CONSTRUCTOR EDITAR ────────────────────────────────
         public ProductoAgreVistaModelo(ProductoListaModel toProducto) : this()
         {
-            pcTitulo = "Editar Producto";
+            pcTitulo = "Editar Producto";            
+            pcTextoBoton = "Guardar Cambios";
+            pnIdePro = toProducto.pnIdePro;
             pnIdePro = toProducto.pnIdePro;
             pcNomPro = toProducto.pcNomPro;
             pcDesPro = toProducto.pcDesPro;
             pnPrePro = toProducto.pnPrePro;
             pnStoPro = toProducto.pnStoPro;
-            pnIdeSed = toProducto.pnIdeSed;
+            pnIdeSed = toProducto.pnIdeSed; 
         }
 
         // ─── GUARDAR ───────────────────────────────────────────
@@ -153,6 +167,36 @@ namespace AppProductos.Vistas.Modelos
 
             if (loRPT.pnCodigo == 200)
                 await loMainPage?.Navigation.PopAsync();
+        }
+
+        private async Task mxEliminar()
+        {
+            var loMainPage = Application.Current?.Windows[0].Page as NavigationPage;
+
+            bool lbConfirmar = await loMainPage.DisplayAlert(
+                "Confirmar",
+                $"¿Estás seguro de eliminar '{pcNomPro}'?",
+                "Sí, eliminar",
+                "Cancelar"
+            );
+
+            if (!lbConfirmar) return;
+
+            ProductoEliminarRQT loRQT = new ProductoEliminarRQT
+            {
+                pnIdePro = pnIdePro
+            };
+
+            ProductoEliminarRPT loRPT = await loProductoServicio.amEliminarProducto(loRQT);
+
+            await loMainPage.DisplayAlert(
+                loRPT.pnCodigo == 200 ? "Éxito" : "Error",
+                loRPT.pcMensaje,
+                "OK"
+            );
+
+            if (loRPT.pnCodigo == 200)
+                await loMainPage.Navigation.PopAsync();
         }
     }
 }

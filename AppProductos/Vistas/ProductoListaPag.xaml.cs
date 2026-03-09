@@ -6,6 +6,7 @@ namespace AppProductos.Vistas;
 public partial class ProductoListaPage : ContentPage
 {
     private readonly ProductoListVistaModelo loVM;
+    private bool lbPrimeraCarga = true;
     public ProductoListaPage()
     {
         InitializeComponent();
@@ -16,6 +17,15 @@ public partial class ProductoListaPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        if (lbPrimeraCarga)
+        {
+            lbPrimeraCarga = false;
+            await loVM.mxCargarProductos(); // Carga inicial
+            return;
+        }
+
+        // Recarga post Agregar/Editar
         await loVM.mxCargarProductos();
     }
 
@@ -32,5 +42,10 @@ public partial class ProductoListaPage : ContentPage
             await Navigation.PushAsync(new ProductoAgrePag(loProducto));
             ((CollectionView)sender).SelectedItem = null;
         }
+    }
+
+    private async void OnRefreshing(object sender, EventArgs e)
+    {
+        await loVM.mxCargarProductos();
     }
 }

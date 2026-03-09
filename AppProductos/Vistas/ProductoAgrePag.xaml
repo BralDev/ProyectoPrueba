@@ -4,11 +4,6 @@
              xmlns:viewmodels="clr-namespace:AppProductos.Vistas.Modelos"
              x:Class="AppProductos.Vistas.ProductoAgrePag"
              Title="{Binding pcTitulo}">
-
-    <ContentPage.BindingContext>
-        <viewmodels:ProductoAgreVistaModelo />
-    </ContentPage.BindingContext>
-
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="15">
 
@@ -40,9 +35,17 @@
                    Text="{Binding pnIdeSed}"
                    Keyboard="Numeric"/>
 
-            <Button Text="Guardar"
+            <Button Text="{Binding pcTextoBoton}"
                     Command="{Binding GuardarCommand}"
                     BackgroundColor="#2196F3"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="10"/>
+
+            <Button Text="Eliminar Producto"
+                    Command="{Binding EliminarCommand}"
+                    IsVisible="{Binding pbEsEditar}"
+                    BackgroundColor="#F44336"
                     TextColor="White"
                     HeightRequest="50"
                     CornerRadius="10"/>

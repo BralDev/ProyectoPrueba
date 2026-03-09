@@ -13,8 +13,8 @@
                Margin="10"/>
 
         <RefreshView Grid.Row="1"
-                     IsRefreshing="{Binding IsRefreshing}"
-                     Command="{Binding CargarProductosCommand}">
+             IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding CargarProductosCommand}">
 
             <CollectionView ItemsSource="{Binding paProductos}"
                             SelectionMode="Single"
