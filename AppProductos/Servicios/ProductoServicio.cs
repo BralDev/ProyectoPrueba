@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Net.Http.Json;
 using System.Reflection;
+using System.Text;
 
 namespace AppProductos.Servicios
 {
@@ -19,9 +20,8 @@ namespace AppProductos.Servicios
         public async Task<ProductosListRPT> amObtenerProductos()
         {
             try
-            {
-                String varUrl = lcUrlAPI + "obtenerProductos";
-                ProductosListRPT? loRPT = await loHttpCli.GetFromJsonAsync<ProductosListRPT>(varUrl);
+            {                                
+                ProductosListRPT? loRPT = await loHttpCli.GetFromJsonAsync<ProductosListRPT>(lcUrlAPI + "obtenerProductos");
                 return loRPT ?? new ProductosListRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
             }
             catch (Exception ex)
@@ -35,9 +35,8 @@ namespace AppProductos.Servicios
         public async Task<ProductoCrearRPT> amCrearProducto(ProductoCrearRQT toProCreRQT)
         {
             try
-            {
-                String varUrl = lcUrlAPI + "crearProducto";
-                HttpResponseMessage loResponse = await loHttpCli.PostAsJsonAsync(varUrl, toProCreRQT);
+            {                
+                HttpResponseMessage loResponse = await loHttpCli.PostAsJsonAsync(lcUrlAPI + "crearProducto", toProCreRQT);
                 ProductoCrearRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoCrearRPT>();
                 return loRPT ?? new ProductoCrearRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
             }
@@ -52,9 +51,8 @@ namespace AppProductos.Servicios
         public async Task<ProductoActualizarRPT> amActualizarProducto(ProductoActualizarRQT toProActRQT)
         {
             try
-            {
-                String varUrl = lcUrlAPI + "actualizarProducto";
-                HttpResponseMessage loResponse = await loHttpCli.PutAsJsonAsync(varUrl, toProActRQT);
+            {                
+                HttpResponseMessage loResponse = await loHttpCli.PutAsJsonAsync(lcUrlAPI + "actualizarProducto", toProActRQT);
                 ProductoActualizarRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoActualizarRPT>();
                 return loRPT ?? new ProductoActualizarRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
             }
@@ -69,9 +67,8 @@ namespace AppProductos.Servicios
         public async Task<ProductoEliminarRPT> amEliminarProducto(ProductoEliminarRQT toProEliRQT)
         {
             try
-            {
-                String varUrl = lcUrlAPI + "eliminarProducto";
-                HttpRequestMessage loRequest = new HttpRequestMessage(HttpMethod.Delete, varUrl)
+            {                
+                HttpRequestMessage loRequest = new HttpRequestMessage(HttpMethod.Delete, lcUrlAPI + "eliminarProducto")
                 {
                     Content = JsonContent.Create(toProEliRQT)
                 };
