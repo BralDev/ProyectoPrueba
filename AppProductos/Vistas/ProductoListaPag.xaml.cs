@@ -34,6 +34,11 @@ public partial class ProductoListaPage : ContentPage
         await Navigation.PushAsync(new ProductoAgrePag());
     }
 
+    private async void OnTrasladarProductoClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ProductoTrasladoPag());
+    }
+
     private async void OnProductoSeleccionado(object sender, SelectionChangedEventArgs e)
     {
         ProductoListaModel loProducto = e.CurrentSelection.FirstOrDefault() as ProductoListaModel;

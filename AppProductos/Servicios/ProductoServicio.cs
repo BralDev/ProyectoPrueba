@@ -13,14 +13,14 @@ namespace AppProductos.Servicios
 
         public ProductoServicio()
         {
-            loHttpCli = new HttpClient();                        
+            loHttpCli = new HttpClient();
         }
 
         // GET api/productos
         public async Task<ProductosListRPT> amObtenerProductos()
         {
             try
-            {                                
+            {
                 ProductosListRPT? loRPT = await loHttpCli.GetFromJsonAsync<ProductosListRPT>(lcUrlAPI + "obtenerProductos");
                 return loRPT ?? new ProductosListRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
             }
@@ -35,7 +35,7 @@ namespace AppProductos.Servicios
         public async Task<ProductoCrearRPT> amCrearProducto(ProductoCrearRQT toProCreRQT)
         {
             try
-            {                
+            {
                 HttpResponseMessage loResponse = await loHttpCli.PostAsJsonAsync(lcUrlAPI + "crearProducto", toProCreRQT);
                 ProductoCrearRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoCrearRPT>();
                 return loRPT ?? new ProductoCrearRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
@@ -51,7 +51,7 @@ namespace AppProductos.Servicios
         public async Task<ProductoActualizarRPT> amActualizarProducto(ProductoActualizarRQT toProActRQT)
         {
             try
-            {                
+            {
                 HttpResponseMessage loResponse = await loHttpCli.PutAsJsonAsync(lcUrlAPI + "actualizarProducto", toProActRQT);
                 ProductoActualizarRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoActualizarRPT>();
                 return loRPT ?? new ProductoActualizarRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
@@ -67,7 +67,7 @@ namespace AppProductos.Servicios
         public async Task<ProductoEliminarRPT> amEliminarProducto(ProductoEliminarRQT toProEliRQT)
         {
             try
-            {                
+            {
                 HttpRequestMessage loRequest = new HttpRequestMessage(HttpMethod.Delete, lcUrlAPI + "eliminarProducto")
                 {
                     Content = JsonContent.Create(toProEliRQT)
@@ -80,6 +80,21 @@ namespace AppProductos.Servicios
             {
                 Console.WriteLine($"Error al eliminar producto: {ex.Message}");
                 return new ProductoEliminarRPT { pnCodigo = 500, pcMensaje = ex.Message };
+            }
+        }
+
+        public async Task<ProductoTrasladarRPT> amTrasladarProducto(ProductoTrasladarRQT toProTraRQT)
+        {
+            try
+            {
+                HttpResponseMessage loResponse = await loHttpCli.PostAsJsonAsync(lcUrlAPI + "trasladarProducto", toProTraRQT);
+                ProductoTrasladarRPT? loRPT = await loResponse.Content.ReadFromJsonAsync<ProductoTrasladarRPT>();
+                return loRPT ?? new ProductoTrasladarRPT { pnCodigo = 500, pcMensaje = "No se obtuvo respuesta." };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al trasladar producto: {ex.Message}");
+                return new ProductoTrasladarRPT { pnCodigo = 500, pcMensaje = ex.Message };
             }
         }
     }

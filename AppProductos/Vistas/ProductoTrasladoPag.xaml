@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppProductos.Vistas.ProductoTrasladoPag"
+             Title="Trasladar Producto">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="15">
+
+            <Label Text="Trasladar Producto"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="ID Producto Origen"/>
+            <Entry Placeholder="ID del producto a trasladar"
+                   Text="{Binding pnIdeProOrigen}"
+                   Keyboard="Numeric"/>
+
+            <Label Text="Cantidad a Trasladar"/>
+            <Entry Placeholder="Cantidad de unidades"
+                   Text="{Binding pnCanTraslado}"
+                   Keyboard="Numeric"/>
+
+            <Label Text="ID Sede Destino"/>
+            <Entry Placeholder="ID de la sede destino"
+                   Text="{Binding pnIdeSedDestino}"
+                   Keyboard="Numeric"/>
+
+            <Button Text="Trasladar"
+                    Command="{Binding TrasladarCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="10"
+                    Margin="0,10,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

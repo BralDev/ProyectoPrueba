@@ -78,4 +78,18 @@ namespace EsquemaMAUI.Esquemas
     {
         public int pnIdePro { get; set; }
     }
+
+    public class ProductoTrasladarRQT
+    {
+        public int pnIdeProOrigen { get; set; }
+        public int pnCanTraslado { get; set; }
+        public int pnIdeSedDestino { get; set; }
+    }
+
+    public class ProductoTrasladarRPT : StatusBase
+    {
+        public int pnIdeProOrigen { get; set; }
+        public int pnCanTraslado { get; set; }
+        public int pnIdeSedDestino { get; set; }
+    }
 }

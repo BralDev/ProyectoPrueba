@@ -3,7 +3,7 @@
              xmlns:models="clr-namespace:EsquemaMAUI.Esquemas;assembly=EsquemaMAUI"
              x:Class="AppProductos.Vistas.ProductoListaPage"
              Title="Inventario BralDev">
-    <Grid RowDefinitions="Auto, *, Auto">
+    <Grid RowDefinitions="Auto, *, Auto, Auto">
 
         <Label Grid.Row="0"
                Text="{Binding pcMensaje}"
@@ -56,12 +56,21 @@
         </RefreshView>
 
         <Button Grid.Row="2"
-                Text="+ Nuevo Producto"
-                Clicked="OnAgregarProductoClick"
-                Margin="20"
-                BackgroundColor="#2196F3"
-                TextColor="White"
-                CornerRadius="25"
-                HeightRequest="50"/>
+            Text="+ Nuevo Producto"
+            Clicked="OnAgregarProductoClick"
+            Margin="20,10,20,5"
+            BackgroundColor="#2196F3"
+            TextColor="White"
+            CornerRadius="25"
+            HeightRequest="50"/>
+
+        <Button Grid.Row="3"
+            Text="⇄ Trasladar Producto"
+            Clicked="OnTrasladarProductoClick"
+            Margin="20,5,20,10"
+            BackgroundColor="#4CAF50"
+            TextColor="White"
+            CornerRadius="25"
+            HeightRequest="50"/>
     </Grid>
 </ContentPage>
